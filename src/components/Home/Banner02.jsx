@@ -70,7 +70,7 @@ export default function Banner02() {
                     <FiSearch className="absolute right-3 top-4 text-xl"/>
                 </div>
                 {/* Search Modal Close */}
-                <button onClick={() => setSearch(false)} className="absolute top-3 right-10 text-white text-3xl">
+                <button onClick={() => setSearch(false)} className="absolute top-3 right-5 text-white text-3xl">
                     <CgClose />
                 </button>
             </div>}
