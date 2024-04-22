@@ -1,0 +1,91 @@
+{
+    "slots": [
+        "9.00-12.00",
+        "9.30-12.30",
+        "10.00-1.00",
+        "12.00-3.00",
+        "2.00-6.00",
+        "5.00-8.00",
+        "5.00-10.00",
+        "6.00-11.00"
+    ],
+    "doctors": [
+        {
+            "name": "Dr. Arunangshu Das",
+            "specialize": " Associate Consultant - Oncology",
+            "description": "Dr Arunangshu Das passed MBBS from Mymensing Medical College in 2005. 
+                            After that he joined Radiotherapy Department of Dhaka Medical College in 2007 as Honorary Medical Officer.
+                            At the end of 2008 he received a scholarship and went to National Cancer Center (NCC) Singapore for a clinical attachment and training. 
+                            In 2009, he successfully completed Post Graduate Certificate in Palliative Medicine  from Flinders University Australia.  He joined Government Health Service (27th BCS) in December 2008. 
+                            Subsequently in 2010 he was posted at National Institute of Cancer Research and Hospital (NICRH), Dhaka at the Department of Radiation Oncology. In 2012 he went to UKM, Malaysia for a higher training in Oncology. He successfully completed FCPS in Radiotherapy from Bangladesh College of Physicians and Surgeons of Bangladesh (BCPS) in 2014. 
+                            At the middle of 2014 he went to TATA Memorial Hospital Mumbai for a clinical training in Radiation Oncology. He received the prestigious International Development and Education Award (IDEA) in January 2018 from American Society of Clinical Oncology (ASCO) USA. ","degree": "MBBS, FCPS","gender": "Male","fee": "1000 BDT"
+        },
+        {
+            "name": "Prof. Syed Md. Akram Hussain",
+            "specialize": " Senior Consultant, Clinical Oncology & Radiotherapy",
+            "description": "Prof. Dr. Syed Md Akram Hussain, MBBS, FCPS, FRCP, FACP is a physician of Oncology is working in Square Hospitals Ltd. with his prominent reputation in education, skill and adequate experiences in working in various capacities of hospitals at home and abroad. He has 25 years of practical experience and expertise in the field of Clinical Oncology.",
+            "degree": "MBBS, FCPS, FRCP (Glasgow), FRCP (Edinburgh), FACP (USA), MRCR (UK)",
+            "gender": "Male",
+            "fee": "1500 BDT"
+        },
+        {
+            "name": "Dr. Md. Akhtanur Rahman Joarder",
+            "specialize": "Associate Consultant, Cardiac Surgery",
+            "description": "Dr. Akhtanur Rahman Joarder obtained his MBBS from Faridpur Medical College and completed his MS in Cardio-Vascular & Thoracic surgery (CVTS) from National Institute of Cardio-vascular Diseases (NICVD). His works in Ibrahim Cardiac Hospital & Research Institute, Cardiac Centre of Ibn Sina Specialized Hospital and Square Hospital provides him wide experiences in various cardiac procedures ranging from conventional CABG, OPCAB, Mitral & Aortic valve replacements, repair of Atrial (ASD) & Ventricular septal defects (VSD), PDA ligation and intra-cardiac repair of TAPVC to Tetralogy of Fallot (TOF) surgery.",
+            "degree": " MBBS, MS (Cardio-Vascular & Thoracic Surgery)",
+            "gender": "Male",
+            "fee": "1200 BDT "
+        },
+        {
+            "name": "Prof. Brig. Gen. Faruk Ahmed",
+            "specialize": "Senior Consultant, Hematology",
+            "description": "Dr. Ahmed graduated from Rajshahi Medical College and started his career as general duty medical officer in Combined Military Hospitals under defense ministry. Then he underwent full time residential training in Clinical Pathology at Armed Forces institute of Pathology and successfully obtained a postgraduate diploma. Subsequently he achieved MCPS Degree in clinical pathology.""degree": " MBBS, MCPS (Clinical Pathology), FCPS (Hematology)",
+            "gender": "Male",
+            "fee": "1100 BDT "
+        },
+        {
+            "name": "Prof. Dr. Md. Siraj Uddin",
+            "specialize": "Senior Consultant, Clinical & Aesthetic Dermatology",
+            "description": "Prof. Dr. Md. Siraj Uddin graduated from Sylhet MAG Osmani Medical College in 1982 and worked as a medical officer under the Ministry of Health, Bangladesh. He later became a Professor & Head of the Department of Dermatology at Sylhet M.A.G. Osmani Medical College and Sylhet Women’s Medical College.He holds diplomas in Dermatology from Bangkok and Dhaka, and fellowships in Laser & Dermatosurgery from Bangkok, Thailand, and Hair Restoration Surgery from Mount Sinai Hospital, New York University, USA. Prof. Dr. Md Siraj Uddin is experienced in managing various dermatological conditions and has received training from prestigious institutions worldwide. He is currently a Senior Consultant in Clinical & Aesthetic Dermatology at Square Hospital.",
+            "degree": "MBBS, DDV (BSMMU), DD (Bangkok) Fellow - Dermatosurgery & Laser",
+            "gender": "Male",
+            "fee": "1000 BDT"
+        },
+        {
+            "name": "Dr. Mesbah Uddin Ahmed",
+            "specialize": "Senior Consultant, Orthopedics",
+            "description": "Dr. Mesbah Uddin Ahmed completed his graduation (MBBS) from Dhaka Medical College. He obtained Diploma in orthopedics in 1986 and Master of Surgery (MS) in Orthopedics from NITOR under Dhaka University in 1994.Dr. Mesbah Uddin Ahmed joined in government services under Health Ministry and started his career in Dhaka Medical College and later worked in different institutions including Mymensingh Medical College and Sylhet MAG Osmani Medical College. He worked in district hospitals of Rangamati, Narayanganj, Netrokona and Tangail. He has teaching experience as Associate Professor, Assistant Professor, Senior and Junior Consultants, Registrars and Assistant Registrars. He is experienced in Orthopedics for more than 32 years.",
+            "degree": "MBBS, D. (Ortho), MS (Ortho)",
+            "gender": "Male",
+            "fee": "1100 BDT "
+        },
+        {
+            "name": "Dr. Silvia Hossain",
+            "specialize": " Associate Consultant, Gyne & Gynecological Oncology",
+            "description": "Dr. Silvia Hossain, a graduate of Sir Salimullah Medical College & Mitford Hospital, holds FCPS in Obs & Gyne and Gynecological Oncology from BCPS. With specialized training from Massachusetts General Hospital, Boston, USA, and Tata Medical Center, Kolkata, India, she provides comprehensive care for gynecologic tumors and malignancies. Dr. Silvia performs various surgeries including Radical Hysterectomy and Laparoscopic surgeries. She has joined Square Hospital as an Associate Consultant in Gyne & Gynecological Oncology.",
+            "degree": "MBBS, DGO, FCPS (Obs & Gyne), FCPS (Gynecological Oncology)",
+            "gender": "Female",
+            "fee": "1000 BDT "
+        }
+    ],
+    "teatementsCatagories": [
+        {
+            "title": " Oncology"
+        },
+        {
+            "title": "Cardiac Surgery"
+        },
+        {
+            "title": "Hematology"
+        },
+        {
+            "title": "Dermatology"
+        },
+        {
+            "title": "Orthopedics"
+        },
+        {
+            "title": " Gyne"
+        }
+    ]
+}

@@ -5,7 +5,10 @@
 
 :root {
     --primaryColor: #2AA8FF;
-    --secondaryColor: #80D0C7
+    --secondaryColor: #80D0C7;
+    --border: #9CA3AF;
+    --inputColor: #F0F0F0;
+    --inputText: #ABB6C7;
 }
 
 body {
@@ -13,5 +16,5 @@ body {
     font-weight: 400;
     /* background-color: aqua; */
     background-image: #BFF098 #6FD6FF;
-    color: white;
+    color: black;
 }
