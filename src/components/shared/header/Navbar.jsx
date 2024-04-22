@@ -9,7 +9,6 @@ function Navbar() {
         <>
             <div className={style.topNav}></div>
             <div className={style.navbarContainter}>
-
                 <div className="container flex items-center justify-end space-x-10">
                     <Link>Find Doctors</Link>
                     <Link>Medicines</Link>
