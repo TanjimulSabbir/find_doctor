@@ -5,13 +5,15 @@ import style from "../style/navbar.module.css"
 
 export default function Banner01() {
     return (
-        <div className="container flex items-center mx-auto z-10">
-            <div>
-                <img className="w-full h-full" src={topHero} alt="" srcSet="" />
-                <Link className={style.appointmentBtn} to="/appointment">Appointment now</Link>
-            </div>
-            <div>
-                <img className="w-full h-full" src={sideImage} alt="" srcSet="" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-0">
+            <div className="flex flex-col md:flex-row gap-5 items-center justify-center mt-10 lg:mt-0">
+                <div>
+                    <img className="w-full h-full" src={topHero} alt="" srcSet="" />
+                    <Link className={`${style.appointmentBtn} text-sm sm:text-base px-7 py-3 md:py-4 md:px-10`} to="/appointment">Appointment now</Link>
+                </div>
+                <div>
+                    <img className="w-full h-full" src={sideImage} alt="" srcSet="" />
+                </div>
             </div>
         </div>
     )
