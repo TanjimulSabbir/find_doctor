@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --primaryColor: #2AA8FF;
+    --secondaryColor: #80D0C7
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    /* background-color: aqua; */
+    background-image: #BFF098 #6FD6FF;
+}

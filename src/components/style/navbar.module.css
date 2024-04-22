@@ -1,0 +1,21 @@
+.navbarContainter {
+    height: 74px;
+    color: #102851;
+    padding: 25px 0;
+}
+
+.topNav {
+    height: 2.3rem;
+    background-color: var(--primaryColor);
+}
+
+.signup {
+    background-color: var(--primaryColor);
+    padding: 8px 20px;
+    border-radius: 6px;
+    color: white;
+}
+
+.SearchBtn {
+    color: var(--tmdbLightBlue);
+}
