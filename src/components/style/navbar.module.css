@@ -36,10 +36,7 @@
     border: 2px solid var(--border);
     border-radius: 8px;
     padding-left: 16px;
-}
-
-.relative {
-    color: var(--inputText);
+    cursor: pointer;
 }
 
 .searchBtn {

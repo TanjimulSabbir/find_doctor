@@ -5,7 +5,7 @@ import style from "../style/navbar.module.css"
 
 export default function Banner01() {
     return (
-        <div className="container flex items-center mx-auto">
+        <div className="container flex items-center mx-auto z-10">
             <div>
                 <img className="w-full h-full" src={topHero} alt="" srcSet="" />
                 <Link className={style.appointmentBtn} to="/appointment">Appointment now</Link>
