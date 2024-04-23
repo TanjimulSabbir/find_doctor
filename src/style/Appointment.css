@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.appiontmentBg {
+    background-color: var(--appointmentBg);
+}
+
 .appointmentBtn {
     position: relative;
     background-color: #185FA0;
