@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import style from "../../style/navbar.module.css"
+import style from "../../../style/navbar.module.css"
 import { CgClose } from "react-icons/cg";
 import { useState } from "react";
-import { BiCollapse, BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 
 function Navbar() {
     const [menu, setMenu] = useState(true)

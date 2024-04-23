@@ -1,7 +1,7 @@
 import { FiSearch } from "react-icons/fi"
 import banner from "../../assets/images/banner02.svg"
 import { BiSolidLocationPlus } from "react-icons/bi"
-import style from "../style/navbar.module.css"
+import style from "../../style/navbar.module.css"
 import { useState } from "react"
 import LookingFor from "./LookingFor"
 import { CgClose } from "react-icons/cg"
