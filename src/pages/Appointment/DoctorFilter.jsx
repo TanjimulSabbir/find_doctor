@@ -1,5 +1,10 @@
 import { useState } from "react"
 import AppointmentInfo from "../../Tools/Appointment.json"
+import { FaHospital } from "react-icons/fa";
+import { BsHospital } from "react-icons/bs";
+import { FaUserDoctor } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
+import doctorSvg from "../../assets/images/doctor01.svg"
 
 export default function DoctorFilter() {
     const [inputSearch, setInputSearch] = useState("");
@@ -31,18 +36,19 @@ export default function DoctorFilter() {
             {/* Search doctot, clinics, hospitals */}
             <div className="relative flex flex-col px-4 w-full">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" className="w-full outline-none text-sm" onChange={(e) => { setInputSearch(e.target.value); setFloatMenu(true); }} value={inputSearch} />
+                <input type="text" className="w-full outline-none text-sm" onChange={(e) => { setInputSearch(e.target.value.toLowerCase()); setFloatMenu(true); }} value={inputSearch} />
 
                 {floatMenu && inputSearch !== "" && (
                     <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3">
                         <p className="bg-green-500 py-1 rounded text-center text-sm">Doctors</p>
                         {AppointmentInfo.doctors
-                            .filter(doctor => doctor.name.includes(inputSearch))
+                            .filter(doctor => doctor.name.toLowerCase().includes(inputSearch))
                             .length > 0 ? (
                             AppointmentInfo.doctors
-                                .filter(doctor => doctor.name.includes(inputSearch))
+                                .filter(doctor => doctor.name.toLowerCase().includes(inputSearch))
                                 .map(item => (
-                                    <p key={item.id} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded" onClick={() => { setInputSearch(item.name); setFloatMenu(false); }}>{item.name}</p>
+                                    <p key={item.id} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex items-center space-x-2" onClick={() => { setInputSearch(item.name); setFloatMenu(false); }}>
+                                        <img src={doctorSvg} className="w-5 h-5 rounded-full border" alt="" srcSet="" /> <span>{item.name}</span></p>
                                 ))
                         ) : (
                             <p className="text-center text-sm text-gray-500">No doctor(s) found!</p>
@@ -51,7 +57,11 @@ export default function DoctorFilter() {
 
                         <p className="bg-green-500 py-1 rounded text-center text-sm">Hospitals</p>
                         {
-                            AppointmentInfo.hospitals.filter(hospital => hospital.name.includes(inputSearch)).length > 0 ? AppointmentInfo.hospitals.filter(hospital => hospital.name.includes(inputSearch)).map(hospital => (<p key={hospital.id} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded" onClick={() => { setInputSearch(hospital.name); setFloatMenu(false); }}>{hospital.name}</p>))
+                            AppointmentInfo.hospitals.filter(hospital => hospital.name.toLowerCase().includes(inputSearch)).length > 0 ?
+
+                                AppointmentInfo.hospitals.filter(hospital => hospital.name.toLowerCase().includes(inputSearch))
+                                    .map(hospital => (<p key={hospital.id} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex space-x-2 items-center" onClick={() => { setInputSearch(hospital.name); setFloatMenu(false); }}>
+                                        <BsHospital />  <span> {hospital.name}</span></p>))
                                 : <p className="text-center text-sm text-gray-500">No hospital(s) found!</p>
                         }
                     </p>
