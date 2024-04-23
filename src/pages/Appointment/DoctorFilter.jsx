@@ -34,12 +34,26 @@ export default function DoctorFilter() {
                 <input type="text" className="w-full outline-none text-sm" onChange={(e) => { setInputSearch(e.target.value); setFloatMenu(true); }} value={inputSearch} />
 
                 {floatMenu && inputSearch !== "" && (
-                    <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3 cursor-pointer">
+                    <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3">
+                        <p className="bg-green-500 py-1 rounded text-center text-sm">Doctors</p>
                         {AppointmentInfo.doctors
                             .filter(doctor => doctor.name.includes(inputSearch))
-                            .map(item => (
-                                <p key={item.id} onClick={() => { setInputSearch(item.name); setFloatMenu(false); }}>{item.name}</p>
-                            ))}
+                            .length > 0 ? (
+                            AppointmentInfo.doctors
+                                .filter(doctor => doctor.name.includes(inputSearch))
+                                .map(item => (
+                                    <p key={item.id} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded" onClick={() => { setInputSearch(item.name); setFloatMenu(false); }}>{item.name}</p>
+                                ))
+                        ) : (
+                            <p className="text-center text-sm text-gray-500">No doctor(s) found!</p>
+                        )
+                        }
+
+                        <p className="bg-green-500 py-1 rounded text-center text-sm">Hospitals</p>
+                        {
+                            AppointmentInfo.hospitals.filter(hospital => hospital.name.includes(inputSearch)).length > 0 ? AppointmentInfo.hospitals.filter(hospital => hospital.name.includes(inputSearch)).map(hospital => (<p key={hospital.id} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded" onClick={() => { setInputSearch(hospital.name); setFloatMenu(false); }}>{hospital.name}</p>))
+                                : <p className="text-center text-sm text-gray-500">No hospital(s) found!</p>
+                        }
                     </p>
                 )}
 
