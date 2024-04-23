@@ -1,4 +1,3 @@
-
 /* Doctor_Filter */
 .searchBtn {
     position: relative;
@@ -6,6 +5,19 @@
     /* height: 50px; */
     padding: 7px 20px;
     border-radius: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.appointmentBtn {
+    position: relative;
+    background-color: #185FA0;
+    /* height: 50px; */
+    padding: 7px 20px;
+    border-radius: 1px;
     color: white;
     display: flex;
     align-items: center;

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import treatmentInfo from "../../Tools/Appointment.json"
+import { IoMdShare } from "react-icons/io";
+import toast from "react-hot-toast";
 export default function Doctors() {
     return (
         <div className="container mx-auto mt-10 py-10 space-y-10 w-[80%] border border-green-600">
@@ -21,23 +23,31 @@ export default function Doctors() {
                                 <div className="font-extrabold absolute bottom-0 flex items-center space-x-10 w-full justify-between">
 
                                     <p >{fee}</p>
-                                    <Link className="text-[#185FA0] flex items-center justify-end" to={`/doctor/${id}`}>view more..</Link>
+
                                 </div>
                             </div>
 
                         </div>
                         <div className="flex items-center w-[20%] border">
-                            <div className="absolute  right-0 bottom-11">
-                                <button className="searchBtn">Book Appointment</button>
+                            <div className="absolute bottom-0">
+                                <Link className="text-[#185FA0] flex items-center justify-end" to={`/doctor/${id}`}>view more..</Link>
+                            </div>
+                            <div className="absolute right-0 bottom-11">
+                                <Link to={`appintment/${id}`} className="appointmentBtn">Book Appointment</Link>
                             </div>
 
                             <div className="absolute bottom-0 right-0">
                                 <p className="flex items-center space-x-1"> <span>Availability</span> <span className="text-sky-500 text-sm">Today</span></p>
                             </div>
                         </div>
+                        <div className="absolute top-1 right-1 cursor-pointer" onClick={()=>toast.success("shared")}>
+                            <IoMdShare />
+                        </div>
                     </div>
                 )
             })}
+
+
         </div >
     )
 }
