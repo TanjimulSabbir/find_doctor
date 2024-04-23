@@ -18,17 +18,17 @@
             "degree": "MBBS, FCPS",
             "gender": "Male",
             "fee": "1000 BDT",
-            "image": "dr_arunangshu_das.jpg"
+            "image": "https://i.ibb.co/XD8SK3k/portrait-smiling-handsome-male-doctor-man-171337-5055.jpg"
         },
         {
             "id": 2,
-            "name": "Prof. Syed Md. Akram Hussain",
+            "name": "Prof. Dr. Tasnim Zara",
             "specialize": "Senior Consultant, Clinical Oncology & Radiotherapy",
-            "description": "Prof. Dr. Syed Md Akram Hussain, MBBS, FCPS, FRCP, FACP is a physician of Oncology is working in Square Hospitals Ltd. with his prominent reputation in education, skill and adequate experiences in working in various capacities of hospitals at home and abroad. He has 25 years of practical experience and expertise in the field of Clinical Oncology.",
+            "description": "Prof. Dr Tasnim Zara, MBBS, FCPS, FRCP, FACP is a physician of Oncology is working in Square Hospitals Ltd. with his prominent reputation in education, skill and adequate experiences in working in various capacities of hospitals at home and abroad. He has 25 years of practical experience and expertise in the field of Clinical Oncology.",
             "degree": "MBBS, FCPS, FRCP (Glasgow), FRCP (Edinburgh), FACP (USA), MRCR (UK)",
             "gender": "Male",
             "fee": "1500 BDT",
-            "image": "prof_syed_md_akram_hussain.jpg"
+            "image": "https://i.ibb.co/z6STkZx/female-doctor-hospital-23-2148827760.jpg"
         },
         {
             "id": 3,
@@ -38,17 +38,17 @@
             "degree": "MBBS, MS (Cardio-Vascular & Thoracic Surgery)",
             "gender": "Male",
             "fee": "1200 BDT",
-            "image": "dr_md_akhtanur_rahman_joarder.jpg"
+            "image": "https://i.ibb.co/2Mmd2tf/i-trying-be-best-doctor-329181-2188.jpg"
         },
         {
             "id": 4,
-            "name": "Prof. Brig. Gen. Faruk Ahmed",
+            "name": "Prof. Dr. Zohura Sarkar",
             "specialize": "Senior Consultant, Hematology",
-            "description": "Dr. Ahmed graduated from Rajshahi Medical College and started his career as general duty medical officer in Combined Military Hospitals under defense ministry. Then he underwent full time residential training in Clinical Pathology at Armed Forces institute of Pathology and successfully obtained a postgraduate diploma. Subsequently he achieved MCPS Degree in clinical pathology",
+            "description": "Dr. Zohura Sarkar graduated from Rajshahi Medical College and started his career as general duty medical officer in Combined Military Hospitals under defense ministry. Then he underwent full time residential training in Clinical Pathology at Armed Forces institute of Pathology and successfully obtained a postgraduate diploma. Subsequently he achieved MCPS Degree in clinical pathology",
             "degree": " MBBS, MCPS (Clinical Pathology), FCPS (Hematology)",
             "gender": "Male",
             "fee": "1100 BDT",
-            "image": "prof_brig_gen_faruk_ahmed.jpg"
+            "image": "https://i.ibb.co/84f6Ndd/woman-with-stethoscope-holding-clipboard-1098-2502.jpg"
         },
         {
             "id": 5,
@@ -68,7 +68,7 @@
             "degree": "MBBS, D. (Ortho), MS (Ortho)",
             "gender": "Male",
             "fee": "1100 BDT",
-            "image": "dr_mesbah_uddin_ahmed.jpg"
+            "image": "https://i.ibb.co/GMd1Mdt/cheerful-doctor-making-notes-looking-away-23-2147896151.jpg"
         },
         {
             "id": 7,
@@ -78,7 +78,7 @@
             "degree": "MBBS, DGO, FCPS (Obs & Gyne), FCPS (Gynecological Oncology)",
             "gender": "Female",
             "fee": "1000 BDT",
-            "image": "dr_silvia_hossain.jpg"
+            "image": " https://i.ibb.co/bz0QTzz/female-doctor-hospital-with-stethoscope-23-2148827776.jpg"
         },
         {
             "id": 8,
@@ -88,7 +88,7 @@
             "degree": "MBBS, FCPS (Cardiology)",
             "gender": "Male",
             "fee": "1200 BDT",
-            "image": "dr_mohammad_rahman.jpg"
+            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg"
         },
         {
             "id": 9,
@@ -98,7 +98,7 @@
             "degree": "MBBS, FCPS (Pediatrics)",
             "gender": "Female",
             "fee": "800 BDT",
-            "image": "dr_farida_khan.jpg"
+            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg"
         },
         {
             "id": 10,
@@ -108,7 +108,7 @@
             "degree": "MBBS, FCPS (Orthopedics)",
             "gender": "Male",
             "fee": "1500 BDT",
-            "image": "dr_kamal_ahmed.jpg"
+            "image": "https://i.ibb.co/nDX9qQd/doctor-with-his-arms-crossed-white-background-1368-5790.jpg"
         },
         {
             "id": 11,
@@ -118,7 +118,7 @@
             "degree": "MBBS, FCPS (Psychiatry)",
             "gender": "Female",
             "fee": "1300 BDT",
-            "image": "dr_ayesha_akter.jpg"
+            "image": "https://i.ibb.co/5FvVcWD/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini-12.jpg"
         },
         {
             "id": 12,
@@ -128,7 +128,37 @@
             "degree": "MBBS, FCPS (Urology)",
             "gender": "Male",
             "fee": "1400 BDT",
-            "image": "dr_anisur_rahman.jpg"
+            "image": "https://i.ibb.co/nDX9qQd/doctor-with-his-arms-crossed-white-background-1368-5790.jpg"
+        },
+        {
+            "id": 13,
+            "name": "Prof. Dr. Jasmine Shova",
+            "specialize": "Pediatrician",
+            "description": "Prof. Dr. Jasmine Shova is a compassionate pediatrician with a focus on child health and development. She completed her medical degree from Chittagong Medical College and obtained her specialization in pediatrics from Bangabandhu Sheikh Mujib Medical University. Dr. Sultana is dedicated to providing personalized care to children of all ages.",
+            "degree": "MBBS, MD (Pediatrics)",
+            "gender": "Female",
+            "fee": "600 BDT",
+            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg"
+        },
+        {
+            "id": 14,
+            "name": "Dr. Zarin Tasnim",
+            "specialize": "Senior Consultant, Cardiology",
+            "description": "Dr. Zarin Tasnim is a renowned cardiologist known for his expertise in diagnosing and treating heart conditions. He completed his medical degree from Harvard Medical School and obtained his specialization in cardiology from Johns Hopkins University. Dr. Smith is committed to providing exceptional cardiac care to his patients.",
+            "degree": "MBBS, MD (Pediatrics)",
+            "gender": "Female",
+            "fee": "1400 BDT",
+            "image": "https://i.ibb.co/ZM9Ynkf/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-postur.jpg"
+        },
+        {
+            "id": 15,
+            "name": "Dr. Emma Watson",
+            "specialize": "Dermatologist",
+            "description": "Dr. Emma Watson is a highly skilled dermatologist with a focus on skincare and aesthetics. She completed her medical degree from Oxford University and obtained her specialization in dermatology from the University of London. Dr. Watson is dedicated to providing personalized and effective treatments for various skin conditions.",
+            "degree": "MBBS, MD (Dermatology)",
+            "gender": "Female",
+            "fee": "1300 BDT",
+            "image": "https://ibb.co/4dMxNZy"
         }
     ],
     "categories": [

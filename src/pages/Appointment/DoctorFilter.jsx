@@ -39,7 +39,7 @@ export default function DoctorFilter() {
                 <input type="text" className="w-full outline-none text-sm" onChange={(e) => { setInputSearch(e.target.value.toLowerCase()); setFloatMenu(true); }} value={inputSearch} />
 
                 {floatMenu && inputSearch !== "" && (
-                    <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3">
+                    <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3 z-50">
                         <p className="bg-green-500 py-1 rounded text-center text-sm">Doctors</p>
                         {AppointmentInfo.doctors
                             .filter(doctor => doctor.name.toLowerCase().includes(inputSearch))
