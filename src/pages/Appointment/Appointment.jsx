@@ -1,6 +1,7 @@
 import DoctorFilter from "./DoctorFilter";
 import "../../style/Appointment.css"
 import Catagories from "./Catagories";
+import Doctors from "./Doctors";
 
 
 export default function Appointment() {
@@ -8,6 +9,7 @@ export default function Appointment() {
     <div>
       <DoctorFilter />
       <Catagories />
+      <Doctors/>
     </div>
   )
 }

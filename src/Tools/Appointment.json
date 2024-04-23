@@ -18,7 +18,18 @@
             "degree": "MBBS, FCPS",
             "gender": "Male",
             "fee": "1000 BDT",
-            "image": "https://i.ibb.co/XD8SK3k/portrait-smiling-handsome-male-doctor-man-171337-5055.jpg"
+            "image": "https://i.ibb.co/XD8SK3k/portrait-smiling-handsome-male-doctor-man-171337-5055.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 2,
@@ -28,7 +39,18 @@
             "degree": "MBBS, FCPS, FRCP (Glasgow), FRCP (Edinburgh), FACP (USA), MRCR (UK)",
             "gender": "Male",
             "fee": "1500 BDT",
-            "image": "https://i.ibb.co/z6STkZx/female-doctor-hospital-23-2148827760.jpg"
+            "image": "https://i.ibb.co/z6STkZx/female-doctor-hospital-23-2148827760.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 3,
@@ -38,7 +60,18 @@
             "degree": "MBBS, MS (Cardio-Vascular & Thoracic Surgery)",
             "gender": "Male",
             "fee": "1200 BDT",
-            "image": "https://i.ibb.co/2Mmd2tf/i-trying-be-best-doctor-329181-2188.jpg"
+            "image": "https://i.ibb.co/2Mmd2tf/i-trying-be-best-doctor-329181-2188.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 4,
@@ -48,7 +81,18 @@
             "degree": " MBBS, MCPS (Clinical Pathology), FCPS (Hematology)",
             "gender": "Male",
             "fee": "1100 BDT",
-            "image": "https://i.ibb.co/84f6Ndd/woman-with-stethoscope-holding-clipboard-1098-2502.jpg"
+            "image": "https://i.ibb.co/84f6Ndd/woman-with-stethoscope-holding-clipboard-1098-2502.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 5,
@@ -58,7 +102,18 @@
             "degree": "MBBS, DDV (BSMMU), DD (Bangkok) Fellow - Dermatosurgery & Laser",
             "gender": "Male",
             "fee": "1000 BDT",
-            "image": "prof_dr_md_siraj_uddin.jpg"
+            "image": "prof_dr_md_siraj_uddin.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 6,
@@ -68,7 +123,18 @@
             "degree": "MBBS, D. (Ortho), MS (Ortho)",
             "gender": "Male",
             "fee": "1100 BDT",
-            "image": "https://i.ibb.co/GMd1Mdt/cheerful-doctor-making-notes-looking-away-23-2147896151.jpg"
+            "image": "https://i.ibb.co/GMd1Mdt/cheerful-doctor-making-notes-looking-away-23-2147896151.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 7,
@@ -78,7 +144,18 @@
             "degree": "MBBS, DGO, FCPS (Obs & Gyne), FCPS (Gynecological Oncology)",
             "gender": "Female",
             "fee": "1000 BDT",
-            "image": " https://i.ibb.co/bz0QTzz/female-doctor-hospital-with-stethoscope-23-2148827776.jpg"
+            "image": " https://i.ibb.co/bz0QTzz/female-doctor-hospital-with-stethoscope-23-2148827776.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 8,
@@ -88,7 +165,18 @@
             "degree": "MBBS, FCPS (Cardiology)",
             "gender": "Male",
             "fee": "1200 BDT",
-            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg"
+            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 9,
@@ -98,7 +186,18 @@
             "degree": "MBBS, FCPS (Pediatrics)",
             "gender": "Female",
             "fee": "800 BDT",
-            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg"
+            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 10,
@@ -108,7 +207,18 @@
             "degree": "MBBS, FCPS (Orthopedics)",
             "gender": "Male",
             "fee": "1500 BDT",
-            "image": "https://i.ibb.co/nDX9qQd/doctor-with-his-arms-crossed-white-background-1368-5790.jpg"
+            "image": "https://i.ibb.co/nDX9qQd/doctor-with-his-arms-crossed-white-background-1368-5790.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 11,
@@ -118,7 +228,18 @@
             "degree": "MBBS, FCPS (Psychiatry)",
             "gender": "Female",
             "fee": "1300 BDT",
-            "image": "https://i.ibb.co/5FvVcWD/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini-12.jpg"
+            "image": "https://i.ibb.co/5FvVcWD/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini-12.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 12,
@@ -128,7 +249,18 @@
             "degree": "MBBS, FCPS (Urology)",
             "gender": "Male",
             "fee": "1400 BDT",
-            "image": "https://i.ibb.co/nDX9qQd/doctor-with-his-arms-crossed-white-background-1368-5790.jpg"
+            "image": "https://i.ibb.co/nDX9qQd/doctor-with-his-arms-crossed-white-background-1368-5790.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 13,
@@ -138,7 +270,18 @@
             "degree": "MBBS, MD (Pediatrics)",
             "gender": "Female",
             "fee": "600 BDT",
-            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg"
+            "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         },
         {
             "id": 14,
@@ -148,7 +291,18 @@
             "degree": "MBBS, MD (Pediatrics)",
             "gender": "Female",
             "fee": "1400 BDT",
-            "image": "https://i.ibb.co/ZM9Ynkf/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-postur.jpg"
+            "image": "https://i.ibb.co/ZM9Ynkf/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-postur.jpg",
+            "hospitalId": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18
+            ]
         },
         {
             "id": 15,
@@ -158,7 +312,18 @@
             "degree": "MBBS, MD (Dermatology)",
             "gender": "Female",
             "fee": "1300 BDT",
-            "image": "https://ibb.co/4dMxNZy"
+            "image": "https://ibb.co/4dMxNZy",
+            "hospitalId": [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15,
+                17
+            ]
         }
     ],
     "categories": [
@@ -382,12 +547,14 @@
             "phone": "+880-2-8159457-60",
             "location": "Banani, Dhaka",
             "doctorId": [
-                2,
-                4,
-                6,
-                8,
-                10,
-                12
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15
             ]
         },
         {
@@ -397,12 +564,13 @@
             "phone": "+880-2-8836000",
             "location": "Gulshan, Dhaka",
             "doctorId": [
-                1,
-                3,
-                5,
-                7,
-                9,
-                11
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
             ]
         },
         {
@@ -412,12 +580,14 @@
             "phone": "+880-2-9671141-43",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
-                2,
-                4,
-                6,
-                8,
-                10,
-                12
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15
             ]
         },
         {
@@ -427,12 +597,13 @@
             "phone": "+880-2-9676356-7",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
-                1,
-                3,
-                5,
-                7,
-                9,
-                11
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
             ]
         },
         {
@@ -442,12 +613,14 @@
             "phone": "+880-2-9118202",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
-                2,
-                4,
-                6,
-                8,
-                10,
-                12
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15
             ]
         },
         {
@@ -457,12 +630,13 @@
             "phone": "+880-2-8624514-19",
             "location": "Mirpur, Dhaka",
             "doctorId": [
-                1,
-                3,
-                5,
-                7,
-                9,
-                11
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
             ]
         },
         {
@@ -472,12 +646,14 @@
             "phone": "+880-2-55037242",
             "location": "Mohakhali, Dhaka",
             "doctorId": [
-                2,
-                4,
-                6,
-                8,
-                10,
-                12
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15
             ]
         },
         {
@@ -487,12 +663,13 @@
             "phone": "+880-2-9669480-2",
             "location": "Uttara, Dhaka",
             "doctorId": [
-                1,
-                3,
-                5,
-                7,
-                9,
-                11
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
             ]
         },
         {
@@ -502,12 +679,14 @@
             "phone": "+880-2-55165088",
             "location": "Motijheel, Dhaka",
             "doctorId": [
-                2,
-                4,
-                6,
-                8,
-                10,
-                12
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15
             ]
         },
         {
@@ -517,12 +696,13 @@
             "phone": "+880-2-9118115",
             "location": "Shyamoli, Dhaka",
             "doctorId": [
-                1,
-                3,
-                5,
-                7,
-                9,
-                11
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
             ]
         },
         {
@@ -532,12 +712,14 @@
             "phone": "+880-2-9118202",
             "location": "Mirpur-1, Dhaka",
             "doctorId": [
-                2,
-                4,
-                6,
-                8,
-                10,
-                12
+                1,
+                3,
+                5,
+                7,
+                9,
+                11,
+                13,
+                15
             ]
         },
         {
@@ -547,14 +729,112 @@
             "phone": "+880-2-9335838",
             "location": "Kuril, Dhaka",
             "doctorId": [
-                1,
-                3,
-                5,
-                7,
-                9,
-                11,
-                12
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
             ]
-        }
+        },
+        [
+            {
+                "id": 13,
+                "name": "Labaid Hospital",
+                "address": "House # 6, Road # 4, Dhanmondi, Dhaka 1205",
+                "phone": "+880-2-9660015",
+                "location": "Dhanmondi, Dhaka",
+                "doctorId": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    11,
+                    13
+                ]
+            },
+            {
+                "id": 14,
+                "name": "Apollo Hospitals Dhaka",
+                "address": "Plot: 81, Block: E, Bashundhara R/A, Dhaka 1229",
+                "phone": "+880-2-8431661",
+                "location": "Bashundhara R/A, Dhaka",
+                "doctorId": [
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    14
+                ]
+            },
+            {
+                "id": 15,
+                "name": "Square Hospitals Ltd.",
+                "address": "18/F, Bir Uttam Qazi Nuruzzaman Sarak, West Panthapath, Dhaka 1205",
+                "phone": "+880-2-8144466",
+                "location": "Panthapath, Dhaka",
+                "doctorId": [
+                    3,
+                    5,
+                    7,
+                    9,
+                    11,
+                    13,
+                    15
+                ]
+            },
+            {
+                "id": 16,
+                "name": "Bangladesh Eye Hospital",
+                "address": "Dhaka 1207",
+                "phone": "+880-2-9119315",
+                "location": "Dhanmondi, Dhaka",
+                "doctorId": [
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    14
+                ]
+            },
+            {
+                "id": 17,
+                "name": "Islami Bank Hospital",
+                "address": "Gulshan, Dhaka",
+                "phone": "+880-2-9888900",
+                "location": "Gulshan, Dhaka",
+                "doctorId": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    11,
+                    13
+                ]
+            },
+            {
+                "id": 18,
+                "name": "Monowara Hospital Pvt. Ltd.",
+                "address": "70, Satmasjid Road, Dhaka 1205",
+                "phone": "+880-2-8620353",
+                "location": "Dhanmondi, Dhaka",
+                "doctorId": [
+                    2,
+                    4,
+                    6,
+                    8,
+                    10,
+                    12,
+                    14
+                ]
+            }
+        ]
     ]
 }
