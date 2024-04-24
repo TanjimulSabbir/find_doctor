@@ -46,37 +46,16 @@ export default function DoctorFilter() {
             {/* Search doctot, clinics, hospitals */}
             <div className="relative flex flex-col px-4 w-full">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText} />
+                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText.text} />
 
+                {/* Float filtering menu */}
+                <div className="absolute top-10 bg-black text-white p-5 rounded space-y-5 z-50">
+                    <p className="py-3 bg-sky-500 text-center">Doctors</p>
+                    <ModalMenu searchedText={searchedText} setSearchedText={setSearchedText} filterType="doctors" notFound="Doctor" />
 
-                {/* Modal Menu */}
-                {/* {floatMenu && inputSearch !== "" && (
-                    <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3 z-50">
-
-                        <p className="bg-green-500 py-1 rounded text-center text-sm">Doctors</p>
-                        {AppointmentInfo.doctors
-                            .filter(doctor => doctor.name?.toLowerCase().includes(inputSearch))
-                            .length > 0 ? (
-                            AppointmentInfo.doctors
-                                .filter(doctor => doctor.name?.toLowerCase().includes(inputSearch))
-                                .map(item => (
-                                    <p key={item.id} data-name="doctorName" data-value={item.name} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex items-center space-x-2"
-
-                                        onClick={(event) => { setInputSearch(item.name); handleSearch(event); setFloatMenu(false); }}>
-                                        <img src={item.image} className="w-5 h-5 rounded-full" alt="" srcSet="" />
-
-                                        <span>{item.name}</span></p>
-                                ))
-                        ) : (
-                            <p className="text-center text-sm text-gray-500">No doctor(s) found!</p>
-                        )
-                        }
-
-                        <p className="bg-green-500 py-1 rounded text-center text-sm">Hospitals</p>
-
-                    </p>
-                )} */}
-                <ModalMenu searchedText={searchedText} setSearchedText={setSearchedText}/>
+                    <p className="py-3 bg-sky-500 text-center">Hospitals</p>
+                    <ModalMenu searchedText={searchedText} setSearchedText={setSearchedText} filterType="hospitals" notFound="Hospital" />
+                </div>
             </div>
 
             <button className="searchBtn">Search</button>
