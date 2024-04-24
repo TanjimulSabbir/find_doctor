@@ -8,12 +8,22 @@ import { CiMedicalCross } from "react-icons/ci";
 import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 
-export default function Doctors() {
+export default function Doctors({ category = "" }) {
+    let number = [];
     return (
         <div className="container mx-auto py-10 flex">
-            <div className="space-y-10 bg-sky-600">
+            <div className="space-y-10 w-[60%]">
+
                 {treatmentInfo.doctors.map(doctor => {
                     const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
+
+                    if (!category == "" && !(specialize.toLowerCase().includes(category))) {
+                        number.push(id + 1);
+                        return <p className="text-center text-red-500" key={number}>{number.length === treatmentInfo.doctors.length && "No doctor(s) found!"}</p>
+                    }
+
+
+
                     return (
                         <div key={id} className="relative items-center bg-white rounded-lg shadow-xl p-4">
                             <div className="flex gap-10 relative">
@@ -69,7 +79,7 @@ export default function Doctors() {
                     )
                 })}
             </div>
-            <HospitalMap latitude={24.364893312031327} longitude={88.59536666659542} />
+            <HospitalMap location="Dhaka" />
         </div >
     )
 }

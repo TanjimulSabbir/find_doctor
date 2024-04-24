@@ -181,7 +181,7 @@
         {
             "id": 9,
             "name": "Dr. Farida Khan",
-            "specialize": "Consultant, Pediatrics",
+            "specialize": "Consultant, Paediatrics",
             "description": "Dr. Farida Khan completed her medical degree from Chittagong Medical College and obtained FCPS in Pediatrics. She has a special interest in pediatric infectious diseases and has undergone additional training in this area. Dr. Khan is committed to providing quality healthcare to children and adolescents.",
             "degree": "MBBS, FCPS (Pediatrics)",
             "gender": "Female",
@@ -244,7 +244,7 @@
         {
             "id": 12,
             "name": "Dr. Anisur Rahman",
-            "specialize": "Senior Consultant, Urology",
+            "specialize": "Senior Consultant, Pulmonology",
             "description": "Dr. Anisur Rahman completed his medical degree from Sir Salimullah Medical College and obtained FCPS in Urology. He has expertise in the diagnosis and treatment of urinary tract disorders, kidney stones, and prostate diseases. Dr. Rahman is committed to providing personalized care to his patients.",
             "degree": "MBBS, FCPS (Urology)",
             "gender": "Male",

@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import { getLatitude } from "../../Tools/getLatitude";
 
-export default function HospitalMap({ latitude, longitude }) {
+export default function HospitalMap(location) {
     const [mapInfo, setMapInfo] = useState({});
 
     useEffect(() => {
         const fetchLocation = async () => {
             try {
-                const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${"Rajshahi University"}&format=json`);
+                const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${location}&format=json`);
                 const data = await response.json();
                 setMapInfo({ lat: data[0]?.lat, lon: data[0]?.lon });
-                console.log(data, "data")
             } catch (error) {
                 console.error("Error fetching location:", error);
             }

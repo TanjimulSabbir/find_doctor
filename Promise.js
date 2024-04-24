@@ -10,3 +10,9 @@ promise.then(result => {
     console.log(error.message)
 })
 
+function randomNumberGen(max, min) {
+
+    console.log((max - min + 1))
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+console.log(randomNumberGen(6, 3))
