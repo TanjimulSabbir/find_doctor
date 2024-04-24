@@ -22,8 +22,6 @@ export default function Doctors({ category = "" }) {
                         return <p className="text-center text-red-500" key={number}>{number.length === treatmentInfo.doctors.length && "No doctor(s) found!"}</p>
                     }
 
-
-
                     return (
                         <div key={id} className="relative items-center bg-white rounded-lg shadow-xl p-4">
                             <div className="flex gap-10 relative">
