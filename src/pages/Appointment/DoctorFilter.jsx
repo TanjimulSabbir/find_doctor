@@ -1,18 +1,17 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AppointmentInfo from "../../Tools/Appointment.json"
-import { BsHospital } from "react-icons/bs";
 import ModalMenu from "./ModalMenu";
 
 
 export default function DoctorFilter() {
     const [searchedText, setSearchedText] = useState({ inputText: "" });
     const [floatMenu, setFloatMenu] = useState(false);
-    const [searchedKeyword, setSearchedKeyword] = useState({});
 
 
     const handleInput = (event) => {
-        setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
+        setSearchedText({ inputText: event.target.value });
         setFloatMenu(true);
+
     }
 
 
@@ -22,6 +21,9 @@ export default function DoctorFilter() {
     };
 
     console.log(searchedText, "From filteing page");
+    useEffect(() => {
+
+    }, [searchedText])
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -46,10 +48,10 @@ export default function DoctorFilter() {
             {/* Search doctot, clinics, hospitals */}
             <div className="relative flex flex-col px-4 w-full">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText.text} />
+                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText.name} />
 
                 {/* Float filtering menu */}
-                {!floatMenu && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50">
+                {floatMenu && searchedText.inputText !== "" && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50">
                     <p className="py-3 bg-sky-500 text-center">Doctors</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
