@@ -1,25 +1,33 @@
 import { useState } from "react"
 import AppointmentInfo from "../../Tools/Appointment.json"
 import { BsHospital } from "react-icons/bs";
+import ModalMenu from "./ModalMenu";
 
 
 export default function DoctorFilter() {
-    const [inputSearch, setInputSearch] = useState("");
+    const [searchedText, setSearchedText] = useState("");
     const [floatMenu, setFloatMenu] = useState(true);
     const [searchedKeyword, setSearchedKeyword] = useState({});
 
+
+    const handleInput = () => {
+        setSearchedText(event?.target?.value?.toLowerCase());
+        setFloatMenu(true);
+    }
+
+
     const handleSearch = (event) => {
-        const target = event.target;
-        setSearchedKeyword(prev => ({ ...prev, [target.getAttribute('data-name')]: target.getAttribute('data-value') }));
+        // const target = event.target;
+        // setSearchedKeyword(prev => ({ ...prev, [target.getAttribute('data-name')]: target.getAttribute('data-value') }));
     };
 
-    console.log(searchedKeyword, "From filteing page");
+    console.log(searchedText, "From filteing page");
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
             <div className="flex flex-col border-r border-gray-400 pr-4">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Catagory</label>
-                <select className="text-[#185FA0] text-sm outline-none cursor-pointer" data-name="category" data-value={event.target.value} onChange={(event) => handleSearch(event)}>
+                <select className="text-[#185FA0] text-sm outline-none cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
                     {AppointmentInfo.categories.map(category => (
                         <option className="py-2 cursor-pointer" key={category.id} value={category.title}>{category.title}</option>
                     ))}
@@ -27,7 +35,7 @@ export default function DoctorFilter() {
             </div>
             <div className="flex flex-col border-r border-gray-400 px-4 text-start">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
-                <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" data-name="location" data-value={event.target.value} onChange={(event) => handleSearch(event)}>
+                <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
 
                     {AppointmentInfo.locations.map(location => (
                         <option className="" key={location.id} value={location.location}>{location.location}</option>
@@ -38,11 +46,11 @@ export default function DoctorFilter() {
             {/* Search doctot, clinics, hospitals */}
             <div className="relative flex flex-col px-4 w-full">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => { setInputSearch(event.target.value?.toLowerCase()); setFloatMenu(true); }} value={inputSearch} />
+                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText} />
 
 
                 {/* Modal Menu */}
-                {floatMenu && inputSearch !== "" && (
+                {/* {floatMenu && inputSearch !== "" && (
                     <p className="absolute top-10 left-0 bg-black text-white p-4 rounded-lg flex flex-col gap-3 z-50">
 
                         <p className="bg-green-500 py-1 rounded text-center text-sm">Doctors</p>
@@ -65,26 +73,10 @@ export default function DoctorFilter() {
                         }
 
                         <p className="bg-green-500 py-1 rounded text-center text-sm">Hospitals</p>
-                        {
-                            AppointmentInfo.hospitals.filter(hospital => hospital.name?.toLowerCase().includes(inputSearch)).length > 0 ?
 
-                                AppointmentInfo.hospitals.filter(hospital => hospital.name?.toLowerCase().includes(inputSearch))
-                                    .map(hospital => (<p key={hospital.id} data-name="hospitalName" data-value={hospital.name} className="cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex space-x-2 items-center"
-
-                                        onClick={(event) => {
-                                            setInputSearch(hospital.name); handleSearch(event);
-                                            setFloatMenu(false);
-                                        }}>
-
-
-                                        <BsHospital />
-
-                                        <span> {hospital.name}</span></p>))
-                                : <p className="text-center text-sm text-gray-500">No hospital(s) found!</p>
-                        }
                     </p>
-                )}
-
+                )} */}
+                <ModalMenu searchedText={searchedText} setSearchedText={setSearchedText}/>
             </div>
 
             <button className="searchBtn">Search</button>
