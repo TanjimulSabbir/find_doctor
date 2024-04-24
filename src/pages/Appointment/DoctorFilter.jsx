@@ -5,13 +5,13 @@ import ModalMenu from "./ModalMenu";
 
 
 export default function DoctorFilter() {
-    const [searchedText, setSearchedText] = useState("");
-    const [floatMenu, setFloatMenu] = useState(true);
+    const [searchedText, setSearchedText] = useState({ inputText: "" });
+    const [floatMenu, setFloatMenu] = useState(false);
     const [searchedKeyword, setSearchedKeyword] = useState({});
 
 
-    const handleInput = () => {
-        setSearchedText(event?.target?.value?.toLowerCase());
+    const handleInput = (event) => {
+        setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
         setFloatMenu(true);
     }
 
@@ -49,16 +49,25 @@ export default function DoctorFilter() {
                 <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText.text} />
 
                 {/* Float filtering menu */}
-                <div className="absolute top-10 bg-black text-white p-5 rounded space-y-5 z-50">
+                {!floatMenu && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50">
                     <p className="py-3 bg-sky-500 text-center">Doctors</p>
-                    <ModalMenu searchedText={searchedText} setSearchedText={setSearchedText} filterType="doctors" notFound="Doctor" />
+                    <ModalMenu searchedText={searchedText}
+                        setSearchedText={setSearchedText}
+                        setFloatMenu={setFloatMenu}
+                        filterType="doctors"
+                        notFound="Doctor"
+                    />
 
                     <p className="py-3 bg-sky-500 text-center">Hospitals</p>
-                    <ModalMenu searchedText={searchedText} setSearchedText={setSearchedText} filterType="hospitals" notFound="Hospital" />
-                </div>
+                    <ModalMenu searchedText={searchedText}
+                        setSearchedText={setSearchedText}
+                        setFloatMenu={setFloatMenu}
+                        filterType="hospitals"
+                        notFound="Hospital" />
+                </div>}
             </div>
 
             <button className="searchBtn">Search</button>
-        </div>
+        </div >
     )
 }
