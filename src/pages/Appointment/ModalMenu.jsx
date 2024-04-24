@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, parentFunction, filterType, notFound }) {
     const styleData = "cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex space-x-2 items-center";
-    const [dynamicSearchText, setDynamicSearchText] = useState(searchedText.inputText)
+    const [dynamicSearchText, setDynamicSearchText] = useState({})
     const [filteredData, setFilteredData] = useState([]);
 
     useEffect(() => {
@@ -24,12 +24,13 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
         setFloatMenu(false);
     }
 
+    console.log(searchedText)
     return (
         <div className="space-y-2">
             {filteredData.length > 0 ?
                 filteredData.map(item => (
                     <p key={item.id} className={styleData} onClick={() => handleClick(item)}>
-                        
+
                         {notFound === "Hospital" ? <BsHospital /> : <img src={item.image} className="w-5 h-5 rounded-full" />}
                         <span> {item.name}</span>
                     </p>

@@ -3,21 +3,16 @@ import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 
 
-export default function DoctorFilter() {
-    const [searchedText, setSearchedText] = useState({ inputText: "" });
+export default function DoctorFilter({ searchedText, setSearchedText }) {
     const [floatMenu, setFloatMenu] = useState(false);
-
 
     const handleInput = (event) => {
         setSearchedText({ inputText: event.target.value });
         setFloatMenu(true);
-
     }
 
-
     const handleSearch = (event) => {
-        // const target = event.target;
-        // setSearchedKeyword(prev => ({ ...prev, [target.getAttribute('data-name')]: target.getAttribute('data-value') }));
+        setSearchedText(prev => ({ ...prev, [event.target.name]: event.target.value }))
     };
 
     console.log(searchedText, "From filteing page");
@@ -27,6 +22,8 @@ export default function DoctorFilter() {
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
+
+            {/* category */}
             <div className="flex flex-col border-r border-gray-400 pr-4">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Catagory</label>
                 <select className="text-[#185FA0] text-sm outline-none cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
@@ -35,12 +32,14 @@ export default function DoctorFilter() {
                     ))}
                 </select>
             </div>
+
+            {/*Hospital Location */}
             <div className="flex flex-col border-r border-gray-400 px-4 text-start">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
 
-                    {AppointmentInfo.locations.map(location => (
-                        <option className="" key={location.id} value={location.location}>{location.location}</option>
+                    {AppointmentInfo.hospitals.map(hospital => (
+                        <option className="" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
                 </select>
             </div>
@@ -48,7 +47,7 @@ export default function DoctorFilter() {
             {/* Search doctot, clinics, hospitals */}
             <div className="relative flex flex-col px-4 w-full">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" className="w-full outline-none text-sm" name="doctorName" onChange={(event) => handleInput(event)} value={searchedText.name} />
+                <input type="text" className="w-full outline-none text-sm" onChange={(event) => handleInput(event)} value={searchedText.name} />
 
                 {/* Float filtering menu */}
                 {floatMenu && searchedText.inputText !== "" && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50">

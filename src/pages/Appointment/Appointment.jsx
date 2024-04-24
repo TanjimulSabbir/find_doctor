@@ -6,12 +6,14 @@ import { useState } from "react";
 
 
 export default function Appointment() {
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("");
+  const [searchedText, setSearchedText] = useState({ inputText: "" });
   return (
     <div>
-      <DoctorFilter />
+      <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} />
       <Catagories setCategory={setCategory} category={category} />
-      <Doctors category={category} />
+
+      <Doctors category={category} searchedText={searchedText} />
     </div>
   )
 }
