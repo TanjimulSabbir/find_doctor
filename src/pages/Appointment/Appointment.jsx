@@ -28,6 +28,7 @@ export default function Appointment() {
   });
 
 
+  console.log(findDoctors)
 
   return (
     <div>
@@ -35,7 +36,7 @@ export default function Appointment() {
 
       <Catagories setCategory={setCategory} category={category} />
 
-      <Doctors category={category} searchedText={searchedText} findDoctors={findDoctors}/>
+      <Doctors category={category} searchedText={searchedText} findDoctors={findDoctors} />
     </div>
   )
 }

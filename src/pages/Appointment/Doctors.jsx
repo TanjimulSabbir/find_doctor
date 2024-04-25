@@ -7,11 +7,15 @@ import { RiGraduationCapFill } from "react-icons/ri";
 import { CiMedicalCross } from "react-icons/ci";
 import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Doctors({ category = "", searchedText, findDoctors }) {
-    const [showDoctors, setShowDoctors] = useState(findDoctors?.length > 0 ? findDoctors : treatmentInfo.doctors)
+    const [showDoctors, setShowDoctors] = useState(treatmentInfo.doctors)
     let number = [];
+
+    useEffect(() => {
+        setShowDoctors(findDoctors)
+    }, [findDoctors])
 
     return (
         <div className="container mx-auto py-10 flex">
