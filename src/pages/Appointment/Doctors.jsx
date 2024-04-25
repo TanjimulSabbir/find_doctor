@@ -7,14 +7,17 @@ import { RiGraduationCapFill } from "react-icons/ri";
 import { CiMedicalCross } from "react-icons/ci";
 import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
+import { useState } from "react";
 
-export default function Doctors({ category = "" }) {
+export default function Doctors({ category = "", searchedText, findDoctors }) {
+    const [showDoctors, setShowDoctors] = useState(findDoctors?.length > 0 ? findDoctors : treatmentInfo.doctors)
     let number = [];
+
     return (
         <div className="container mx-auto py-10 flex">
             <div className="space-y-10 w-[60%]">
 
-                {treatmentInfo.doctors.map(doctor => {
+                {showDoctors.map(doctor => {
                     const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
 
                     if (!category == "" && !(specialize.toLowerCase().includes(category))) {

@@ -3,7 +3,7 @@ import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 
 
-export default function DoctorFilter({ searchedText, setSearchedText }) {
+export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
     const [floatMenu, setFloatMenu] = useState(false);
 
     const handleInput = (event) => {
@@ -15,10 +15,8 @@ export default function DoctorFilter({ searchedText, setSearchedText }) {
         setSearchedText(prev => ({ ...prev, [event.target.name]: event.target.value }))
     };
 
-    console.log(searchedText, "From filteing page");
-    useEffect(() => {
+    console.log(searchedText, "From Doctor filter page");
 
-    }, [searchedText])
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -68,7 +66,7 @@ export default function DoctorFilter({ searchedText, setSearchedText }) {
                 </div>}
             </div>
 
-            <button className="searchBtn">Search</button>
+            <button className="searchBtn" onClick={() => handleDoctorSearch()}>Search</button>
         </div >
     )
 }
