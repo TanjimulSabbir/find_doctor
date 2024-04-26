@@ -18,19 +18,19 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
     console.log(searchedText, "From Doctor filter page");
 
-    let findHospitalLocation;
+
+
     AppointmentInfo.doctors.filter(doctor => {
-
+        if (!searchedText.category) return;
+        
         const categorizedDoctor = doctor.category.toLowerCase().includes(searchedText.category?.toLowerCase());
-
+        let findHospitalLocation;
         if (categorizedDoctor) {
             findHospitalLocation = AppointmentInfo.hospitals.filter(hospital => {
                 return hospital.doctorId.includes(doctor.id)
             })
         }
-
-        setFilteredLocation(findHospitalLocation);
-        console.log(findHospitalLocation)
+        setFilteredLocation(findHospitalLocation)
     })
 
     return (
@@ -53,7 +53,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
                     <option value="">Not selected</option>
-                    {filteredLocation.map(hospital => (
+                    {(AppointmentInfo.hospitals).map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
 
@@ -73,6 +73,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         setFloatMenu={setFloatMenu}
                         filterType="doctors"
                         notFound="Doctor"
+                        selectedData={findHospitalLocation}
                     />
 
                     <p className="py-3 bg-sky-500 text-center">Hospitals</p>
@@ -80,7 +81,9 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
                         filterType="hospitals"
-                        notFound="Hospital" />
+                        notFound="Hospital"
+                        selectedData={findHospitalLocation}
+                    />
                 </div>}
             </div>
 
