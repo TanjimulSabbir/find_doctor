@@ -6,7 +6,9 @@ import ModalMenu from "./ModalMenu";
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, category }) {
     const [floatMenu, setFloatMenu] = useState(false);
-    const [filteredLocation, setFilteredLocation] = useState(AppointmentInfo.hospitals)
+    const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
+    const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
+    const [tempo, setTempo] = useState(AppointmentInfo.hospitals);
 
     const handleInput = (event) => {
         setSearchedText({ inputText: event.target.value });
@@ -19,32 +21,44 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
     console.log(searchedText, "From Doctor filter page");
 
+    useEffect(() => {
+        // Filter doctors based on the selected category
+        const categoriesfilteredDoctors = AppointmentInfo.doctors.filter((doctor) => {
+            const matchedDoctor = doctor.category?.toLowerCase().includes(searchedText.category?.toLowerCase());
+            return matchedDoctor;
+        });
+
+        if (categoriesfilteredDoctors.length > 0) {
+            setFilteredDoctors(categoriesfilteredDoctors)
+            const doctorsId = categoriesfilteredDoctors.map(doctor => doctor.id);
+
+            // Get hospitals associated with the filtered doctors
+            const matchedHospitals = AppointmentInfo.hospitals.filter((hospital) => {
+                return hospital.doctorId.some(id => doctorsId.includes(id));
+            });
+
+            // Set the filtered hospitals in state
+            setfilteredHospitals(matchedHospitals);
+            setTempo(matchedHospitals)
+        }
+    }, [searchedText.category]);
 
 
     useEffect(() => {
-        if (!searchedText.category) return setFilteredLocation(AppointmentInfo.hospitals);
-        // Filter doctors based on the selected category
-        const filteredDoctors = AppointmentInfo.doctors.filter((doctor) => {
+        if (searchedText.location) {
+            const filterHospitals02 = tempo.filter(hospital => {
+                return hospital.location?.toLowerCase().includes(searchedText.location?.toLowerCase());
+            });
 
-            const categorizedDoctor = doctor.category.toLowerCase().includes(searchedText.category.toLowerCase());
-            return categorizedDoctor;
-        });
-
-        // Create an array of doctor IDs from the filtered doctors
-        const doctorsId = filteredDoctors.map(doctor => doctor.id);
-
-        // Get hospitals associated with the filtered doctors
-        const filteredHospitals = AppointmentInfo.hospitals.filter((hospital) => {
-            return hospital.doctorId.some(id => doctorsId.includes(id));
-        });
-
-        console.log(filteredDoctors, doctorsId, filteredHospitals, "filterDoctors");
+            setfilteredHospitals(filterHospitals02);
+         
+        } else {
+            setfilteredHospitals(AppointmentInfo.hospitals);
+        }
+    }, [searchedText, tempo, filteredDoctors]);
 
 
-        // Set the filtered hospitals in state
-        setFilteredLocation(filteredHospitals);
-    }, [searchedText.category]);
-
+    console.log(filteredHospitals, "filteredHospitals")
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -66,7 +80,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
                     <option value="">Not selected</option>
-                    {filteredLocation.map(hospital => (
+                    {tempo.map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
 
@@ -86,7 +100,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         setFloatMenu={setFloatMenu}
                         filterType="doctors"
                         notFound="Doctor"
-                        selectedData={findHospitalLocation}
+                        selectedData={filteredDoctors}
                     />
 
                     <p className="py-3 bg-sky-500 text-center">Hospitals</p>
@@ -95,7 +109,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         setFloatMenu={setFloatMenu}
                         filterType="hospitals"
                         notFound="Hospital"
-                        selectedData={findHospitalLocation}
+                        selectedData={filteredHospitals}
                     />
                 </div>}
             </div>

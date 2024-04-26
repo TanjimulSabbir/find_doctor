@@ -3,7 +3,7 @@ import AppointmentInfo from "../../Tools/Appointment.json";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, parentFunction, filterType, notFound,selectedData }) {
+export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, parentFunction, filterType, notFound, selectedData }) {
     const styleData = "cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex space-x-2 items-center";
     // const [dynamicSearchText, setDynamicSearchText] = useState("")
     // const [filteredData, setFilteredData] = useState(SelectedData);
@@ -23,7 +23,7 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
         setSearchedText({ id: item.id, name: item.name, inputText: "" });
         setFloatMenu(false);
     }
-console.log(selectedData,"from modal")
+    console.log(selectedData, "from modal")
 
     return (
         <div className="space-y-2">

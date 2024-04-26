@@ -84,7 +84,7 @@ export default function Doctors({ category = "", searchedText, findDoctors }) {
                     )
                 })}
             </div>
-            <HospitalMap location="Dhaka" />
+            {/* <HospitalMap location="Dhaka" /> */}
         </div >
     )
 }
