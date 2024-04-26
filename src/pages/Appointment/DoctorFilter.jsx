@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 
@@ -20,18 +21,30 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
 
 
-    AppointmentInfo.doctors.filter(doctor => {
-        if (!searchedText.category) return;
-        
-        const categorizedDoctor = doctor.category.toLowerCase().includes(searchedText.category?.toLowerCase());
-        let findHospitalLocation;
-        if (categorizedDoctor) {
-            findHospitalLocation = AppointmentInfo.hospitals.filter(hospital => {
-                return hospital.doctorId.includes(doctor.id)
-            })
-        }
-        setFilteredLocation(findHospitalLocation)
-    })
+    useEffect(() => {
+        if (!searchedText.category) return setFilteredLocation(AppointmentInfo.hospitals);
+        // Filter doctors based on the selected category
+        const filteredDoctors = AppointmentInfo.doctors.filter((doctor) => {
+
+            const categorizedDoctor = doctor.category.toLowerCase().includes(searchedText.category.toLowerCase());
+            return categorizedDoctor;
+        });
+
+        // Create an array of doctor IDs from the filtered doctors
+        const doctorsId = filteredDoctors.map(doctor => doctor.id);
+
+        // Get hospitals associated with the filtered doctors
+        const filteredHospitals = AppointmentInfo.hospitals.filter((hospital) => {
+            return hospital.doctorId.some(id => doctorsId.includes(id));
+        });
+
+        console.log(filteredDoctors, doctorsId, filteredHospitals, "filterDoctors");
+
+
+        // Set the filtered hospitals in state
+        setFilteredLocation(filteredHospitals);
+    }, [searchedText.category]);
+
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -53,7 +66,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
                     <option value="">Not selected</option>
-                    {(AppointmentInfo.hospitals).map(hospital => (
+                    {filteredLocation.map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
 
