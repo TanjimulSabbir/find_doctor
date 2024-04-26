@@ -24,7 +24,7 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
         setFloatMenu(false);
     }
 
-    console.log(searchedText)
+
     return (
         <div className="space-y-2">
             {filteredData.length > 0 ?

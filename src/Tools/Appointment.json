@@ -411,7 +411,7 @@
         {
             "id": 19,
             "name": "Dr. Yasir Ahmed",
-            "category": "Ephthalmology",
+            "category": "Ophthalmologist",
             "specialize": "Consultant Ophthalmologist",
             "description": "Dr. Yasir Ahmed is a skilled ophthalmologist specializing in eye care and surgery. He graduated from Bangladesh Medical College and completed his residency training at Wills Eye Hospital. Dr. Ahmed is dedicated to providing the highest quality of eye care to his patients.",
             "degree": "MBBS, DO (Ophthalmology)",
@@ -457,7 +457,7 @@
             "id": 21,
             "name": "Dr. Aafreen Zahaa",
             "category": "Medicine",
-            "specialize": "Consultant Physician",
+            "specialize": "Consultant Physician & Medicine",
             "description": "Dr. Aafreen Zahaa is a dedicated consultant physician with expertise in diagnosing and managing a wide range of medical conditions. She obtained her medical degree from Dhaka Medical College and completed her residency training at Brigham and Women's Hospital. Dr. Aafreen is committed to providing personalized and compassionate care to her patients.",
             "degree": "MBBS, FCPS (Medicine)",
             "gender": "Female",

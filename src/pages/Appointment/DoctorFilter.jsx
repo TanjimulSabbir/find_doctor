@@ -5,6 +5,7 @@ import ModalMenu from "./ModalMenu";
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, category }) {
     const [floatMenu, setFloatMenu] = useState(false);
+    const [filteredLocation, setFilteredLocation] = useState(AppointmentInfo.hospitals)
 
     const handleInput = (event) => {
         setSearchedText({ inputText: event.target.value });
@@ -17,6 +18,20 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
     console.log(searchedText, "From Doctor filter page");
 
+    let findHospitalLocation;
+    AppointmentInfo.doctors.filter(doctor => {
+
+        const categorizedDoctor = doctor.category.toLowerCase().includes(searchedText.category?.toLowerCase());
+
+        if (categorizedDoctor) {
+            findHospitalLocation = AppointmentInfo.hospitals.filter(hospital => {
+                return hospital.doctorId.includes(doctor.id)
+            })
+        }
+
+        setFilteredLocation(findHospitalLocation);
+        console.log(findHospitalLocation)
+    })
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -25,6 +40,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             <div className="flex flex-col border-r border-gray-400 pr-4">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Category</label>
                 <select className="text-[#185FA0] text-sm outline-none cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
+                    <option value="">Not selected</option>
                     {[...new Set(AppointmentInfo.doctors.map(doctor => doctor.category))].map(category => (
                         <option className="py-2 cursor-pointer" key={category} value={category}>{category}</option>
                     ))}
@@ -37,8 +53,8 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
                     <option value="">Not selected</option>
-                    {[...new Set(AppointmentInfo.hospitals.map(hospital => hospital.location))].map(location => (
-                        <option className="cursor-pointer" key={location} value={location}>{location}</option>
+                    {filteredLocation.map(hospital => (
+                        <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
 
                 </select>
