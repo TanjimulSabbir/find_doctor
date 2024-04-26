@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import { useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 
 
-export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
+export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, category }) {
     const [floatMenu, setFloatMenu] = useState(false);
 
     const handleInput = (event) => {
@@ -23,22 +23,24 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
             {/* category */}
             <div className="flex flex-col border-r border-gray-400 pr-4">
-                <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Catagory</label>
+                <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Category</label>
                 <select className="text-[#185FA0] text-sm outline-none cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
-                    {AppointmentInfo.categories.map(category => (
-                        <option className="py-2 cursor-pointer" key={category.id} value={category.title}>{category.title}</option>
+                    {[...new Set(AppointmentInfo.doctors.map(doctor => doctor.category))].map(category => (
+                        <option className="py-2 cursor-pointer" key={category} value={category}>{category}</option>
                     ))}
                 </select>
             </div>
+
 
             {/*Hospital Location */}
             <div className="flex flex-col border-r border-gray-400 px-4 text-start">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
-
-                    {AppointmentInfo.hospitals.map(hospital => (
-                        <option className="" key={hospital.id} value={hospital.location}>{hospital.location}</option>
+                    <option value="">Not selected</option>
+                    {[...new Set(AppointmentInfo.hospitals.map(hospital => hospital.location))].map(location => (
+                        <option className="cursor-pointer" key={location} value={location}>{location}</option>
                     ))}
+
                 </select>
             </div>
 

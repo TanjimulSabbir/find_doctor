@@ -13,7 +13,6 @@ export default function Appointment() {
   const [findDoctors, setFindDoctors] = useState([]);
 
   const handleDoctorSearch = () => {
-    toast.success(searchedText.location);
 
     setFindDoctors(treatmentInfo.doctors.filter(item => filterDoctorByLocation().doctorId.includes(item.id)))
   }
@@ -32,7 +31,7 @@ export default function Appointment() {
 
   return (
     <div>
-      <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
+      <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} category={category}/>
 
       <Catagories setCategory={setCategory} category={category} />
 
