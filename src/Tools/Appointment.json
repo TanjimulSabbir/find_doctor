@@ -136,6 +136,7 @@
             "fee": "1100 BDT",
             "image": "https://i.ibb.co/GMd1Mdt/cheerful-doctor-making-notes-looking-away-23-2147896151.jpg",
             "hospitalId": [
+                1,
                 2,
                 4,
                 6,
@@ -182,7 +183,7 @@
             "fee": "1200 BDT",
             "image": "https://i.ibb.co/sjbdnkQ/portrait-doctor-144627-39388.jpg",
             "hospitalId": [
-                2,
+            
                 4,
                 6,
                 8,
@@ -735,10 +736,10 @@
             "phone": "+880-2-8836000",
             "location": "Gulshan, Dhaka",
             "doctorId": [
+                1,
                 2,
                 4,
                 6,
-                8,
                 10,
                 12,
                 14,

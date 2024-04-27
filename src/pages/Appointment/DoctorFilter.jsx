@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
-import toast from "react-hot-toast";
+import Appointment from "./Appointment";
 
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
@@ -10,6 +10,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
     const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
     const [tempo, setTempo] = useState(AppointmentInfo.hospitals);
+    const [tempoDoc, setTempoDoc] = useState(AppointmentInfo.doctors)
 
     const handleInput = (event) => {
         setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
@@ -64,13 +65,23 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
         setfilteredHospitals(filterHospitals02);
 
-        const matchedDoctor = filteredDoctors.filter(doctor => {
-            return doctor.hospitalId.some(hosId => filterHospitals02.some(hos => hos.id == hosId))
-        })
+        if (searchedText.category) return;
 
-        console.log(matchedDoctor, "matchedDoctor")
+        let matchedDoctor;
 
-        console.log(filterHospitals02, searchedText, "filterHospitals02");
+        if (filteredDoctors.length <= AppointmentInfo.doctors.length) {
+            matchedDoctor = AppointmentInfo.doctors.filter(doctor => {
+                return filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
+            })
+        } else {
+            matchedDoctor = filteredDoctors.filter(doctor => {
+                return filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
+            })
+        }
+
+        setFilteredDoctors(matchedDoctor)
+
+        // console.log({ filteredDoctors, filterHospitals02, matchedDoctor, searchedText });
 
     }, [searchedText.category, searchedText.location, tempo]);
 
@@ -111,7 +122,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <input type="text" name="inputText" className="w-full outline-none text-sm bg-transparent" onChange={(event) => handleInput(event)} value={searchedText.inputText} placeholder="choose your doctor/hospital" />
 
                 {/* Float filtering menu */}
-                {floatMenu && searchedText.inputText !== "" && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50">
+                {floatMenu && searchedText.inputText !== "" && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50 w-full">
                     <p className="py-3 bg-sky-500 text-center">Doctors</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
