@@ -35,7 +35,7 @@ export default function Appointment() {
 
       <Catagories setCategory={setCategory} />
 
-      <Doctors category={category} searchedText={searchedText} findDoctors={findDoctors} />
+      {/* <Doctors category={category} searchedText={searchedText} findDoctors={findDoctors} /> */}
     </div>
   )
 }
