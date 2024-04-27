@@ -5,12 +5,12 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
     const styleData = "transform transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
 
     const handleClick = (item) => {
-        const storeData = dataType == "hospital" ? UiData : item;
+        const storeData = dataType == "hospital" ? UiData : [item];
 
-        setSearchedText(prev => ({ ...prev, data: [storeData], inputText: item.name }));
+        setSearchedText(prev => ({ ...prev, data: storeData, inputText: item.name }));
         setFloatMenu(false);
     }
-    console.log({ searchedText }, "searchText")
+    console.log({ searchedText }, "from Modal Menu SearchText")
 
     return (
         <div>

@@ -22,7 +22,7 @@ console.log(findDoctors,"from doctors component")
         <div className="container mx-auto py-10 flex">
             <div className="space-y-10 w-[60%]">
 
-                {showDoctors.map(doctor => {
+                {showDoctors?.map(doctor => {
                     const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
 
                     // if (!category == "" && !(specialize.toLowerCase().includes(category))) {

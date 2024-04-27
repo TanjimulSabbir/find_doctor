@@ -136,7 +136,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         dataType="hospital"
                         selectedData={filteredHospitals}
                         // when user will select hospital, needed to respective hospital's all doctor. That's why we pass it for process to show on UI
-                        UiData={filteredDoctors && filteredDoctors}
+                        UiData={filteredDoctors}
                     />
                 </div>}
                 <p className="absolute right-4 top-3 cursor-pointer text-red-700 lobster-two-bold" onClick={() => { setFloatMenu(false) }}>

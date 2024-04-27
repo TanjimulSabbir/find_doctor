@@ -13,18 +13,8 @@ export default function Appointment() {
   const [findDoctors, setFindDoctors] = useState([]);
 
   const handleDoctorSearch = () => {
-    setFindDoctors(searchedText.data)
+    setFindDoctors([...searchedText.data])
   }
-
-  // const filterDoctorByLocation = () => treatmentInfo.hospitals.find(hospital => {
-  //   const hospitalLocationMatched = hospital.location?.toLowerCase().includes(searchedText?.location?.toLowerCase());
-  //   const hospitalNameMatched = hospital.name?.toLowerCase().includes(searchedText?.name?.toLowerCase());
-
-  //   if (hospitalLocationMatched || hospitalNameMatched) {
-  //     return hospital.doctorId
-  //   }
-  // });
-
 
   useState(() => {
     setFindDoctors(searchedText.data)
@@ -32,11 +22,10 @@ export default function Appointment() {
 
   return (
     <div>
-      <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} category={category} />
-
+      <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
       <Catagories setCategory={setCategory} />
 
-      <Doctors searchedText={searchedText} />
+      <Doctors findDoctors={findDoctors} />
     </div>
   )
 }
