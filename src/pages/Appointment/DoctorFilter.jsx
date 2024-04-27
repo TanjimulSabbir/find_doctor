@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
+import toast from "react-hot-toast";
 
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, category }) {
@@ -18,8 +19,6 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     const handleSearch = (event) => {
         setSearchedText(prev => ({ ...prev, [event.target.name]: event.target.value }))
     };
-
-    console.log(searchedText, "From Doctor filter page");
 
     useEffect(() => {
         // Filter doctors based on the selected category
@@ -39,26 +38,21 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
             // Set the filtered hospitals in state
             setfilteredHospitals(matchedHospitals);
-            setTempo(matchedHospitals)
+            setTempo(matchedHospitals);
+            // 
         }
     }, [searchedText.category]);
 
 
     useEffect(() => {
-        if (searchedText.location) {
-            const filterHospitals02 = tempo.filter(hospital => {
-                return hospital.location?.toLowerCase().includes(searchedText.location?.toLowerCase());
-            });
+        const filterHospitals02 = tempo.filter(hospital => {
+            return hospital.location?.toLowerCase().includes(searchedText.location?.toLowerCase());
+        });
+        setfilteredHospitals(filterHospitals02);
 
-            setfilteredHospitals(filterHospitals02);
-         
-        } else {
-            setfilteredHospitals(AppointmentInfo.hospitals);
-        }
-    }, [searchedText, tempo, filteredDoctors]);
+    }, [searchedText.category, searchedText.location, tempo]);
 
-
-    console.log(filteredHospitals, "filteredHospitals")
+    console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -78,8 +72,10 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             {/*Hospital Location */}
             <div className="flex flex-col border-r border-gray-400 px-4 text-start">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
-                <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)}>
-                    <option value="">Not selected</option>
+                <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
+                    <option value="" className="bg-green-600">{searchedText.location ? searchedText.location : "Not selected"}</option>
+
+                    {searchedText.location && tempo.length > 0 && <option value="">Not selected</option>}
                     {tempo.map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
