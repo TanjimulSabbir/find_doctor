@@ -5,14 +5,14 @@ import ModalMenu from "./ModalMenu";
 import toast from "react-hot-toast";
 
 
-export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, category }) {
+export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
     const [floatMenu, setFloatMenu] = useState(false);
     const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
     const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
     const [tempo, setTempo] = useState(AppointmentInfo.hospitals);
 
     const handleInput = (event) => {
-        setSearchedText({ inputText: event.target.value });
+        setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
         setFloatMenu(true);
     }
 
@@ -39,16 +39,19 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             // Set the filtered hospitals in state
             setfilteredHospitals(matchedHospitals);
             setTempo(matchedHospitals);
-            // 
+            console.log({ matchedHospitals })
         }
     }, [searchedText.category]);
 
 
     useEffect(() => {
-        const filterHospitals02 = tempo.filter(hospital => {
-            return hospital.location?.toLowerCase().includes(searchedText.location?.toLowerCase());
-        });
-        setfilteredHospitals(filterHospitals02);
+   
+            const filterHospitals02 = tempo.filter(hospital => {
+                return hospital.location?.toLowerCase().includes(searchedText.location?.toLowerCase());
+            });
+
+            setfilteredHospitals(filterHospitals02);
+       console.log(searchedText.location);
 
     }, [searchedText.category, searchedText.location, tempo]);
 
@@ -60,7 +63,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             {/* category */}
             <div className="flex flex-col border-r border-gray-400 pr-4">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Category</label>
-                <select className="text-[#185FA0] text-sm outline-none cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
+                <select className="text-[#185FA0] text-sm outline-none bg-transparent cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
                     <option value="">Not selected</option>
                     {[...new Set(AppointmentInfo.doctors.map(doctor => doctor.category))].map(category => (
                         <option className="py-2 cursor-pointer" key={category} value={category}>{category}</option>
@@ -72,21 +75,21 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             {/*Hospital Location */}
             <div className="flex flex-col border-r border-gray-400 px-4 text-start">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
-                <select className="text-[#185FA0] text-sm outline-none -ml-1 cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
+                <select className="text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
                     <option value="" className="bg-green-600">{searchedText.location ? searchedText.location : "Not selected"}</option>
-
                     {searchedText.location && tempo.length > 0 && <option value="">Not selected</option>}
                     {tempo.map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
-
                 </select>
             </div>
 
+
             {/* Search doctot, clinics, hospitals */}
-            <div className="relative flex flex-col px-4 w-full">
+            <div className="relative flex flex-col px-4 w-full"
+            >
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" className="w-full outline-none text-sm" onChange={(event) => handleInput(event)} value={searchedText.name} />
+                <input type="text" name="inputText" className="w-full outline-none text-sm bg-transparent" onChange={(event) => handleInput(event)} value={searchedText.inputText} placeholder="choose your doctor/hospital" />
 
                 {/* Float filtering menu */}
                 {floatMenu && searchedText.inputText !== "" && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50">
