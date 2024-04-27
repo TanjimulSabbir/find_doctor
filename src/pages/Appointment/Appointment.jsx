@@ -9,7 +9,7 @@ import treatmentInfo from "../../Tools/Appointment.json"
 
 export default function Appointment() {
   const [category, setCategory] = useState("");
-  const [searchedText, setSearchedText] = useState({ category: "", location: "", inputText: "", });
+  const [searchedText, setSearchedText] = useState({ category: "", location: "", inputText: "", data: [] });
   const [findDoctors, setFindDoctors] = useState([]);
 
   const handleDoctorSearch = () => {

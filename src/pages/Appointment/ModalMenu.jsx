@@ -2,25 +2,13 @@ import { BsHospital } from "react-icons/bs";
 import AppointmentInfo from "../../Tools/Appointment.json";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { data } from "autoprefixer";
 
 export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, filterType, notFound, selectedData }) {
     const styleData = "cursor-pointer hover:bg-gray-800 transition-all duration-300 px-2 rounded flex space-x-2 items-center";
-    // const [dynamicSearchText, setDynamicSearchText] = useState("")
-    // const [filteredData, setFilteredData] = useState(SelectedData);
-
-    // useEffect(() => {
-    //     setDynamicSearchText(searchedText.inputText)
-    // }, [searchedText.inputText]);
-
-    // useEffect(() => {
-    //     const filtered = AppointmentInfo[filterType].filter(item =>
-    //         item.name?.toLowerCase().includes(dynamicSearchText?.toLowerCase())
-    //     );
-    //     setFilteredData(filtered);
-    // }, [dynamicSearchText, filterType]);
 
     const handleClick = (item) => {
-        setSearchedText({ id: item.id, name: item.name, inputText: "" });
+        setSearchedText(prev => ({ ...prev, data: [item] }));
         setFloatMenu(false);
     }
     console.log(selectedData, filterType)

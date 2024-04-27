@@ -23,7 +23,8 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     useEffect(() => {
         // Filter doctors based on the selected category
         const categoriesfilteredDoctors = AppointmentInfo.doctors.filter((doctor) => {
-            const matchedDoctor = doctor.category?.toLowerCase().includes(searchedText.category?.toLowerCase());
+            if (searchedText.category === "") return true;
+            const matchedDoctor = doctor.category?.toLowerCase() === (searchedText.category?.toLowerCase());
             return matchedDoctor;
         });
 
@@ -39,23 +40,41 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             // Set the filtered hospitals in state
             setfilteredHospitals(matchedHospitals);
             setTempo(matchedHospitals);
-            console.log({ matchedHospitals })
+            // console.log({ matchedHospitals })
         }
     }, [searchedText.category]);
 
 
     useEffect(() => {
-   
-            const filterHospitals02 = tempo.filter(hospital => {
-                return hospital.location?.toLowerCase().includes(searchedText.location?.toLowerCase());
-            });
+        // For select input
+        // What location will be shown on location input based on category. If no category selected, then all location will be shown on select input. if category selected, respective doctor's hospital's location will be shown on selected input.
 
-            setfilteredHospitals(filterHospitals02);
-       console.log(searchedText.location);
+        // What will do inside program
+
+        // [ if location has not been selected, all catagorized-filtered-hospitals will be shown ('setFilteredHospital').(location is empty, that's why it will return all element/hospital). 
+
+        // another case location select:
+        // If location is being selected, It will filter with categorized-filterd-hospital by matching with 'searchText.location' and will set into 'setfilteredHospital'. 'filteredHospital' will show the next step(modal menu) ].
+
+
+        const filterHospitals02 = tempo.filter(hospital => {
+            if (searchedText.location === "") return true;
+            return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
+        });
+
+        setfilteredHospitals(filterHospitals02);
+
+        const matchedDoctor = filteredDoctors.filter(doctor => {
+            return doctor.hospitalId.some(hosId => filterHospitals02.some(hos => hos.id == hosId))
+        })
+
+        console.log(matchedDoctor, "matchedDoctor")
+
+        console.log(filterHospitals02, searchedText, "filterHospitals02");
 
     }, [searchedText.category, searchedText.location, tempo]);
 
-    console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
+    // console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
