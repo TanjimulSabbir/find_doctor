@@ -25,7 +25,11 @@ export default function Doctors({ findDoctors, category, setCategory }) {
     };
 
     useEffect(() => {
-        setShowDoctors(findDoctors)
+        if (findDoctors.length > 0) {
+            setShowDoctors(findDoctors)
+        } else {
+            setShowType("show-all");
+        }
     }, [findDoctors])
 
     console.log(findDoctors, "from doctors component");
@@ -42,8 +46,8 @@ export default function Doctors({ findDoctors, category, setCategory }) {
                 <span className={`cursor-pointer ${showType === "show-filtered" && "text-green-600 font-bold"}`} onClick={handleShowFilteredClick}>Show filtered ({findDoctors.length})</span>
 
                 <RiArrowRightSLine />
-                <span className={`cursor-pointer ${category && "text-green-600 font-bold"}`}
-                    onClick={() => category ? setCategory("") : setCategory("medicine")}>{category ? `Remove Category (${category})` : "Show category"}</span>
+                <span className={`cursor-pointer ${category && "text-green-600 font-bold "}`}
+                    onClick={() => category ? setCategory("") : setCategory("Medicine")}>{category ? `Remove Category (${category})` : "show category (not selected)"}</span>
             </p>
 
             <div className="flex">
@@ -51,9 +55,10 @@ export default function Doctors({ findDoctors, category, setCategory }) {
                     {showDoctors?.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
 
-                        if (!category == "" && !(specialize.toLowerCase().includes(category))) {
+                        if (!category == "" && !(specialize.toLowerCase().includes(category.toLowerCase()))) {
                             number.push(id + 1);
-                            return <p className="text-center text-red-500" key={number}>{number.length === treatmentInfo.doctors.length && "No doctor(s) found!"}</p>
+                            return <p className="text-center text-red-500" key={number}>
+                                {number.length === showDoctors.length && "No doctor(s) found!"}</p>
                         }
 
                         return (
