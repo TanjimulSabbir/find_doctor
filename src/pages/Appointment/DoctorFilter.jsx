@@ -62,9 +62,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
         });
 
-        if (filterHospitals02.length > 0) {
-            setfilteredHospitals(filterHospitals02);
-        }
+        setfilteredHospitals(filterHospitals02);
 
 
         if (searchedText.category) return;
@@ -79,7 +77,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
         // console.log({ filteredDoctors, filterHospitals02, matchedDoctor, searchedText });
 
-    }, [searchedText.category, searchedText.location]);
+    }, [searchedText.category, searchedText.location, tempo]);
 
     // console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
 
@@ -117,11 +115,11 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             <div className="relative flex flex-col px-4 w-full"
             >
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" name="inputText" className="w-full outline-none text-sm bg-transparent placeholder:text-xs placeholder:lobster-two-bold" onChange={(event) => handleInput(event)} onClick={() => setFloatMenu(true)} value={searchedText.inputText} placeholder="choose here doctor/hospital" />
+                <input type="text" name="inputText" className="w-full outline-none text-sm bg-transparent placeholderText" onChange={(event) => handleInput(event)} onClick={() => setFloatMenu(true)} value={searchedText.inputText} placeholder="choose here doctor/hospital" />
 
                 {/* Float filtering menu */}
                 {floatMenu && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50 transform transition duration-500 opacity-100 w-full">
-                    <p className="py-3 bg-sky-500 text-center">Doctors</p>
+                    <p className="py-2 bg-sky-500 text-center rounded">Doctors</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
@@ -130,7 +128,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         selectedData={filteredDoctors}
                     />
 
-                    <p className="py-3 bg-sky-500 text-center">Hospitals</p>
+                    <p className="py-2 bg-sky-500 text-center rounded">Hospitals</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
@@ -141,7 +139,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         UiData={filteredDoctors && filteredDoctors}
                     />
                 </div>}
-                <p className="absolute right-4 top-3 cursor-pointer text-red-700 lobster-two-bold" onClick={() => { setFloatMenu(false); setSearchedText(prev => ({ ...prev, inputText: "" })) }}>
+                <p className="absolute right-4 top-3 cursor-pointer text-red-700 lobster-two-bold" onClick={() => { setFloatMenu(false) }}>
                     {/* <IoIosClose className="text-2xl" /> */}
                     close
                 </p>

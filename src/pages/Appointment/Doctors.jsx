@@ -9,13 +9,14 @@ import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 import { useEffect, useState } from "react";
 
-export default function Doctors({ category = "", searchedText, findDoctors }) {
-    const [showDoctors, setShowDoctors] = useState(treatmentInfo.doctors)
-    let number = [];
+export default function Doctors({ findDoctors }) {
+    const [showDoctors, setShowDoctors] = useState(findDoctors)
 
     useEffect(() => {
         setShowDoctors(findDoctors)
     }, [findDoctors])
+
+console.log(findDoctors,"from doctors component")
 
     return (
         <div className="container mx-auto py-10 flex">
@@ -24,10 +25,10 @@ export default function Doctors({ category = "", searchedText, findDoctors }) {
                 {showDoctors.map(doctor => {
                     const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
 
-                    if (!category == "" && !(specialize.toLowerCase().includes(category))) {
-                        number.push(id + 1);
-                        return <p className="text-center text-red-500" key={number}>{number.length === treatmentInfo.doctors.length && "No doctor(s) found!"}</p>
-                    }
+                    // if (!category == "" && !(specialize.toLowerCase().includes(category))) {
+                    //     number.push(id + 1);
+                    //     return <p className="text-center text-red-500" key={number}>{number.length === treatmentInfo.doctors.length && "No doctor(s) found!"}</p>
+                    // }
 
                     return (
                         <div key={id} className="relative items-center bg-white rounded-lg shadow-xl p-4">

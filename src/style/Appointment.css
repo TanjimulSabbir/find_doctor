@@ -28,3 +28,12 @@
     justify-content: center;
     cursor: pointer;
 }
+
+.lobster {
+    font-family: "Lobster Two", sans-serif;
+}
+
+.placeholderText::placeholder {
+    font-size: 12px;
+    font-family: "Lobster Two", sans-serif;
+}
