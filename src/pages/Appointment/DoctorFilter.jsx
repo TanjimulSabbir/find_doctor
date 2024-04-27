@@ -65,25 +65,20 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
         setfilteredHospitals(filterHospitals02);
 
+
         if (searchedText.category) return;
 
-        let matchedDoctor;
+        const doctorsToFilter = filteredDoctors.length <= AppointmentInfo.doctors.length ? AppointmentInfo.doctors : filteredDoctors;
 
-        if (filteredDoctors.length <= AppointmentInfo.doctors.length) {
-            matchedDoctor = AppointmentInfo.doctors.filter(doctor => {
-                return filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
-            })
-        } else {
-            matchedDoctor = filteredDoctors.filter(doctor => {
-                return filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
-            })
-        }
+        const matchedDoctor = doctorsToFilter.filter(doctor =>
+            filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
+        );
 
-        setFilteredDoctors(matchedDoctor)
+        setFilteredDoctors(matchedDoctor);
 
         // console.log({ filteredDoctors, filterHospitals02, matchedDoctor, searchedText });
 
-    }, [searchedText.category, searchedText.location, tempo]);
+    }, [searchedText.category, searchedText.location, tempo, filteredDoctors]);
 
     // console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
 
