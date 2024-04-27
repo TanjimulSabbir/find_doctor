@@ -8,12 +8,12 @@ import neurology from "../assets/images/Catagories/Neurology.svg"
 import pulmonology from "../assets/images/Catagories/Pulmonology.svg"
 
 export const CatagoriesData = [
-    { title: "medicine", url: medicine },
-    { title: "surgery", url: surgery },
-    { title: "orthopedics", url: orthopedics },
-    { title: "paediatrics", url: paediatrics },
-    { title: "obg", url: obg },
-    { title: "cardiology", url: cardiology },
-    { title: "neurology", url: neurology },
-    { title: "pulmonology", url: pulmonology }
+    { title: "Medicine", url: medicine },
+    { title: "Surgery", url: surgery },
+    { title: "Orthopedics", url: orthopedics },
+    { title: "Paediatrics", url: paediatrics },
+    { title: "OBG", url: obg },
+    { title: "Cardiology", url: cardiology },
+    { title: "Neurology", url: neurology },
+    { title: "Pulmonology", url: pulmonology }
 ];

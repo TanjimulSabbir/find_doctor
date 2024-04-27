@@ -3,8 +3,6 @@ import "../../style/Appointment.css"
 import Catagories from "./Catagories";
 import Doctors from "./Doctors";
 import { useState } from "react";
-import toast from "react-hot-toast";
-import treatmentInfo from "../../Tools/Appointment.json"
 
 
 export default function Appointment() {
@@ -23,9 +21,10 @@ export default function Appointment() {
   return (
     <div>
       <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
-      <Catagories setCategory={setCategory} />
+      <Catagories setCategory={setCategory} category={category} />
 
-      <Doctors findDoctors={findDoctors} />
+
+      <Doctors findDoctors={findDoctors} category={category} setCategory={setCategory} />
     </div>
   )
 }
