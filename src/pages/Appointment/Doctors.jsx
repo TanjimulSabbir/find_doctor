@@ -4,13 +4,13 @@ import treatmentInfo from "../../Tools/Appointment.json"
 import { IoMdShare } from "react-icons/io";
 import toast from "react-hot-toast";
 import { IoLanguageOutline } from "react-icons/io5";
-import { RiArrowRightSLine, RiGraduationCapFill } from "react-icons/ri";
+import { RiGraduationCapFill } from "react-icons/ri";
 import { CiMedicalCross } from "react-icons/ci";
 import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 import { useEffect, useState } from "react";
-import Catagories from "./Catagories";
-import { CatagoriesData } from "../../Tools/DataContainer";
+import CategoryFilterNavbar from "./CategoryFilterNavbar";
+
 
 export default function Doctors({ searchedText, findDoctors, category, setCategory }) {
     const [showDoctors, setShowDoctors] = useState(treatmentInfo.doctors);
@@ -40,19 +40,8 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
 
     const number = [];
     return (
-        <div className="container mx-auto mt-10">
-            <p className="text-sky-600 flex items-center space-x-2 mb-3" >
-
-                <span className={`cursor-pointer ${showType === "show-all" && "text-green-600 font-bold"}`} onClick={handleShowAllClick}>
-                    Show all ({treatmentInfo.doctors.length})</span>
-
-                <RiArrowRightSLine />
-                <span className={`cursor-pointer ${showType === "show-filtered" && "text-green-600 font-bold"}`} onClick={handleShowFilteredClick}>Show filtered ({findDoctors.length})</span>
-
-                <RiArrowRightSLine />
-                <span className={`cursor-pointer ${category && "text-green-600 font-bold "}`}
-                    onClick={() => category ? setCategory("") : setCategory("Medicine")}>{category ? `Remove Category (${category})` : "show category (not selected)"}</span>
-            </p>
+        <div className="downSlider container mx-auto mt-10">
+            <CategoryFilterNavbar data={{ showType, treatmentInfo, findDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
 
             <div className="flex">
                 <div className="space-y-10 w-[60%]">
@@ -63,7 +52,7 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
                             return;
                         }
                         return (
-                            <div key={id} className="relative items-center bg-white rounded-lg shadow-xl p-4">
+                            <div key={id} className="rightSlider relative items-center bg-white rounded-lg shadow-xl p-4">
                                 <div className="flex gap-10 relative">
 
                                     {/* Image information */}
@@ -117,15 +106,12 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
                         )
                     })}
 
-                    <p className="mt-7 text-center text-red-500 font-bold flex flex-col space-y-0 leading-tight">
-                        {number.length === showDoctors.length && (
-                            <>
-                                <span>No Doctor(s) found!😔</span>
-                                <span className="text-green-600 text-xs cursor-pointer" onClick={() => setCategory("")}>Show Doctor</span>
-                            </>
-                        )}
-                    </p>
-
+                    {/* Error */}
+                    {number.length === showDoctors.length && (
+                        <p className="topSlider mt-7 text-center text-xs text-red-500 flex flex-col leading-tight"> <span>Seems like there are no doctors in this category. Keep searching!</span>
+                            <span className="text-[10px] text-green-600 cursor-pointer" onClick={() => setCategory("")}>Show Doctor</span>
+                        </p>
+                    )}
                 </div>
                 {/* <HospitalMap location="Dhaka" /> */}
             </div >

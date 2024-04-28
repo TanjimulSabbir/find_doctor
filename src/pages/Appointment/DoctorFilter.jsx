@@ -84,7 +84,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
 
     return (
-        <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
+        <div className="rightSlider w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
 
             {/* category */}
             <div className="flex flex-col border-r border-gray-400 pr-4 w-[30%]">
