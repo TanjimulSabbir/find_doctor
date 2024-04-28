@@ -22,12 +22,12 @@ export default function Banner02() {
     }
 
     return (
-        <div className="container mx-auto sm:px-10 mb-14">
+        <div className="topSlider container mx-auto sm:px-10 mb-14">
             <div className="px-10 py-16 bg-white shadow-2xl z-50 rounded-md">
                 {/* <img src={banner} alt="" srcSet="" /> */}
 
                 <form className="grid items-center gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" onSubmit={handleFormSubmit}>
-                    <div className="relative w-full">
+                    <div className="leftSlider relative w-full">
                         <input type="text" id="doctor" name="doctor" className={`${style.inputBox}`} onChange={handleInputChange} />
                         <label htmlFor="doctor">
                             {!inputText["doctor"] && <span className="absolute top-[15px] left-4 flex space-x-2 items-center opacity-70 cursor-pointer">
@@ -36,7 +36,7 @@ export default function Banner02() {
                             </span>}
                         </label>
                     </div>
-                    <div className="relative w-full inputBoxContainter">
+                    <div className="rightSlider relative w-full inputBoxContainter">
                         <input type="text" id="surgeon" name="surgeon" className={`${style.inputBox}`} onChange={handleInputChange} />
                         <label htmlFor="surgeon">
                             {!inputText["surgeon"] && <span className="absolute top-[15px] left-4 flex space-x-2 items-center opacity-70 cursor-pointer">
@@ -45,7 +45,7 @@ export default function Banner02() {
                             </span>}
                         </label>
                     </div>
-                    <div className="relative w-full">
+                    <div className="rightSlider relative w-full">
                         <input type="text" id="location" name="location" className={`${style.inputBox}`} onChange={handleInputChange} />
                         <label htmlFor="location">
                             {!inputText["location"] && <span className="absolute top-[15px] left-4 flex space-x-2 items-center opacity-70 cursor-pointer">
@@ -54,7 +54,7 @@ export default function Banner02() {
                             </span>}
                         </label>
                     </div>
-                    <div onClick={() => setSearch(true)} className={`${style.searchBtn}`} >
+                    <div onClick={() => setSearch(true)} className={`rightSlider ${style.searchBtn}`} >
                         <button className="flex items-center justify-center space-x-3">
                             <FiSearch />
                             <span>Search</span>
@@ -64,7 +64,7 @@ export default function Banner02() {
                 <LookingFor />
             </div>
             {/* Search Modal */}
-            {search && <div className="fixed h-screen w-screen bg-[#000000f3] inset-0 flex items-center justify-center">
+            {search && <div className="rightSlider fixed h-screen w-screen bg-[#000000f3] inset-0 flex items-center justify-center">
                 <div className="relative flex items-center justify-center space-x-3">
                     <input type="text" placeholder="Search Doctor" className="py-3 px-7 border border-gray-300 rounded-lg w-full" />
                     <FiSearch className="absolute right-3 top-4 text-xl"/>
