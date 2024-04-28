@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
-import { IoClose, IoCloseCircle, IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
@@ -21,10 +21,12 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     };
 
     const handleSaveData = ({ item, dataType }) => {
+        toast.success(item.name)
         const storeData = dataType == "hospital" ? filteredDoctors : [item];
         setSearchedText(prev => ({ ...prev, data: storeData, inputText: item.name }));
         setFloatMenu(false);
     }
+    console.log(searchedText)
 
     useEffect(() => {
         // Filter doctors based on the selected category
@@ -42,11 +44,9 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             const matchedHospitals = AppointmentInfo.hospitals.filter((hospital) => {
                 return hospital.doctorId.some(id => doctorsId.includes(id));
             });
-
             // Set the filtered hospitals in state
             setfilteredHospitals(matchedHospitals);
             setTempo(matchedHospitals);
-            // console.log({ matchedHospitals })
         }
     }, [searchedText.category]);
 
@@ -69,8 +69,6 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
         });
 
         setfilteredHospitals(filterHospitals02);
-
-
         if (searchedText.category) return;
 
         const doctorsToFilter = filteredDoctors.length <= AppointmentInfo.doctors.length ? AppointmentInfo.doctors : filteredDoctors;
@@ -78,18 +76,12 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
         const matchedDoctor = doctorsToFilter.filter(doctor =>
             filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
         );
-
         setFilteredDoctors(matchedDoctor);
-
-        // console.log({ filteredDoctors, filterHospitals02, matchedDoctor, searchedText });
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchedText.category, searchedText.location, tempo]);
 
-    // console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
-    if (filteredHospitals.length === 0) {
-        toast.error("Oops! We couldn't find any hospitals!")
-    }
+    console.log({ searchedText: searchedText })
+
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -158,7 +150,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 </p>
             </div>
 
-            <button className="searchBtn" onClick={() => handleDoctorSearch()}>Search</button>
+            <button className={`searchBtn ${searchedText.inputText === "" && "hiddenSearchBtn"}`} disabled={searchedText.inputText === ""} onClick={() => handleDoctorSearch()}>Search</button>
         </div >
     )
 }

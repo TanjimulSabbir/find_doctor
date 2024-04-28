@@ -12,6 +12,12 @@
     cursor: pointer;
 }
 
+.hiddenSearchBtn {
+  background-color: rgb(215, 215, 241);
+  cursor:default;
+}
+
+
 .appiontmentBg {
     background-color: var(--appointmentBg);
 }

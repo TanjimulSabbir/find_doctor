@@ -9,6 +9,8 @@ import { CiMedicalCross } from "react-icons/ci";
 import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 import { useEffect, useState } from "react";
+import Catagories from "./Catagories";
+import { CatagoriesData } from "../../Tools/DataContainer";
 
 export default function Doctors({ searchedText, findDoctors, category, setCategory }) {
     const [showDoctors, setShowDoctors] = useState(treatmentInfo.doctors);
@@ -32,13 +34,13 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
         } else {
             setShowType("show-all");
         }
-    }, [searchedText.data,findDoctors])
+    }, [searchedText.data, findDoctors])
 
     console.log(findDoctors, "from doctors component");
 
-    let number = [];
+    const number = [];
     return (
-        <div className="container mx-auto py-7">
+        <div className="container mx-auto mt-10">
             <p className="text-sky-600 flex items-center space-x-2 mb-3" >
 
                 <span className={`cursor-pointer ${showType === "show-all" && "text-green-600 font-bold"}`} onClick={handleShowAllClick}>
@@ -54,15 +56,12 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
 
             <div className="flex">
                 <div className="space-y-10 w-[60%]">
-                    {showDoctors?.map(doctor => {
+                    {showDoctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
-
-                        if (!category == "" && !(specialize.toLowerCase().includes(category.toLowerCase()))) {
-                            number.push(id + 1);
-                            return <p className="text-center text-red-500" key={number}>
-                                {number.length === showDoctors.length && "No doctor(s) found!"}</p>
+                        if (!specialize.toLowerCase().includes(category.toLowerCase())) {
+                            number.push(id)
+                            return;
                         }
-
                         return (
                             <div key={id} className="relative items-center bg-white rounded-lg shadow-xl p-4">
                                 <div className="flex gap-10 relative">
@@ -117,6 +116,16 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
                             </div>
                         )
                     })}
+
+                    <p className="mt-7 text-center text-red-500 font-bold flex flex-col space-y-0 leading-tight">
+                        {number.length === showDoctors.length && (
+                            <>
+                                <span>No Doctor(s) found!😔</span>
+                                <span className="text-green-600 text-xs cursor-pointer" onClick={() => setCategory("")}>Show Doctor</span>
+                            </>
+                        )}
+                    </p>
+
                 </div>
                 {/* <HospitalMap location="Dhaka" /> */}
             </div >

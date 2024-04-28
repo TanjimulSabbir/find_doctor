@@ -3,6 +3,7 @@ import "../../style/Appointment.css"
 import Catagories from "./Catagories";
 import Doctors from "./Doctors";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 
 export default function Appointment() {
@@ -11,7 +12,9 @@ export default function Appointment() {
   const [findDoctors, setFindDoctors] = useState([]);
 
   const handleDoctorSearch = () => {
+    toast.success("successfully data showed")
     setFindDoctors(searchedText.data)
+    setSearchedText(prev => ({ ...prev, inputText: "" }))
   }
 
   useState(() => {

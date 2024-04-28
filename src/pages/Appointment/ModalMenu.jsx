@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import toast from "react-hot-toast";
 import { BsHospital } from "react-icons/bs";
 
 export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, filterType, dataType, selectedData, UiData, handleSaveData }) {
@@ -6,11 +7,14 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
 
 
     console.log(searchedText, "from float modal")
+    const markName = searchedText.data.find(item => item.name === searchedText.inputText);
+
+    console.log(markName)
     return (
-        <div>
+        <div className="space-y-1">
             {selectedData?.length > 0 ?
                 selectedData.map(item => (
-                    <p key={item.id} className={`${styleData} ${searchedText.inputText === item.name && "bg-green-600"}`} onClick={() => handleSaveData({ item, dataType })}>
+                    <p key={item.id} className={`${styleData} ${searchedText.data.some(data => data.name === item.name) && "text-green-600"}`} onClick={() => handleSaveData({ item, dataType })}>
 
                         {dataType === "hospital" ? <BsHospital className="h-8 w-8 max-w-4 max-h-4" /> : <img src={item.image} className="w-5 h-5 rounded-full" />}
                         <span> {item.name}</span>
