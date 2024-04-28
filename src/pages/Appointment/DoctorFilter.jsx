@@ -20,6 +20,12 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
         setFloatMenu(true);
     };
 
+    const handleSaveData = ({ item, dataType }) => {
+        const storeData = dataType == "hospital" ? filteredDoctors : [item];
+        setSearchedText(prev => ({ ...prev, data: storeData, inputText: item.name }));
+        setFloatMenu(false);
+    }
+
     useEffect(() => {
         // Filter doctors based on the selected category
         const categoriesfilteredDoctors = AppointmentInfo.doctors.filter((doctor) => {
@@ -77,10 +83,11 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
         // console.log({ filteredDoctors, filterHospitals02, matchedDoctor, searchedText });
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchedText.category, searchedText.location, tempo]);
 
     // console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
-    if (filteredHospitals.length <= 0) {
+    if (filteredHospitals.length === 0) {
         toast.error("Oops! We couldn't find any hospitals!")
     }
 
@@ -129,6 +136,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         filterType="doctors"
                         dataType="doctor"
                         selectedData={filteredDoctors}
+                        handleSaveData={handleSaveData}
                     />
 
                     <p className="py-1 bg-sky-500 text-center rounded">Hospitals</p>
@@ -140,6 +148,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         selectedData={filteredHospitals}
                         // when user will select hospital, needed to respective hospital's all doctor. That's why we pass it for process to show on UI
                         UiData={filteredDoctors}
+                        handleSaveData={handleSaveData}
                     />
                     <IoCloseOutline className="absolute -top-3 right-1 text-sm text-red-700 z-50 cursor-pointer transition transform duration-300 hover:scale-125" onClick={() => setFloatMenu(false)} title="Close Modal" />
                 </div>

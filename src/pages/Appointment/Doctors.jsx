@@ -32,7 +32,7 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
         } else {
             setShowType("show-all");
         }
-    }, [searchedText.data, searchedText.inputText, findDoctors])
+    }, [searchedText.data,findDoctors])
 
     console.log(findDoctors, "from doctors component");
 

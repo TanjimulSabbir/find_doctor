@@ -1,22 +1,16 @@
 /* eslint-disable react/prop-types */
 import { BsHospital } from "react-icons/bs";
 
-export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, filterType, dataType, selectedData, UiData }) {
+export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, filterType, dataType, selectedData, UiData, handleSaveData }) {
     const styleData = "transform transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
 
-    const handleClick = (item) => {
-        const storeData = dataType == "hospital" ? UiData : [item];
 
-        setSearchedText(prev => ({ ...prev, data: storeData, inputText: item.name }));
-        setFloatMenu(false);
-    }
-    console.log({ searchedText }, "from Modal Menu SearchText")
-
+    console.log(searchedText, "from float modal")
     return (
         <div>
             {selectedData?.length > 0 ?
                 selectedData.map(item => (
-                    <p key={item.id} className={`${styleData} ${searchedText.inputText === item.name && "bg-green-600"}`} onClick={() => handleClick(item)}>
+                    <p key={item.id} className={`${styleData} ${searchedText.inputText === item.name && "bg-green-600"}`} onClick={() => handleSaveData({ item, dataType })}>
 
                         {dataType === "hospital" ? <BsHospital className="h-8 w-8 max-w-4 max-h-4" /> : <img src={item.image} className="w-5 h-5 rounded-full" />}
                         <span> {item.name}</span>

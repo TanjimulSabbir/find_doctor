@@ -11,12 +11,12 @@ export default function Appointment() {
   const [findDoctors, setFindDoctors] = useState([]);
 
   const handleDoctorSearch = () => {
-    setFindDoctors([...searchedText.data])
+    setFindDoctors(searchedText.data)
   }
 
   useState(() => {
-    setFindDoctors(searchedText.data)
-  }, [searchedText.inputText, searchedText.data])
+    handleDoctorSearch()
+  }, [searchedText.inputText])
 
   return (
     <div>
