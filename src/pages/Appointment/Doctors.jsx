@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import treatmentInfo from "../../Tools/Appointment.json"
 import { IoMdShare } from "react-icons/io";
@@ -9,9 +10,9 @@ import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 import { useEffect, useState } from "react";
 
-export default function Doctors({ findDoctors, category, setCategory }) {
+export default function Doctors({ searchedText, findDoctors, category, setCategory }) {
     const [showDoctors, setShowDoctors] = useState(treatmentInfo.doctors);
-    const [showType, setShowType] = useState("")
+    const [showType, setShowType] = useState("show-all")
 
 
     const handleShowAllClick = () => {
@@ -26,11 +27,12 @@ export default function Doctors({ findDoctors, category, setCategory }) {
 
     useEffect(() => {
         if (findDoctors.length > 0) {
-            setShowDoctors(findDoctors)
+            setShowDoctors(findDoctors);
+            setShowType("show-filtered");
         } else {
             setShowType("show-all");
         }
-    }, [findDoctors])
+    }, [searchedText.data, searchedText.inputText, findDoctors])
 
     console.log(findDoctors, "from doctors component");
 

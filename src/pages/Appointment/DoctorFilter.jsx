@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
-// import { IoIosClose } from "react-icons/io";
-
+import { IoClose, IoCloseCircle, IoCloseOutline } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
     const [floatMenu, setFloatMenu] = useState(false);
@@ -80,6 +80,9 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     }, [searchedText.category, searchedText.location, tempo]);
 
     // console.log({ searchedText: searchedText, filteredHospitals: filteredHospitals, filteredDoctors: filteredDoctors })
+    if (filteredHospitals.length <= 0) {
+        toast.error("Oops! We couldn't find any hospitals!")
+    }
 
     return (
         <div className="w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -115,11 +118,11 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             <div className="relative flex flex-col px-4 w-full"
             >
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" name="inputText" className="w-full outline-none text-sm bg-transparent placeholderText" onChange={(event) => handleInput(event)} onClick={() => setFloatMenu(true)} value={searchedText.inputText} placeholder="choose here doctor/hospital" />
+                <input type="text" name="inputText" className={`w-full outline-none text-sm bg-transparent placeholderText ${floatMenu && "text-green-600 font-bold"}`} onChange={(event) => handleInput(event)} onClick={() => setFloatMenu(true)} value={searchedText.inputText} placeholder="choose here doctor/hospital" />
 
                 {/* Float filtering menu */}
-                {floatMenu && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-50 transform transition duration-500 opacity-100 w-full">
-                    <p className="py-2 bg-sky-500 text-center rounded">Doctors</p>
+                {floatMenu && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-40 transform transition duration-500 opacity-100 w-full">
+                    <p className="py-1 bg-sky-500 text-center rounded">Doctors</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
@@ -128,7 +131,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         selectedData={filteredDoctors}
                     />
 
-                    <p className="py-2 bg-sky-500 text-center rounded">Hospitals</p>
+                    <p className="py-1 bg-sky-500 text-center rounded">Hospitals</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
@@ -138,9 +141,10 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                         // when user will select hospital, needed to respective hospital's all doctor. That's why we pass it for process to show on UI
                         UiData={filteredDoctors}
                     />
-                </div>}
+                    <IoCloseOutline className="absolute -top-3 right-1 text-sm text-red-700 z-50 cursor-pointer transition transform duration-300 hover:scale-125" onClick={() => setFloatMenu(false)} title="Close Modal" />
+                </div>
+                }
                 <p className="absolute right-4 top-3 cursor-pointer text-red-700 lobster-two-bold" onClick={() => { setFloatMenu(false) }}>
-                    {/* <IoIosClose className="text-2xl" /> */}
                     close
                 </p>
             </div>

@@ -15,7 +15,6 @@ const PromiseComponent = () => {
     };
 
 
-
     const handleInput = (event) => {
         const value = event.target.value;
         debouning(value)
@@ -25,6 +24,7 @@ const PromiseComponent = () => {
         setSearchText(data);
     };
     const debouning = debounce(handleSearch, 500);
+    
     console.log(searchText);
 
     return (

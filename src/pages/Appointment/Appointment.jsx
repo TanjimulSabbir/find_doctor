@@ -16,15 +16,13 @@ export default function Appointment() {
 
   useState(() => {
     setFindDoctors(searchedText.data)
-  }, [searchedText.data])
+  }, [searchedText.inputText, searchedText.data])
 
   return (
     <div>
       <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
       <Catagories setCategory={setCategory} category={category} />
-
-
-      <Doctors findDoctors={findDoctors} category={category} setCategory={setCategory} />
+      <Doctors searchedText={searchedText} findDoctors={findDoctors} category={category} setCategory={setCategory} />
     </div>
   )
 }
