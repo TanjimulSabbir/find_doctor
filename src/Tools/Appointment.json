@@ -585,158 +585,13 @@
             "image": "gyne_image.jpg"
         }
     ],
-    "locations": [
-        {
-            "id": 3,
-            "location": "Banani, Dhaka",
-            "hospitals": [
-                {
-                    "id": 1,
-                    "name": "Square Hospitals Ltd.",
-                    "address": "18/F, Bir Uttam Qazi Nuruzzaman Sarak, West Panthapath, Dhaka 1205",
-                    "phone": "+880-2-8159457-60"
-                }
-            ]
-        },
-        {
-            "id": 2,
-            "location": "Gulshan, Dhaka",
-            "hospitals": [
-                {
-                    "id": 2,
-                    "name": "United Hospital Limited",
-                    "address": "Plot 15, Road 71, Gulshan, Dhaka 1212",
-                    "phone": "+880-2-8836000"
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "location": "Dhanmondi, Dhaka",
-            "hospitals": [
-                {
-                    "id": 3,
-                    "name": "Ibrahim Cardiac Hospital & Research Institute",
-                    "address": "122 Kazi Nazrul Islam Avenue, Shahbagh, Dhaka 1000",
-                    "phone": "+880-2-9671141-43"
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "location": "Mirpur, Dhaka",
-            "hospitals": [
-                {
-                    "id": 4,
-                    "name": "Bangabandhu Sheikh Mujib Medical University Hospital",
-                    "address": "Shabagh, Dhaka 1000",
-                    "phone": "+880-2-8624514-19"
-                }
-            ]
-        },
-        {
-            "id": 5,
-            "location": "Mohakhali, Dhaka",
-            "hospitals": [
-                {
-                    "id": 5,
-                    "name": "Labaid Specialized Hospital",
-                    "address": "House- 06, Road- 04, Dhanmondi, Dhaka 1205",
-                    "phone": "+880-2-9676356-7"
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "location": "Uttara, Dhaka",
-            "hospitals": [
-                {
-                    "id": 6,
-                    "name": "Apollo Hospitals Dhaka",
-                    "address": "Plot: 81, Block: E, Bashundhara R/A, Dhaka 1229",
-                    "phone": "+880-2-55037242"
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "location": "Motijheel, Dhaka",
-            "hospitals": [
-                {
-                    "id": 7,
-                    "name": "Popular Diagnostic Centre Ltd.",
-                    "address": "House # 11/A, Road # 2, Dhanmondi, Dhaka - 1205",
-                    "phone": "+880-2-9669480-2"
-                }
-            ]
-        },
-        {
-            "id": 8,
-            "location": "Shyamoli, Dhaka",
-            "hospitals": [
-                {
-                    "id": 8,
-                    "name": "Dhaka Medical College Hospital",
-                    "address": "Dhaka Medical College Hospital Road, Dhaka 1000",
-                    "phone": "+880-2-55165088"
-                }
-            ]
-        },
-        {
-            "id": 9,
-            "location": "Mirpur-1, Dhaka",
-            "hospitals": [
-                {
-                    "id": 9,
-                    "name": "National Institute of Traumatology and Orthopaedic Rehabilitation (NITOR)",
-                    "address": "Sher-E-Bangla Nagar, Dhaka 1207",
-                    "phone": "+880-2-9118115"
-                }
-            ]
-        },
-        {
-            "id": 10,
-            "location": "Kuril, Dhaka",
-            "hospitals": [
-                {
-                    "id": 10,
-                    "name": "Japan Bangladesh Friendship Hospital",
-                    "address": "55 Satmosjid Road, Dhanmondi, Dhaka 1209",
-                    "phone": "+880-2-9118202"
-                }
-            ]
-        },
-        {
-            "id": 11,
-            "location": "Tejgaon, Dhaka",
-            "hospitals": [
-                {
-                    "id": 11,
-                    "name": "Dhaka Shishu (Children) Hospital",
-                    "address": "Sher-E-Bangla Nagar, Dhaka 1207",
-                    "phone": "+880-2-9118202"
-                }
-            ]
-        },
-        {
-            "id": 12,
-            "location": "Khilgaon, Dhaka",
-            "hospitals": [
-                {
-                    "id": 12,
-                    "name": "Dhaka Community Hospital",
-                    "address": "190/1, Baro Moghbazar, Wireless Railgate, Dhaka 1217",
-                    "phone": "+880-2-9335838"
-                }
-            ]
-        }
-    ],
     "hospitals": [
         {
             "id": 1,
             "name": "Square Hospitals Ltd.",
             "address": "18/F, Bir Uttam Qazi Nuruzzaman Sarak, West Panthapath, Dhaka 1205",
             "phone": "+880-2-8159457-60",
+            "open": "07.30am-9.00pm",
             "location": "Banani, Dhaka",
             "doctorId": [
                 1,
@@ -758,6 +613,7 @@
             "name": "United Hospital Limited",
             "address": "Plot 15, Road 71, Gulshan, Dhaka 1212",
             "phone": "+880-2-8836000",
+            "open": "08.00am-9.00pm",
             "location": "Gulshan, Dhaka",
             "doctorId": [
                 1,
@@ -777,6 +633,7 @@
             "name": "Ibrahim Cardiac Hospital & Research Institute",
             "address": "122 Kazi Nazrul Islam Avenue, Shahbagh, Dhaka 1000",
             "phone": "+880-2-9671141-43",
+            "open": "07.00am-9.30pm",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
                 1,
@@ -794,6 +651,7 @@
             "name": "Apollo Hospitals Dhaka",
             "address": "Plot: 81, Block: E, Bashundhara R/A, Dhaka 1229",
             "phone": "+880-2-8431661-5",
+            "open": "07.00am-9.00pm",
             "location": "Bashundhara, Dhaka",
             "doctorId": [
                 2,
@@ -813,6 +671,7 @@
             "name": "Japan Bangladesh Friendship Hospital",
             "address": "55 Satmosjid Road, Dhanmondi, Dhaka 1209",
             "phone": "+880-2-9118202",
+            "open": "07.00am-9.30pm",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
                 1,
@@ -833,6 +692,7 @@
             "name": "Bangabandhu Sheikh Mujib Medical University Hospital",
             "address": "Shabagh, Dhaka 1000",
             "phone": "+880-2-8624514-19",
+            "open": "07.00am-9.30pm",
             "location": "Mirpur, Dhaka",
             "doctorId": [
                 2,
@@ -852,6 +712,7 @@
             "name": "Apollo Hospitals Dhaka",
             "address": "Plot: 81, Block: E, Bashundhara R/A, Dhaka 1229",
             "phone": "+880-2-55037242",
+            "open": "07.00am-9.30pm",
             "location": "Mohakhali, Dhaka",
             "doctorId": [
                 1,
@@ -872,6 +733,7 @@
             "name": "Popular Diagnostic Centre Ltd.",
             "address": "House # 11/A, Road # 2, Dhanmondi, Dhaka - 1205",
             "phone": "+880-2-9669480-2",
+            "open": "07.00am-9.30pm",
             "location": "Uttara, Dhaka",
             "doctorId": [
                 2,
@@ -892,6 +754,7 @@
             "name": "Dhaka Medical College Hospital",
             "address": "Dhaka Medical College Hospital Road, Dhaka 1000",
             "phone": "+880-2-55165088",
+            "open": "07.30am-10.30pm",
             "location": "Motijheel, Dhaka",
             "doctorId": [
                 1,
@@ -912,6 +775,7 @@
             "name": "National Institute of Traumatology and Orthopaedic Rehabilitation (NITOR)",
             "address": "Sher-E-Bangla Nagar, Dhaka 1207",
             "phone": "+880-2-9118115",
+            "open": "07.00am-9.30pm",
             "location": "Shyamoli, Dhaka",
             "doctorId": [
                 2,
@@ -931,6 +795,7 @@
             "name": "Dhaka Shishu (Children) Hospital",
             "address": "Sher-E-Bangla Nagar, Dhaka 1207",
             "phone": "+880-2-9118202",
+            "open": "07.00am-9.30pm",
             "location": "Mirpur-1, Dhaka",
             "doctorId": [
                 1,
@@ -951,6 +816,7 @@
             "name": "Dhaka Community Hospital",
             "address": "190/1, Baro Moghbazar, Wireless Railgate, Dhaka 1217",
             "phone": "+880-2-9335838",
+            "open": "06.30am-10.30pm",
             "location": "Kuril, Dhaka",
             "doctorId": [
                 19,
@@ -971,6 +837,7 @@
             "name": "Labaid Hospital",
             "address": "House # 6, Road # 4, Dhanmondi, Dhaka 1205",
             "phone": "+880-2-9660015",
+            "open": "07.00am-9.30pm",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
                 18,
@@ -990,6 +857,7 @@
             "name": "Apollo Hospitals Dhaka",
             "address": "Plot: 81, Block: E, Bashundhara R/A, Dhaka 1229",
             "phone": "+880-2-8431661",
+            "open": "07.00am-9.30pm",
             "location": "Bashundhara R/A, Dhaka",
             "doctorId": [
                 2,
@@ -1009,6 +877,7 @@
             "name": "Square Hospitals Ltd.",
             "address": "18/F, Bir Uttam Qazi Nuruzzaman Sarak, West Panthapath, Dhaka 1205",
             "phone": "+880-2-8144466",
+            "open": "07.00am-9.30pm",
             "location": "Panthapath, Dhaka",
             "doctorId": [
                 1,
@@ -1029,6 +898,7 @@
             "name": "Ibn Sina Hospital Kallyanpur",
             "address": "Bir Uttam Kazi Nuruzzaman Sarak, Mirpur Road, Kallyanpur, Dhaka 1207",
             "phone": "+880-2-9007701-4",
+            "open": "07.00am-9.30pm",
             "location": "Kallyanpur, Dhaka",
             "doctorId": [
                 9,
@@ -1049,6 +919,7 @@
             "name": "Islami Bank Hospital",
             "address": "Gulshan, Dhaka",
             "phone": "+880-2-9888900",
+            "open": "07.00am-10.00pm",
             "location": "Gulshan, Dhaka",
             "doctorId": [
                 1,
@@ -1069,6 +940,7 @@
             "name": "Monowara Hospital Pvt. Ltd.",
             "address": "70, Satmasjid Road, Dhaka 1205",
             "phone": "+880-2-8620353",
+            "open": "07.00am-10.30pm",
             "location": "Dhanmondi, Dhaka",
             "doctorId": [
                 2,
@@ -1087,6 +959,7 @@
             "name": "City Hospital Ltd.",
             "address": "1/8 Block-E, Lalmatia, Satmasjid Road, Dhaka 1207",
             "phone": "+880-2-8143312",
+            "open": "07.30am-9.00pm",
             "location": "Lalmatia, Dhaka",
             "doctorId": [
                 1,
@@ -1107,6 +980,7 @@
             "name": "Ibrahim Cardiac Hospital & Research Institute",
             "address": "122 Kazi Nazrul Islam Ave, Dhaka 1215",
             "phone": "+880-2-9671141",
+            "open": "06.30am-9.00pm",
             "location": "Shahbagh, Dhaka",
             "doctorId": [
                 2,
