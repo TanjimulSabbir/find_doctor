@@ -23,7 +23,7 @@ export default function Appointment() {
 
   return (
     <div>
-      <DoctorFilter searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
+      <DoctorFilter setFindDoctors={setFindDoctors} searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
       <Catagories setCategory={setCategory} category={category} />
       <Doctors searchedText={searchedText} findDoctors={findDoctors} category={category} setCategory={setCategory} />
     </div>

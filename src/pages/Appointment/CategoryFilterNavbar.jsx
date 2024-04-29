@@ -4,7 +4,7 @@ const CategoryFilterNavbar = ({ data }) => {
     const { showType, treatmentInfo, findDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory } = data;
 
     return (
-        <p className="downSlider text-black flex items-center space-x-2 mb-3">
+        <p className="rightSlider text-black flex items-center space-x-2 mb-3">
             <span className={`cursor-pointer ${showType === "show-all" && "text-green-600 font-bold"}`}
                 onClick={handleShowAllClick}>
                 Show all ({treatmentInfo.doctors.length})

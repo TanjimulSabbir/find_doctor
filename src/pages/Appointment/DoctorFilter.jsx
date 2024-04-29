@@ -5,7 +5,7 @@ import ModalMenu from "./ModalMenu";
 import { IoCloseOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 
-export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
+export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, setFindDoctors }) {
     const [floatMenu, setFloatMenu] = useState(false);
     const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
     const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
@@ -24,6 +24,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
         toast.success(item.name)
         const storeData = dataType == "hospital" ? filteredDoctors : [item];
         setSearchedText(prev => ({ ...prev, data: storeData, inputText: item.name }));
+        setFindDoctors(storeData)
         setFloatMenu(false);
     }
     console.log(searchedText)
@@ -80,7 +81,10 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchedText.category, searchedText.location, tempo]);
 
-    console.log({ searchedText: searchedText })
+
+    useEffect(() => {
+        setFloatMenu
+    }, [floatMenu])
 
 
     return (
@@ -101,7 +105,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             {/*Hospital Location */}
             <div className="flex flex-col border-r border-gray-400 px-4 text-start w-[30%]">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
-                <select className="text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
+                <select className="grow text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
 
                     <option value="" className="bg-green-600">{searchedText.location ? searchedText.location : "Not selected"}</option>
                     {searchedText.location && tempo.length > 0 && <option value="">Not selected</option>}
@@ -117,10 +121,10 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             <div className="relative flex flex-col px-4 w-full"
             >
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Search doctor, clinic, hostpital etc</label>
-                <input type="text" name="inputText" className={`w-full outline-none text-sm bg-transparent placeholderText ${floatMenu && "text-green-600 font-bold"}`} onChange={(event) => handleInput(event)} onClick={() => setFloatMenu(true)} value={searchedText.inputText} placeholder="choose here doctor/hospital" />
+                <input type="text" name="inputText" className={`grow w-full outline-none text-sm bg-transparent placeholderText ${floatMenu && "text-green-600 font-bold"}`} onChange={(event) => handleInput(event)} onClick={() => setFloatMenu(true)} value={searchedText.inputText} placeholder="choose here doctor/hospital" />
 
                 {/* Float filtering menu */}
-                {floatMenu && <div className="absolute top-12 bg-black text-white p-5 rounded space-y-5 z-40 transform transition duration-500 opacity-100 w-full">
+                {floatMenu && <div className={`${floatMenu ? "grow" : "fade-out"} absolute top-12 bg-black text-white p-5 rounded space-y-5 z-40 w-full`}>
                     <p className="py-1 bg-sky-500 text-center rounded">Doctors</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
@@ -145,12 +149,12 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                     <IoCloseOutline className="absolute -top-3 right-1 text-sm text-red-700 z-50 cursor-pointer transition transform duration-300 hover:scale-125" onClick={() => setFloatMenu(false)} title="Close Modal" />
                 </div>
                 }
-                <p className="absolute right-4 top-3 cursor-pointer text-red-700 lobster-two-bold" onClick={() => { setFloatMenu(false) }}>
+                <p className="absolute right-4 top-3 cursor-pointer text-red-700 lobster-two-bold" onClick={() => setFloatMenu(false)}>
                     close
                 </p>
             </div>
 
-            <button className={`searchBtn ${searchedText.inputText === "" && "hiddenSearchBtn"}`} disabled={searchedText.inputText === ""} onClick={() => handleDoctorSearch()}>Search</button>
+            <button className={`grow searchBtn ${searchedText.inputText === "" && "hiddenSearchBtn"}`} disabled={searchedText.inputText === ""} onClick={() => handleDoctorSearch()}>Search</button>
         </div >
     )
 }

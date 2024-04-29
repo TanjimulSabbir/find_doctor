@@ -40,10 +40,10 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
 
     const number = [];
     return (
-        <div className="downSlider container mx-auto mt-10">
+        <div className="container mx-auto mt-10">
             <CategoryFilterNavbar data={{ showType, treatmentInfo, findDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
 
-            <div className="flex">
+            <div className="downSlider before:flex">
                 <div className="space-y-10 w-[60%]">
                     {showDoctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
@@ -52,7 +52,7 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
                             return;
                         }
                         return (
-                            <div key={id} className="rightSlider relative items-center bg-white rounded-lg shadow-xl p-4">
+                            <div key={id} className="leftSlider relative items-center bg-white rounded-lg shadow-xl p-4">
                                 <div className="flex gap-10 relative">
 
                                     {/* Image information */}
@@ -108,12 +108,13 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
 
                     {/* Error */}
                     {number.length === showDoctors.length && (
-                        <p className="topSlider mt-7 text-center text-xs text-red-500 flex flex-col leading-tight"> <span>Seems like there are no doctors in this category. Keep searching!</span>
+                        <p className="grow mt-7 text-center text-xs text-red-500 flex flex-col leading-tight"> <span>Seems like there are no doctors in this category. Keep searching!</span>
                             <span className="text-[10px] text-green-600 cursor-pointer" onClick={() => setCategory("")}>Show Doctor</span>
                         </p>
                     )}
                 </div>
                 {/* <HospitalMap location="Dhaka" /> */}
+                {/* <div className="absolute top-20 bouncer w-10 h-10 rounded-full bg-green-600"></div> */}
             </div >
         </div >
     )

@@ -1,15 +1,9 @@
 /* eslint-disable react/prop-types */
-import toast from "react-hot-toast";
 import { BsHospital } from "react-icons/bs";
 
 export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, filterType, dataType, selectedData, UiData, handleSaveData }) {
-    const styleData = "transform transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
+    const styleData = "transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
 
-
-    console.log(searchedText, "from float modal")
-    const markName = searchedText.data.find(item => item.name === searchedText.inputText);
-
-    console.log(markName)
     return (
         <div className="space-y-1">
             {selectedData?.length > 0 ?
@@ -26,6 +20,7 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
                     <p className="text-center text-green-500 lobster">We appreciate your patience. 😊</p>
                 </p>
             }
+           
         </div>
     );
 }
