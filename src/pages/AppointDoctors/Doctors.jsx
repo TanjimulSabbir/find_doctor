@@ -89,7 +89,7 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
 
                                     {/* Book Appointment */}
                                     <div className="absolute right-5 bottom-16">
-                                        <Link to={`appintment/${id}`} className="appointmentBtn">Book Appointment</Link>
+                                        <Link to={`/${id}`} className="appointmentBtn">Book Appointment</Link>
                                     </div>
 
                                     {/* available */}
