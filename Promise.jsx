@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
+// await can only be used an inside async function
 const PromiseComponent = () => {
     const [searchText, setSearchText] = useState("");
 
