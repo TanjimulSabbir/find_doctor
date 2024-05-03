@@ -27,7 +27,7 @@ export default function AppointLayout() {
     <div>
       <DoctorFilter setFindDoctors={setFindDoctors} searchedText={searchedText} setSearchedText={setSearchedText} handleDoctorSearch={handleDoctorSearch} />
       <Catagories setCategory={setCategory} category={category} />
-      {/* <Doctors searchedText={searchedText} findDoctors={findDoctors} category={category} setCategory={setCategory} /> */}
+      <Doctors searchedText={searchedText} findDoctors={findDoctors} category={category} setCategory={setCategory} />
       <Outlet />
     </div>
   )

@@ -4,12 +4,12 @@ import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 import { IoCloseOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { setFilteredDoctors, setFilteredHospitals } from "../../Redux/Features/filterSlice";
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, setFindDoctors }) {
     const [floatMenu, setFloatMenu] = useState(false);
-    const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
-    const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
-    const [tempo, setTempo] = useState(AppointmentInfo.hospitals);
+    const { doctors, hospitals, filteredDoctors, filteredHospitals } = useSelector(state => state.filteredDoctor)
 
     const handleInput = (event) => {
         setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
@@ -30,9 +30,10 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     console.log(searchedText)
 
     useEffect(() => {
+        if (searchedText.category == "") return;
+
         // Filter doctors based on the selected category
-        const categoriesfilteredDoctors = AppointmentInfo.doctors.filter((doctor) => {
-            if (searchedText.category === "") return true;
+        const categoriesfilteredDoctors = doctors.filter((doctor) => {
             const matchedDoctor = doctor.category?.toLowerCase() === (searchedText.category?.toLowerCase());
             return matchedDoctor;
         });
@@ -42,12 +43,11 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             const doctorsId = categoriesfilteredDoctors.map(doctor => doctor.id);
 
             // Get hospitals associated with the filtered doctors
-            const matchedHospitals = AppointmentInfo.hospitals.filter((hospital) => {
+            const matchedHospitals = hospitals.filter((hospital) => {
                 return hospital.doctorId.some(id => doctorsId.includes(id));
             });
             // Set the filtered hospitals in state
-            setfilteredHospitals(matchedHospitals);
-            setTempo(matchedHospitals);
+            setFilteredHospitals(matchedHospitals);
         }
     }, [searchedText.category]);
 
@@ -62,24 +62,52 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
         // another case location select:
         // If location is being selected, It will filter with categorized-filterd-hospital by matching with 'searchText.location' and will set into 'setfilteredHospital'. 'filteredHospital' will show the next step(modal menu) ].
+        // category
+        // location
+        // category+location
+        if (!searchedText.category && !searchedText.location) {
+            setFilteredDoctors(doctors)
+            setFilteredHospitals(hospitals)
+            return;
+        }
+        if (searchedText.category && !searchedText.location) {
+            setFilteredDoctors(filteredDoctors)
+            setFilteredHospitals(filteredHospitals)
+            return;
+        }
 
+        // Finding hospitals by location
+        let filteredHospitalsByCat_Loc = []
+        let filteredDoctorsByCat_Loc = [];
+        let filteredHospitalsByLoc = [];
+        let filteredDoctorsByLoc = [];
+        // implicitly category + location
+        if (searchedText.category && searchedText.location) {
+            //filterd by category+location
+            filteredHospitalsByCat_Loc = filteredHospitals.filter(hospital => {
+                return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
+            });
+            filteredDoctorsByCat_Loc = filteredDoctors.filter(doctor => {
+                return filteredHospitalsByCat_Loc.some(hos => doctor.hospitalId.includes(hos.id))
+            })
+            setFilteredHospitals(filteredHospitalsByCat_Loc);
+            setFilteredDoctors(filteredDoctorsByCat_Loc);
+        }
 
-        const filterHospitals02 = tempo.filter(hospital => {
-            if (searchedText.location === "") return true;
-            return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
-        });
+        if (searchedText.location) {
+            // filtered by only location
+            filteredHospitalsByLoc = hospitals.filter(hospital => {
+                return hospital.location.toLowerCase() === searchedText.location.toLowerCase();
+            });
+            filteredDoctorsByLoc = doctors.filter(doctor => {
+                return filteredHospitalsByLoc.some(hos => hos.doctorId.includes(doctor.id))
+            })
+            setFilteredHospitals(filteredHospitalsByLoc);
+            setFilteredDoctors(filteredDoctorsByLoc);
+        }
 
-        setfilteredHospitals(filterHospitals02);
-        if (searchedText.category) return;
-
-        const doctorsToFilter = filteredDoctors.length <= AppointmentInfo.doctors.length ? AppointmentInfo.doctors : filteredDoctors;
-
-        const matchedDoctor = doctorsToFilter.filter(doctor =>
-            filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
-        );
-        setFilteredDoctors(matchedDoctor);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchedText.category, searchedText.location, tempo]);
+    }, [searchedText.category, searchedText.location]);
 
 
     useEffect(() => {

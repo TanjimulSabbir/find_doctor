@@ -15,7 +15,6 @@ const PromiseComponent = () => {
         };
     };
 
-
     const handleInput = (event) => {
         const value = event.target.value;
         debouning(value)

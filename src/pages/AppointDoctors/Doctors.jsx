@@ -10,26 +10,27 @@ import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 import { useEffect, useState } from "react";
 import CategoryFilterNavbar from "./CategoryFilterNavbar";
+import { useSelector } from "react-redux";
 
 
 export default function Doctors({ searchedText, findDoctors, category, setCategory }) {
-    const [showDoctors, setShowDoctors] = useState(treatmentInfo.doctors);
+    const { doctors, hospitals } = useSelector(state => state.filteredDoctor)
     const [showType, setShowType] = useState("show-all")
 
-
+    console.log(doctors, "from doctor page")
     const handleShowAllClick = () => {
-        setShowDoctors(treatmentInfo.doctors);
+        // setShowDoctors(treatmentInfo.doctors);
         setShowType("show-all");
     };
 
     const handleShowFilteredClick = () => {
-        setShowDoctors(findDoctors);
+        // setShowDoctors(findDoctors);
         setShowType("show-filtered");
     };
 
     useEffect(() => {
         if (findDoctors.length > 0) {
-            setShowDoctors(findDoctors);
+            // setShowDoctors(findDoctors);
             setShowType("show-filtered");
         } else {
             setShowType("show-all");
@@ -45,7 +46,7 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
 
             <div className="downSlider before:flex">
                 <div className="space-y-10 w-[60%]">
-                    {showDoctors.map(doctor => {
+                    {doctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
                         if (!specialize.toLowerCase().includes(category.toLowerCase())) {
                             number.push(id)
@@ -107,7 +108,7 @@ export default function Doctors({ searchedText, findDoctors, category, setCatego
                     })}
 
                     {/* Error */}
-                    {number.length === showDoctors.length && (
+                    {number.length === doctors.length && (
                         <p className="grow mt-7 text-center text-xs text-red-500 flex flex-col leading-tight"> <span>Seems like there are no doctors in this category. Keep searching!</span>
                             <span className="text-[10px] text-green-600 cursor-pointer" onClick={() => setCategory("")}>Show Doctor</span>
                         </p>
