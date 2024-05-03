@@ -30,26 +30,32 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     console.log(searchedText)
 
     useEffect(() => {
-        if (searchedText.category == "") return;
+        // !category+location, category+!location, !category+!location
+
+        if (!searchedText.category) {
+            setFilteredDoctors(doctors)
+            setFilteredHospitals(hospitals)
+            return;
+        }
+
 
         // Filter doctors based on the selected category
-        const categoriesfilteredDoctors = doctors.filter((doctor) => {
-            const matchedDoctor = doctor.category?.toLowerCase() === (searchedText.category?.toLowerCase());
+        const categorizedfilteredDoctors = doctors.filter((doctor) => {
+            const matchedDoctor = doctor.category.toLowerCase().includes(searchedText.category.toLowerCase());
             return matchedDoctor;
         });
 
-        if (categoriesfilteredDoctors.length > 0) {
-            setFilteredDoctors(categoriesfilteredDoctors)
-            const doctorsId = categoriesfilteredDoctors.map(doctor => doctor.id);
+        if (categorizedfilteredDoctors.length > 0) {
+            setFilteredDoctors(categorizedfilteredDoctors)
 
             // Get hospitals associated with the filtered doctors
-            const matchedHospitals = hospitals.filter((hospital) => {
-                return hospital.doctorId.some(id => doctorsId.includes(id));
+            const matchedHospitals = hospitals.filter(hospital => {
+                return categorizedfilteredDoctors.some(doc => doc.hospitalId.includes(hospital.id))
             });
             // Set the filtered hospitals in state
             setFilteredHospitals(matchedHospitals);
         }
-    }, [searchedText.category]);
+    }, [searchedText.category, searchedText.location]);
 
 
     useEffect(() => {
@@ -62,9 +68,8 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
 
         // another case location select:
         // If location is being selected, It will filter with categorized-filterd-hospital by matching with 'searchText.location' and will set into 'setfilteredHospital'. 'filteredHospital' will show the next step(modal menu) ].
-        // category
-        // location
-        // category+location
+        
+        // !category+location, category+!location, !category+!location
         if (!searchedText.category && !searchedText.location) {
             setFilteredDoctors(doctors)
             setFilteredHospitals(hospitals)
