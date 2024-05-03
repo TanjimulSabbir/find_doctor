@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import treatmentInfo from "../../Tools/Appointment.json"
 import { IoMdShare } from "react-icons/io";
 import toast from "react-hot-toast";
 import { IoLanguageOutline } from "react-icons/io5";
@@ -13,40 +12,41 @@ import CategoryFilterNavbar from "./CategoryFilterNavbar";
 import { useSelector } from "react-redux";
 
 
-export default function Doctors({ searchedText, findDoctors, category, setCategory }) {
-    const { doctors, hospitals } = useSelector(state => state.filteredDoctor)
-    const [showType, setShowType] = useState("show-all")
+export default function Doctors({ searchedText, category, setCategory }) {
+    const { doctors, filteredDoctors } = useSelector(state => state.filteredDoctor)
+    const [showType, setShowType] = useState("show-all");
+    const [showDoctors, setShowDoctors] = useState(doctors);
 
     console.log(doctors, "from doctor page")
     const handleShowAllClick = () => {
-        // setShowDoctors(treatmentInfo.doctors);
         setShowType("show-all");
+        setShowDoctors(doctors);
     };
 
     const handleShowFilteredClick = () => {
-        // setShowDoctors(findDoctors);
         setShowType("show-filtered");
+        setShowDoctors(filteredDoctors);
     };
 
     useEffect(() => {
-        if (findDoctors.length > 0) {
-            // setShowDoctors(findDoctors);
+        if (filteredDoctors.length > 0) {
             setShowType("show-filtered");
+            setShowDoctors(filteredDoctors);
         } else {
             setShowType("show-all");
         }
-    }, [searchedText.data, findDoctors])
+    }, [searchedText.data, filteredDoctors, showType])
 
-    console.log(findDoctors, "from doctors component");
+    console.log(filteredDoctors, "from doctors component");
 
     const number = [];
     return (
         <div className="container mx-auto mt-10">
-            <CategoryFilterNavbar data={{ showType, treatmentInfo, findDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
+            <CategoryFilterNavbar data={{ showType, findDoctors: filteredDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
 
             <div className="downSlider before:flex">
                 <div className="space-y-10 w-[60%]">
-                    {doctors.map(doctor => {
+                    {showDoctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
                         if (!specialize.toLowerCase().includes(category.toLowerCase())) {
                             number.push(id)

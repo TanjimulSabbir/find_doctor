@@ -14,10 +14,10 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         setFilteredDoctors: (state, action) => {
-            state.filteredDoctors = state.filteredDoctors.push(action.payload)
+            state.filteredDoctors = action.payload
         },
         setFilteredHospitals: (state, action) => {
-            state.filteredHospitals = state.filteredHospitals.push(action.payload)
+            state.filteredHospitals = action.payload
         }
     }
 })

@@ -1,13 +1,15 @@
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
 
 const CategoryFilterNavbar = ({ data }) => {
-    const { showType, treatmentInfo, findDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory } = data;
+    const { doctors, filteredDoctors } = useSelector(state => state.filteredDoctor)
+    const { showType, category, handleShowAllClick, handleShowFilteredClick, setCategory } = data;
 
     return (
         <p className="rightSlider text-black flex items-center space-x-2 mb-3">
             <span className={`cursor-pointer ${showType === "show-all" && "text-green-600 font-bold"}`}
                 onClick={handleShowAllClick}>
-                Show all ({treatmentInfo.doctors.length})
+                Show all ({doctors.length})
             </span>
 
             <span
@@ -15,7 +17,7 @@ const CategoryFilterNavbar = ({ data }) => {
                 onClick={handleShowFilteredClick}
             >
                 <RiArrowRightSLine />
-                <span> Show filtered ({findDoctors.length})</span>
+                <span> Show filtered ({filteredDoctors.length})</span>
             </span>
 
             <span

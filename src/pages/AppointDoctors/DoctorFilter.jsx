@@ -4,12 +4,14 @@ import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 import { IoCloseOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setFilteredDoctors, setFilteredHospitals } from "../../Redux/Features/filterSlice";
 
 export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, setFindDoctors }) {
     const [floatMenu, setFloatMenu] = useState(false);
     const { doctors, hospitals, filteredDoctors, filteredHospitals } = useSelector(state => state.filteredDoctor)
+
+    const dispatch = useDispatch();
 
     const handleInput = (event) => {
         setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
@@ -32,12 +34,12 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
     useEffect(() => {
         // !category+location, category+!location, !category+!location
 
-        if (!searchedText.category) {
-            setFilteredDoctors(doctors)
-            setFilteredHospitals(hospitals)
-            return;
-        }
-
+        // if (searchedText.category == "") {
+        //     dispatch(setFilteredDoctors(doctors))
+        //     dispatch(setFilteredHospitals(hospitals))
+        //     return;
+        // }
+        toast.success("hitted")
 
         // Filter doctors based on the selected category
         const categorizedfilteredDoctors = doctors.filter((doctor) => {
@@ -46,79 +48,77 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
         });
 
         if (categorizedfilteredDoctors.length > 0) {
-            setFilteredDoctors(categorizedfilteredDoctors)
+            dispatch(setFilteredDoctors(categorizedfilteredDoctors))
 
             // Get hospitals associated with the filtered doctors
             const matchedHospitals = hospitals.filter(hospital => {
                 return categorizedfilteredDoctors.some(doc => doc.hospitalId.includes(hospital.id))
             });
+            console.log({ categorizedfilteredDoctors, matchedHospitals })
             // Set the filtered hospitals in state
-            setFilteredHospitals(matchedHospitals);
+            dispatch(setFilteredHospitals(matchedHospitals));
         }
-    }, [searchedText.category, searchedText.location]);
+
+    }, [searchedText]);
 
 
     useEffect(() => {
-        // For select input
-        // What location will be shown on location input based on category. If no category selected, then all location will be shown on select input. if category selected, respective doctor's hospital's location will be shown on selected input.
+        // category+location, !category+location, category+!location, !category+!location
 
-        // What will do inside program
-
-        // [ if location has not been selected, all catagorized-filtered-hospitals will be shown ('setFilteredHospital').(location is empty, that's why it will return all element/hospital). 
-
-        // another case location select:
-        // If location is being selected, It will filter with categorized-filterd-hospital by matching with 'searchText.location' and will set into 'setfilteredHospital'. 'filteredHospital' will show the next step(modal menu) ].
-        
-        // !category+location, category+!location, !category+!location
-        if (!searchedText.category && !searchedText.location) {
-            setFilteredDoctors(doctors)
-            setFilteredHospitals(hospitals)
-            return;
-        }
-        if (searchedText.category && !searchedText.location) {
-            setFilteredDoctors(filteredDoctors)
-            setFilteredHospitals(filteredHospitals)
-            return;
-        }
+        // if (searchedText.category && searchedText.location == "") {
+        //     dispatch(setFilteredDoctors(doctors))
+        //     dispatch(setFilteredHospitals(hospitals))
+        //     return;
+        // }
+        // if (searchedText.category !== "" && searchedText.location == "") {
+        //     dispatch(setFilteredDoctors(filteredDoctors))
+        //     dispatch(setFilteredHospitals(filteredHospitals))
+        //     return;
+        // }
 
         // Finding hospitals by location
         let filteredHospitalsByCat_Loc = []
         let filteredDoctorsByCat_Loc = [];
         let filteredHospitalsByLoc = [];
         let filteredDoctorsByLoc = [];
-        // implicitly category + location
-        if (searchedText.category && searchedText.location) {
-            //filterd by category+location
-            filteredHospitalsByCat_Loc = filteredHospitals.filter(hospital => {
-                return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
-            });
-            filteredDoctorsByCat_Loc = filteredDoctors.filter(doctor => {
-                return filteredHospitalsByCat_Loc.some(hos => doctor.hospitalId.includes(hos.id))
-            })
-            setFilteredHospitals(filteredHospitalsByCat_Loc);
-            setFilteredDoctors(filteredDoctorsByCat_Loc);
-        }
 
-        if (searchedText.location) {
-            // filtered by only location
-            filteredHospitalsByLoc = hospitals.filter(hospital => {
-                return hospital.location.toLowerCase() === searchedText.location.toLowerCase();
-            });
-            filteredDoctorsByLoc = doctors.filter(doctor => {
-                return filteredHospitalsByLoc.some(hos => hos.doctorId.includes(doctor.id))
-            })
-            setFilteredHospitals(filteredHospitalsByLoc);
-            setFilteredDoctors(filteredDoctorsByLoc);
+        // implicitly category + location
+
+        //filterd by category+location
+        filteredHospitalsByCat_Loc = filteredHospitals.filter(hospital => {
+            return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
+        });
+        filteredDoctorsByCat_Loc = filteredDoctors.filter(doctor => {
+            return filteredHospitalsByCat_Loc.some(hos => doctor.hospitalId.includes(hos.id))
+        })
+        dispatch(setFilteredHospitals(filteredHospitalsByCat_Loc));
+        dispatch(setFilteredDoctors(filteredDoctorsByCat_Loc));
+
+
+        // filtered by only location
+        filteredHospitalsByLoc = hospitals.filter(hospital => {
+            return hospital.location.toLowerCase() === searchedText.location.toLowerCase();
+        });
+        filteredDoctorsByLoc = doctors.filter(doctor => {
+            return filteredHospitalsByLoc.some(hos => hos.doctorId.includes(doctor.id))
+        })
+        dispatch(setFilteredHospitals(filteredHospitalsByLoc));
+        dispatch(setFilteredDoctors(filteredDoctorsByLoc));
+
+        if (!searchedText.location) {
+            // dispatch(setFilteredDoctors(doctors))
+            dispatch(setFilteredHospitals(hospitals))
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchedText.category, searchedText.location]);
+    }, [searchedText]);
 
 
     useEffect(() => {
         setFloatMenu
     }, [floatMenu])
 
+    console.log({ doctors, hospitals, filteredDoctors, filteredHospitals }, "from Doctor filter")
 
     return (
         <div className="rightSlider w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -128,7 +128,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Category</label>
                 <select className="text-[#185FA0] text-sm outline-none bg-transparent cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
                     <option value="">Not selected</option>
-                    {[...new Set(AppointmentInfo.doctors.map(doctor => doctor.category))].map(category => (
+                    {[...new Set(doctors.map(doctor => doctor.category))].map(category => (
                         <option className="py-2 cursor-pointer" key={category} value={category}>{category}</option>
                     ))}
                 </select>
@@ -141,9 +141,9 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 <select className="grow text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
 
                     <option value="" className="bg-green-600">{searchedText.location ? searchedText.location : "Not selected"}</option>
-                    {searchedText.location && tempo.length > 0 && <option value="">Not selected</option>}
+                    {searchedText.location && filteredHospitals.length > 0 && <option value="">Not selected</option>}
 
-                    {tempo.map(hospital => (
+                    {filteredHospitals.map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
                 </select>
