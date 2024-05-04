@@ -7,118 +7,82 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setFilteredDoctors, setFilteredHospitals } from "../../Redux/Features/filterSlice";
 
-export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch, setFindDoctors }) {
+export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
     const [floatMenu, setFloatMenu] = useState(false);
-    const { doctors, hospitals, filteredDoctors, filteredHospitals } = useSelector(state => state.filteredDoctor)
+    // const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
+    // const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
+    const { doctors, hospitals, filteredDoctors, filteredHospitals } = useSelector(state => state.filteredDoctor);
 
+    const [tempo, setTempo] = useState(hospitals);
     const dispatch = useDispatch();
 
     const handleInput = (event) => {
         setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
     }
 
-    const handleSearch = (event) => {
+    const handleChangeSearch = (event) => {
         setSearchedText(prev => ({ ...prev, [event.target.name]: event.target.value }));
         setFloatMenu(true);
     };
 
-    const handleSaveData = ({ item, dataType }) => {
-        toast.success(item.name)
-        const storeData = dataType == "hospital" ? filteredDoctors : [item];
-        setSearchedText(prev => ({ ...prev, data: storeData, inputText: item.name }));
-        setFindDoctors(storeData)
-        setFloatMenu(false);
-    }
+
     console.log(searchedText)
+    // dispatch(setFilteredDoctors(doctors));
+    // dispatch(setFilteredHospitals(hospitals));
 
     useEffect(() => {
-        // !category+location, category+!location, !category+!location
-
-        // if (searchedText.category == "") {
-        //     dispatch(setFilteredDoctors(doctors))
-        //     dispatch(setFilteredHospitals(hospitals))
-        //     return;
-        // }
-        toast.success("hitted")
 
         // Filter doctors based on the selected category
-        const categorizedfilteredDoctors = doctors.filter((doctor) => {
-            const matchedDoctor = doctor.category.toLowerCase().includes(searchedText.category.toLowerCase());
+        const categoriesfilteredDoctors = doctors.filter((doctor) => {
+            if (searchedText.category === "") return true;
+            const matchedDoctor = doctor.category?.toLowerCase() === (searchedText.category?.toLowerCase());
             return matchedDoctor;
         });
 
-        if (categorizedfilteredDoctors.length > 0) {
-            dispatch(setFilteredDoctors(categorizedfilteredDoctors))
+        if (categoriesfilteredDoctors.length > 0) {
+            dispatch(setFilteredDoctors(categoriesfilteredDoctors))
+            const doctorsId = categoriesfilteredDoctors.map(doctor => doctor.id);
 
             // Get hospitals associated with the filtered doctors
-            const matchedHospitals = hospitals.filter(hospital => {
-                return categorizedfilteredDoctors.some(doc => doc.hospitalId.includes(hospital.id))
+            const matchedHospitals = AppointmentInfo.hospitals.filter((hospital) => {
+                return hospital.doctorId.some(id => doctorsId.includes(id));
             });
-            console.log({ categorizedfilteredDoctors, matchedHospitals })
             // Set the filtered hospitals in state
             dispatch(setFilteredHospitals(matchedHospitals));
+            setTempo(matchedHospitals);
         }
-
-    }, [searchedText]);
+    }, [searchedText.category]);
 
 
     useEffect(() => {
-        // category+location, !category+location, category+!location, !category+!location
+        // For select input
+        // What location will be shown on location input based on category. If no category selected, then all location will be shown on select input. if category selected, respective doctor's hospital's location will be shown on selected input.
 
-        // if (searchedText.category && searchedText.location == "") {
-        //     dispatch(setFilteredDoctors(doctors))
-        //     dispatch(setFilteredHospitals(hospitals))
-        //     return;
-        // }
-        // if (searchedText.category !== "" && searchedText.location == "") {
-        //     dispatch(setFilteredDoctors(filteredDoctors))
-        //     dispatch(setFilteredHospitals(filteredHospitals))
-        //     return;
-        // }
+        // What will do inside program
 
-        // Finding hospitals by location
-        let filteredHospitalsByCat_Loc = []
-        let filteredDoctorsByCat_Loc = [];
-        let filteredHospitalsByLoc = [];
-        let filteredDoctorsByLoc = [];
+        // [ if location has not been selected, all catagorized-filtered-hospitals will be shown ('setFilteredHospital').(location is empty, that's why it will return all element/hospital). 
 
-        // implicitly category + location
+        // another case location select:
+        // If location is being selected, It will filter with categorized-filterd-hospital by matching with 'searchText.location' and will set into 'setfilteredHospital'. 'filteredHospital' will show the next step(modal menu) ].
 
-        //filterd by category+location
-        filteredHospitalsByCat_Loc = filteredHospitals.filter(hospital => {
+
+        const filterHospitals02 = tempo.filter(hospital => {
+            if (searchedText.location === "") return true;
             return hospital.location?.toLowerCase() === searchedText.location?.toLowerCase();
         });
-        filteredDoctorsByCat_Loc = filteredDoctors.filter(doctor => {
-            return filteredHospitalsByCat_Loc.some(hos => doctor.hospitalId.includes(hos.id))
-        })
-        dispatch(setFilteredHospitals(filteredHospitalsByCat_Loc));
-        dispatch(setFilteredDoctors(filteredDoctorsByCat_Loc));
 
+        dispatch(setFilteredHospitals(filterHospitals02));
+        if (searchedText.category) return;
 
-        // filtered by only location
-        filteredHospitalsByLoc = hospitals.filter(hospital => {
-            return hospital.location.toLowerCase() === searchedText.location.toLowerCase();
-        });
-        filteredDoctorsByLoc = doctors.filter(doctor => {
-            return filteredHospitalsByLoc.some(hos => hos.doctorId.includes(doctor.id))
-        })
-        dispatch(setFilteredHospitals(filteredHospitalsByLoc));
-        dispatch(setFilteredDoctors(filteredDoctorsByLoc));
+        const doctorsToFilter = filteredDoctors.length <= doctors.length ? doctors : filteredDoctors;
 
-        if (!searchedText.location) {
-            // dispatch(setFilteredDoctors(doctors))
-            dispatch(setFilteredHospitals(hospitals))
-        }
-
+        const matchedDoctor = doctorsToFilter.filter(doctor =>
+            filterHospitals02.some(hos => hos.doctorId.includes(doctor.id))
+        );
+        dispatch(setFilteredDoctors(matchedDoctor));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchedText]);
+    }, [searchedText.category, searchedText.location, tempo]);
 
-
-    useEffect(() => {
-        setFloatMenu
-    }, [floatMenu])
-
-    console.log({ doctors, hospitals, filteredDoctors, filteredHospitals }, "from Doctor filter")
 
     return (
         <div className="rightSlider w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
@@ -126,7 +90,7 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             {/* category */}
             <div className="flex flex-col border-r border-gray-400 pr-4 w-[30%]">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Category</label>
-                <select className="text-[#185FA0] text-sm outline-none bg-transparent cursor-pointer" name="category" onChange={(event) => handleSearch(event)}>
+                <select className="text-[#185FA0] text-sm outline-none bg-transparent cursor-pointer" name="category" onChange={(event) => handleChangeSearch(event)}>
                     <option value="">Not selected</option>
                     {[...new Set(doctors.map(doctor => doctor.category))].map(category => (
                         <option className="py-2 cursor-pointer" key={category} value={category}>{category}</option>
@@ -138,17 +102,16 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
             {/*Hospital Location */}
             <div className="flex flex-col border-r border-gray-400 px-4 text-start w-[30%]">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
-                <select className="grow text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleSearch(event)} value={searchedText.location}>
+                <select className="grow text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleChangeSearch(event)} value={searchedText.location}>
 
                     <option value="" className="bg-green-600">{searchedText.location ? searchedText.location : "Not selected"}</option>
-                    {searchedText.location && filteredHospitals.length > 0 && <option value="">Not selected</option>}
+                    {searchedText.location && tempo.length > 0 && <option value="">Not selected</option>}
 
-                    {filteredHospitals.map(hospital => (
+                    {tempo.map(hospital => (
                         <option className="cursor-pointer" key={hospital.id} value={hospital.location}>{hospital.location}</option>
                     ))}
                 </select>
             </div>
-
 
             {/* Search doctot, clinics, hospitals */}
             <div className="relative flex flex-col px-4 w-full"
@@ -162,22 +125,14 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
-                        filterType="doctors"
                         dataType="doctor"
-                        selectedData={filteredDoctors}
-                        handleSaveData={handleSaveData}
                     />
 
                     <p className="py-1 bg-sky-500 text-center rounded">Hospitals</p>
                     <ModalMenu searchedText={searchedText}
                         setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
-                        filterType="hospitals"
                         dataType="hospital"
-                        selectedData={filteredHospitals}
-                        // when user will select hospital, needed to respective hospital's all doctor. That's why we pass it for process to show on UI
-                        UiData={filteredDoctors}
-                        handleSaveData={handleSaveData}
                     />
                     <IoCloseOutline className="absolute -top-3 right-1 text-sm text-red-700 z-50 cursor-pointer transition transform duration-300 hover:scale-125" onClick={() => setFloatMenu(false)} title="Close Modal" />
                 </div>

@@ -6,7 +6,8 @@ const initialState = {
     hospitals: appointmentInfo.hospitals,
     slots: appointmentInfo.slots,
     filteredDoctors: [],
-    filteredHospitals: []
+    filteredHospitals: [],
+    showFilteredData: []
 }
 
 const filterSlice = createSlice({
@@ -18,9 +19,12 @@ const filterSlice = createSlice({
         },
         setFilteredHospitals: (state, action) => {
             state.filteredHospitals = action.payload
+        },
+        setShowFilteredData: (state, action) => {
+            state.showFilteredData = action.payload;
         }
     }
 })
 
-export const { setFilteredDoctors, setFilteredHospitals } = filterSlice.actions;
+export const { setFilteredDoctors, setFilteredHospitals, setShowFilteredData } = filterSlice.actions;
 export default filterSlice.reducer;

@@ -2,7 +2,8 @@ import { RiArrowRightSLine } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 
 const CategoryFilterNavbar = ({ data }) => {
-    const { doctors, filteredDoctors } = useSelector(state => state.filteredDoctor)
+    const { doctors, showFilteredData } = useSelector(state => state.filteredDoctor);
+
     const { showType, category, handleShowAllClick, handleShowFilteredClick, setCategory } = data;
 
     return (
@@ -17,7 +18,7 @@ const CategoryFilterNavbar = ({ data }) => {
                 onClick={handleShowFilteredClick}
             >
                 <RiArrowRightSLine />
-                <span> Show filtered ({filteredDoctors.length})</span>
+                <span> Show filtered ({showFilteredData.length})</span>
             </span>
 
             <span

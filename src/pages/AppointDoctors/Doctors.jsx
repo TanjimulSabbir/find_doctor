@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 
 
 export default function Doctors({ searchedText, category, setCategory }) {
-    const { doctors, filteredDoctors } = useSelector(state => state.filteredDoctor)
+    const { doctors, filteredDoctors, showFilteredData } = useSelector(state => state.filteredDoctor)
     const [showType, setShowType] = useState("show-all");
     const [showDoctors, setShowDoctors] = useState(doctors);
 
@@ -25,30 +25,30 @@ export default function Doctors({ searchedText, category, setCategory }) {
 
     const handleShowFilteredClick = () => {
         setShowType("show-filtered");
-        setShowDoctors(filteredDoctors);
+        setShowDoctors(showFilteredData);
     };
 
     useEffect(() => {
-        if (filteredDoctors.length > 0) {
+        if (showFilteredData.length > 0) {
             setShowType("show-filtered");
-            setShowDoctors(filteredDoctors);
+            setShowDoctors(showFilteredData);
         } else {
             setShowType("show-all");
         }
-    }, [searchedText.data, filteredDoctors, showType])
+    }, [searchedText.inputText, showType])
 
-    console.log(filteredDoctors, "from doctors component");
+    console.log({ filteredDoctors, showFilteredData }, "from doctors component");
 
     const number = [];
     return (
         <div className="container mx-auto mt-10">
-            <CategoryFilterNavbar data={{ showType, findDoctors: filteredDoctors, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
+            <CategoryFilterNavbar data={{ showType, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
 
             <div className="downSlider before:flex">
                 <div className="space-y-10 w-[60%]">
                     {showDoctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
-                        if (!specialize.toLowerCase().includes(category.toLowerCase())) {
+                        if (!specialize?.toLowerCase().includes(category?.toLowerCase())) {
                             number.push(id)
                             return;
                         }

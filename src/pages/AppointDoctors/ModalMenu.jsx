@@ -1,14 +1,32 @@
 /* eslint-disable react/prop-types */
 import { BsHospital } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowFilteredData } from "../../Redux/Features/filterSlice";
 
-export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, filterType, dataType, selectedData, UiData, handleSaveData }) {
-    const styleData = "transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
+
+const styleData = "transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
+
+
+export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu, dataType }) {
+
+    const { filteredDoctors, filteredHospitals, showFilteredData } = useSelector(state => state.filteredDoctor);
+    let selectedData = [];
+    dataType === "doctor" ? selectedData = filteredDoctors : selectedData = filteredHospitals;
+
+    const dispatch = useDispatch();
+
+    const handleSaveData = ({ item, dataType }) => {
+        const UIData = dataType === "doctor" ? [item] : filteredDoctors;
+        dispatch(setShowFilteredData(UIData))
+        setSearchedText(prev => ({ ...prev, inputText: item.name }));
+        setFloatMenu(false);
+    }
 
     return (
         <div className="space-y-1">
             {selectedData?.length > 0 ?
                 selectedData.map(item => (
-                    <p key={item.id} className={`${styleData} ${searchedText.data.some(data => data.name === item.name) && "text-green-600"}`} onClick={() => handleSaveData({ item, dataType })}>
+                    <p key={item.id} className={`${styleData} ${showFilteredData.some(data => data.name === item.name) && "text-green-600"}`} onClick={() => handleSaveData({ item, dataType })}>
 
                         {dataType === "hospital" ? <BsHospital className="h-8 w-8 max-w-4 max-h-4" /> : <img src={item.image} className="w-5 h-5 rounded-full" />}
                         <span> {item.name}</span>
@@ -20,7 +38,7 @@ export default function ModalMenu({ searchedText, setSearchedText, setFloatMenu,
                     <p className="text-center text-green-500 lobster">We appreciate your patience. 😊</p>
                 </p>
             }
-           
+
         </div>
     );
 }
