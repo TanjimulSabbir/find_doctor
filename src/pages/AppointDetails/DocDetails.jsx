@@ -1,16 +1,35 @@
 import { IoLanguageOutline } from "react-icons/io5";
 import { LuStethoscope } from "react-icons/lu";
 import { RiGraduationCapFill } from "react-icons/ri";
-import { useSelector } from "react-redux"
-import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../style/Appointment.css"
 import ChooseHospitals from "./ChooseHospitals";
+import { useState } from "react";
+import { setAppointmentInfo } from "../../Redux/Features/filterSlice";
+import toast from "react-hot-toast";
 
 export default function DocDetails() {
-    const { doctors, showFilteredData } = useSelector(state => state.filteredDoctor);
+    const { doctors, showFilteredData, } = useSelector(state => state.filteredDoctor);
+    const { userLogInfo } = useSelector(state => state.authInfo)
+
     const docId = Number(useParams().docId);
-    let doctorFee = 0;
-    let hospitals = [];
+    let doctorFee;
+    let hospitals;
+
+    const [chooseData, setChooseData] = useState({ fee: doctorFee, slot: "9.00" });
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const appointmentData = { docInfo: { id: docId }, userInfo: { ...userLogInfo }, hosInfo: { id: chooseData.hosId }, appointmentInfo: { ...chooseData } };
+        dispatch(setAppointmentInfo(appointmentData));
+        toast.success("Appointment successfully Booked!");
+        navigate("/")
+    }
+
+
     let content = doctors.filter(doctor => doctor.id == docId).map(doctor => {
         let { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
         doctorFee = fee
@@ -56,7 +75,7 @@ export default function DocDetails() {
     return (
         <>
             {content}
-            <ChooseHospitals fee={doctorFee} selectedHospitals={hospitals} />
+            <ChooseHospitals selectedHospitals={hospitals} setChooseData={setChooseData} handleSubmit={handleSubmit} chooseData={chooseData} fee={doctorFee} />
         </>
     )
 }

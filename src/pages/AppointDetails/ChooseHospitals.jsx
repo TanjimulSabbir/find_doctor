@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import Slots from "./Slots";
 
-export default function ChooseHospitals({ fee, selectedHospitals, setChooseData, handleSubmit }) {
+export default function ChooseHospitals({ fee, selectedHospitals, chooseData, setChooseData, handleSubmit }) {
     const { hospitals, slots } = useSelector(state => state.filteredDoctor);
 
     return (
@@ -12,7 +12,7 @@ export default function ChooseHospitals({ fee, selectedHospitals, setChooseData,
                 <div className="mt-3">
                     <p className="flex items-center">
                         <input type="radio" id="clinic_visit" defaultChecked={true} name="fee" />
-                        <label htmlFor="clinic_visit" className="ml-1 cursor-pointer" onClick={() => setChooseData(prev => ({ ...prev, fee: fee }))}>Clinic visit</label>
+                        <label htmlFor="clinic_visit" className="ml-1 cursor-pointer">Clinic visit</label>
                     </p>
                     <p htmlFor="clinic_visit" className="ml-4 text-xs" >{fee}</p>
                 </div>
@@ -23,8 +23,8 @@ export default function ChooseHospitals({ fee, selectedHospitals, setChooseData,
                     {hospitals.filter(hospital => selectedHospitals.includes(hospital.id)).map(hospital => (
                         <div key={hospital.id}>
                             <p className="flex space-x-1 items-center">
-                                <input type="radio" id={`hospital_${hospital.id}`} name="hospital" value={hospital.name} required onChange={event => setChooseData(prev => ({ ...prev, hospital: event.target.value, hosId: hospital.id }))} />
-                                
+                                <input type="radio" id={`hospital_${hospital.id}`} name="hospital" value={hospital.name} required onChange={event => setChooseData(prev => ({ ...prev, hospitalName: event.target.value, hosId: hospital.id }))} />
+
                                 <label htmlFor={`hospital_${hospital.id}`} className="cursor-pointer">{hospital.name}</label>
                             </p>
                             <p className="ml-5 text-xs">{hospital.open}</p>
@@ -36,16 +36,16 @@ export default function ChooseHospitals({ fee, selectedHospitals, setChooseData,
                 <h1 className="text-xl font-bold">Choose Time Slot</h1>
                 <div className="space-y-3 mt-3">
                     <p className="text-lg font-bold">Morning</p>
-                    <div className="flex items-center gap-7">
-                        <Slots slots={slots[0].morning} clockSpan="AM" setChooseData={setChooseData} />
+                    <div className="flex items-center gap-5">
+                        <Slots slots={slots[0].morning} clockSpan="AM" setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                     <p className="text-lg font-bold">Afternoon</p>
-                    <div className="flex items-center gap-7">
-                        <Slots slots={slots[1].afternoon} clockSpan="PM" setChooseData={setChooseData} />
+                    <div className="flex items-center gap-5">
+                        <Slots slots={slots[1].afternoon} clockSpan="PM" setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                     <p className="text-lg font-bold">Evening</p>
-                    <div className="flex items-center gap-7">
-                        <Slots slots={slots[2].evening} clockSpan="PM" setChooseData={setChooseData} />
+                    <div className="flex items-center gap-5">
+                        <Slots slots={slots[2].evening} clockSpan="PM" setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                 </div>
             </div>

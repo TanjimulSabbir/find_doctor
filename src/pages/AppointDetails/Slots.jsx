@@ -1,8 +1,8 @@
-export default function Slots({ slots, clockSpan, setChooseData }) {
+export default function Slots({ slots, clockSpan, chooseData, setChooseData }) {
     return (
         slots.map((slot, index) => (
-            <div key={index} className='flex gap-5 items-center flex-wrap' onClick={() => setChooseData(prev => ({ ...prev, slot: `${slot} ${clockSpan}` }))}>
-                <p className='py-3 px-5 border border-green-600 rounded-lg cursor-pointer'>{slot.toString()} {clockSpan}</p>
+            <div key={index} className='flex gap-3 items-center flex-wrap' onClick={() => setChooseData(prev => ({ ...prev, slot: `${slot}` }))}>
+                <p className={`py-2 px-3 border border-green-600 rounded-lg cursor-pointer ${slot === chooseData.slot && "bg-green-600 text-white"}`}>{slot.toString()} {clockSpan}</p>
             </div>
         ))
     );
