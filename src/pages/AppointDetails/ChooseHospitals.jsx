@@ -5,7 +5,7 @@ export default function ChooseHospitals({ fee, selectedHospitals, chooseData, se
     const { hospitals, slots } = useSelector(state => state.filteredDoctor);
 
     return (
-        <form className="mt-10 px-4" onSubmit={handleSubmit}>
+        <form className="rightSlider mt-10 px-4" onSubmit={handleSubmit}>
             <h1 className="text-center text-xl sm:text-2xl font-bold">Choose the type of Appointment</h1>
             <div className="mt-5">
                 <h1 className="text-xl font-bold">Choose fee</h1>
@@ -18,7 +18,7 @@ export default function ChooseHospitals({ fee, selectedHospitals, chooseData, se
                 </div>
             </div>
             <div className="mt-5">
-                <h1 className="text-xl font-bold">Choose Clinic</h1>
+                <h1 className="leftSlider text-xl font-bold">Choose Clinic</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-center">
                     {hospitals.filter(hospital => selectedHospitals.includes(hospital.id)).map(hospital => (
                         <div key={hospital.id}>
@@ -32,7 +32,7 @@ export default function ChooseHospitals({ fee, selectedHospitals, chooseData, se
                     ))}
                 </div>
             </div>
-            <div className="mt-5">
+            <div className="rightSlider mt-5">
                 <h1 className="text-xl font-bold">Choose Time Slot</h1>
                 <div className="space-y-3 mt-3">
                     <p className="text-lg font-bold">Morning</p>

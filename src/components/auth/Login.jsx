@@ -40,7 +40,7 @@ const LoginForm = () => {
 
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-green-200">
+        <div className="downSliderFast flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-green-200">
             <form className="bg-white rounded-lg px-8 pt-6 pb-8 mb-4 w-96" onSubmit={handleData}>
                 <h2 className="text-center text-3xl font-bold mb-8 text-gray-800">Login</h2>
                 <div className="mb-4">

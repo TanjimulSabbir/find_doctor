@@ -23,15 +23,15 @@ const DoctorLogin = () => {
     const handleLogin = (event) => {
         event.preventDefault();
         dispatch(setDoctorLogInfo(JSON.parse(doctor)));
-        localStorage.setItem("docLoginInfo", { ...doctor })
+        localStorage.setItem("docLoginInfo", doctor)
         navigate("/docBoard")
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-purple-200">
+        <div className="downSliderFast flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-purple-200">
             <form className="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 w-80" onSubmit={handleLogin}>
                 <h2 className="text-center text-2xl font-bold mb-4 text-gray-800">Doctor Login</h2>
-                <div className="mb-6">
+                <div className=" mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="doctorName">
                         <span className="text-gray-900">Doctor Name</span>
                     </label>

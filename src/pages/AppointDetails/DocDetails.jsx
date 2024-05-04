@@ -55,7 +55,7 @@ export default function DocDetails() {
         doctorFee = fee
         hospitals = hospitalId;
         return (
-            <div key={doctor.id} className="leftSlider py-10 px-5">
+            <div key={doctor.id} className="rightSlider py-10 px-5">
                 <div className="w-full md:flex items-center md:items-start space-y-10 md:space-y-0 md:gap-x-10">
                     {/* Image information */}
                     <div className="md:w-[30%]">
