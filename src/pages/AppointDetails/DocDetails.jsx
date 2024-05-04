@@ -50,7 +50,6 @@ export default function DocDetails() {
     }
 
 
-
     let content = doctors.filter(doctor => doctor.id == docId).map(doctor => {
         let { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
         doctorFee = fee
