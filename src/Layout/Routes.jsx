@@ -7,6 +7,7 @@ import DetailsLayout from "../pages/AppointDetails/DetailsLayout";
 import Doctors from "../pages/AppointDoctors/Doctors";
 import PrivateRoute from "../components/auth/PrivateRoute";
 import DoctorLogin from "../components/auth/DoctorLogin";
+import DocBoard from "../pages/Doc_Dashbaord/DocBoard";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/docBoard",
-                element: <DoctorLogin />
+                element: <DocBoard />
             },
             {
                 path: "/appointment",

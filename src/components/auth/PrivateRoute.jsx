@@ -9,6 +9,5 @@ export default function PrivateRoute({ children }) {
         navigate("/login", { replace: true });
         return null; // or any other loading indicator
     }
-
     return children;
 }

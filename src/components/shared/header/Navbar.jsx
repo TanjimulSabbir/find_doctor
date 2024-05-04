@@ -1,21 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import style from "../../../style/navbar.module.css"
 import { CgClose } from "react-icons/cg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserLogInfo } from "../../../Redux/Features/authSlice";
 
 function Navbar() {
     const [menu, setMenu] = useState(true);
-    const { userLogInfo } = useSelector(state => state.authInfo);
+    const { userLogInfo, doctorLogInfo } = useSelector(state => state.authInfo);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    const handleChoice = () => {
-
-    }
-
+   
     const handleLogin = () => {
         if (!userLogInfo.email) {
             navigate("/login");
@@ -24,7 +20,16 @@ function Navbar() {
             localStorage.removeItem("userLoginInfo")
             navigate("/login");
         }
+    }
 
+    const handleDocLogin = () => {
+        if (!doctorLogInfo.id) {
+            navigate("/docLogin");
+        } else {
+            dispatch(setUserLogInfo({}))
+            localStorage.removeItem("doctorLoginInfo")
+            navigate("/docLogin");
+        }
     }
 
     return (
@@ -39,9 +44,15 @@ function Navbar() {
                     <Link>Medicines</Link>
                     <Link>Contact</Link>
                     <Link>About us</Link>
-                    <Link>Facilites</Link>
+                    <Link>Facilities</Link>
                     <button className={style.signup} onClick={handleLogin}>
-                        {userLogInfo?.email ? "Logout" : "Login"}</button>
+                        {userLogInfo?.email ? "Logout" : "Login"}
+                    </button>
+
+                    <button className={style.signup} onClick={handleDocLogin}>
+                        {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
+                    </button>
+
                 </div>
             </div>
             <div className={`relative lg:hidden w-full max-w-[60%] transform transition-all duration-700 z-50 ${menu ? "block opacity-100" : "opacity-0"}`}>
@@ -51,10 +62,13 @@ function Navbar() {
                         <Link>Medicines</Link>
                         <Link>Contact</Link>
                         <Link>About us</Link>
-                        <Link>Facilites</Link>
+                        <Link>Facilities</Link>
                         <button className={style.signup} onClick={handleLogin}>{userLogInfo?.email ? "Logout" : "Login"}</button>
-                    </div>
 
+                        <button className={style.signup} onClick={handleDocLogin}>
+                            {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
+                        </button>
+                    </div>
                 </div>
                 {menu && <button onClick={() => setMenu(!menu)} className="absolute top-3 right-3 text-xl text-white"><CgClose /></button>}
             </div>

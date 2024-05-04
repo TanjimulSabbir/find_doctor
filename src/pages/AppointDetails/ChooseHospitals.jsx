@@ -37,15 +37,15 @@ export default function ChooseHospitals({ fee, selectedHospitals, chooseData, se
                 <div className="space-y-3 mt-3">
                     <p className="text-lg font-bold">Morning</p>
                     <div className="flex items-center gap-5">
-                        <Slots slots={slots[0].morning} clockSpan="AM" setChooseData={setChooseData} chooseData={chooseData} />
+                        <Slots slots={slots[0].morning} setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                     <p className="text-lg font-bold">Afternoon</p>
                     <div className="flex items-center gap-5">
-                        <Slots slots={slots[1].afternoon} clockSpan="PM" setChooseData={setChooseData} chooseData={chooseData} />
+                        <Slots slots={slots[1].afternoon} setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                     <p className="text-lg font-bold">Evening</p>
                     <div className="flex items-center gap-5">
-                        <Slots slots={slots[2].evening} clockSpan="PM" setChooseData={setChooseData} chooseData={chooseData} />
+                        <Slots slots={slots[2].evening} setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                 </div>
             </div>

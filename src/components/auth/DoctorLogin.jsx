@@ -1,18 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setDoctorLogInfo } from '../../Redux/Features/authSlice';
+import { setDoctorLogInfo, setUserLogInfo } from '../../Redux/Features/authSlice';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const DoctorLogin = () => {
-    const [doctorName, setDoctorName] = useState('');
+    const [doctor, setDoctorName] = useState({});
     const [password, setPassword] = useState('');
     const { doctors } = useSelector(state => state.filteredDoctor);
+    const { userLogInfo } = useSelector(state => state.authInfo);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!userLogInfo.email) return;
+        dispatch(setUserLogInfo({}))
+        localStorage.removeItem("userLoginInfo")
+        toast.success("User Logout!")
+    }, [])
+
     const handleLogin = (event) => {
         event.preventDefault();
-        dispatch(setDoctorLogInfo({ doctorName, password }));
+        dispatch(setDoctorLogInfo(JSON.parse(doctor)));
+        localStorage.setItem("docLoginInfo", { ...doctor })
         navigate("/docBoard")
     }
 
@@ -27,12 +38,12 @@ const DoctorLogin = () => {
                     <select
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="doctorName"
-                        value={doctorName}
+                        value={doctor}
                         onChange={(e) => setDoctorName(e.target.value)}
                     >
                         <option value="">Select Doctor</option>
                         {doctors.map((doctor, index) => (
-                            <option key={index} value={doctor.name}>{doctor.name}</option>
+                            <option key={index} value={JSON.stringify(doctor)}>{doctor.name}</option>
                         ))}
                     </select>
                 </div>
