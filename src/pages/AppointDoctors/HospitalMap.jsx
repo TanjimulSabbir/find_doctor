@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function HospitalMap(location) {
+export default function HospitalMap({location="Dhaka"}) {
     const [mapInfo, setMapInfo] = useState({});
 
     useEffect(() => {

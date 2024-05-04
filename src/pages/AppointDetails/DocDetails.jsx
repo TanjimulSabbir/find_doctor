@@ -46,7 +46,7 @@ export default function DocDetails() {
         localStorage.setItem("appointmentInfo", JSON.stringify(updatedData));
 
         // Navigate back to homepage
-        navigate("/");
+        navigate("/appointment");
     }
 
 

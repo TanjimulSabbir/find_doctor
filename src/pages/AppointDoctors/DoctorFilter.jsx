@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import AppointmentInfo from "../../Tools/Appointment.json"
 import ModalMenu from "./ModalMenu";
 import { IoCloseOutline } from "react-icons/io5";
-import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory, setFilteredDoctors, setFilteredHospitals, setInputText, setLocation } from "../../Redux/Features/filterSlice";
 
@@ -94,9 +93,8 @@ export default function DoctorFilter({ handleDoctorSearch }) {
                 </select>
             </div>
 
-
             {/*Hospital Location */}
-            <div className="flex flex-col border-r border-gray-400 px-4 text-start w-[30%]">
+            <div className="flex flex-col border-r border-gray-400 px-4 text-start md:w-[30%]">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8] ">Select Location</label>
                 <select className="grow text-[#185FA0] text-sm outline-none -ml-1 bg-transparent cursor-pointer" name="location" onChange={(event) => handleChangeSearch(event)} value={searchedText.location}>
 

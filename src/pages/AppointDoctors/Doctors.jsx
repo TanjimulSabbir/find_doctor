@@ -30,21 +30,21 @@ export default function Doctors() {
     };
 
     useEffect(() => {
-        if (searchedText.showType === "filtered") {
+        if (showDoctors.length > 0) {
             dispatch(setShowType("filtered"))
             setShowDoctors(showFilteredData);
         } else {
             setShowDoctors(doctors);
             dispatch(setShowType("all"))
         }
-    }, [searchedText.showType])
+    }, [searchedText.showType, showFilteredData])
 
     const number = [];
     return (
         <div className="container mx-auto mt-10">
             <CategoryFilterNavbar handleShowFilteredClick={handleShowFilteredClick} handleShowAllClick={handleShowAllClick} />
 
-            <div className="downSlider before:flex">
+            <div className="downSlider flex">
                 <div className="space-y-10 w-[60%]">
                     {showDoctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
@@ -85,7 +85,7 @@ export default function Doctors() {
                                 <div>
                                     {/* view more */}
                                     <div className="absolute bottom-4 right-[23%] text-sm">
-                                        <Link className="text-[#185FA0] flex items-center justify-end" to={`/doctor/${id}`}>view more</Link>
+                                        <Link className="text-[#185FA0] flex items-center justify-end" to={`/appointment/${id}`}>view more</Link>
                                     </div>
 
                                     {/* Book Appointment */}
@@ -114,8 +114,7 @@ export default function Doctors() {
                         </p>
                     )}
                 </div>
-                {/* <HospitalMap location="Dhaka" /> */}
-                {/* <div className="absolute top-20 bouncer w-10 h-10 rounded-full bg-green-600"></div> */}
+                <HospitalMap location="Dhaka" />
             </div >
         </div >
     )
