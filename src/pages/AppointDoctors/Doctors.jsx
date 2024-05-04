@@ -33,11 +33,12 @@ export default function Doctors() {
         if (showDoctors.length > 0) {
             dispatch(setShowType("filtered"))
             setShowDoctors(showFilteredData);
-        } else {
+        }
+        else {
             setShowDoctors(doctors);
             dispatch(setShowType("all"))
         }
-    }, [searchedText.showType, showFilteredData])
+    }, [showFilteredData])
 
     const number = [];
     return (
