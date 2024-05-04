@@ -22,7 +22,7 @@ export default function Banner02() {
     }
 
     return (
-        <div className="topSlider container mx-auto sm:px-10 mb-14">
+        <div className="container mx-auto sm:px-10 mb-14">
             <div className="px-10 py-16 bg-white shadow-2xl z-50 rounded-md">
                 {/* <img src={banner} alt="" srcSet="" /> */}
 
