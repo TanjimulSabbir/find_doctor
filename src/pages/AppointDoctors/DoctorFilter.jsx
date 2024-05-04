@@ -81,10 +81,10 @@ export default function DoctorFilter({ handleDoctorSearch }) {
 
 
     return (
-        <div className="rightSlider w-full max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
+        <div className="rightSlider w-full md:max-w-[60%] mx-auto flex items-center justify-center py-5 bg-white shadow-lg rounded-lg px-10">
 
             {/* category */}
-            <div className="flex flex-col border-r border-gray-400 pr-4 w-[30%]">
+            <div className="flex flex-col border-r border-gray-400 pr-4 w-full md:w-[30%]">
                 <label htmlFor="" className="text-[10px] text-[#8B98B8]">Select Treatment Category</label>
                 <select className="text-[#185FA0] text-sm outline-none bg-transparent cursor-pointer" name="category" onChange={(event) => handleChangeSearch(event)}>
                     <option value="">Not selected</option>
