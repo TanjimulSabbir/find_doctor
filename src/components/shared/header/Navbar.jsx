@@ -45,13 +45,13 @@ function Navbar() {
                     <Link>Contact</Link>
                     <Link>About us</Link>
                     <Link>Facilities</Link>
-                    <button className={style.signup} onClick={handleLogin}>
+                    {doctorLogInfo && <button className={style.signup} onClick={handleLogin}>
                         {userLogInfo?.email ? "Logout" : "Login"}
-                    </button>
+                    </button>}
 
-                    <button className={style.signup} onClick={handleDocLogin}>
+                    {doctorLogInfo && <button className={style.signup} onClick={handleDocLogin}>
                         {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
-                    </button>
+                    </button>}
 
                 </div>
             </div>
@@ -63,11 +63,13 @@ function Navbar() {
                         <Link>Contact</Link>
                         <Link>About us</Link>
                         <Link>Facilities</Link>
-                        <button className={style.signup} onClick={handleLogin}>{userLogInfo?.email ? "Logout" : "Login"}</button>
+                        {doctorLogInfo && <button className={style.signup} onClick={handleLogin}>
+                            {userLogInfo?.email ? "Logout" : "Login"}
+                        </button>}
 
-                        <button className={style.signup} onClick={handleDocLogin}>
+                        {doctorLogInfo && <button className={style.signup} onClick={handleDocLogin}>
                             {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
-                        </button>
+                        </button>}
                     </div>
                 </div>
                 {menu && <button onClick={() => setMenu(!menu)} className="absolute top-3 right-3 text-xl text-white"><CgClose /></button>}
