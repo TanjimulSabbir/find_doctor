@@ -7,8 +7,10 @@ export default function DocBoard() {
 
     if (appointmentInfo.length === 0) return <Error message={"No appointments found!"} />
 
+
     const matchedData = appointmentInfo.filter(appointment => appointment.docInfo.id === doctorLogInfo.id);
 
+    if (matchedData.length === 0) return <Error message={"No appointments found!"} />
     return (
         <div className="max-w-xl mx-auto mt-8">
             {matchedData.map(appointment => (

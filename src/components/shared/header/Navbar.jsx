@@ -4,14 +4,14 @@ import { CgClose } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserLogInfo } from "../../../Redux/Features/authSlice";
+import { setDoctorLogInfo, setUserLogInfo } from "../../../Redux/Features/authSlice";
 
 function Navbar() {
     const [menu, setMenu] = useState(true);
     const { userLogInfo, doctorLogInfo } = useSelector(state => state.authInfo);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-   
+
     const handleLogin = () => {
         if (!userLogInfo.email) {
             navigate("/login");
@@ -26,7 +26,7 @@ function Navbar() {
         if (!doctorLogInfo.id) {
             navigate("/docLogin");
         } else {
-            dispatch(setUserLogInfo({}))
+            dispatch(setDoctorLogInfo({}))
             localStorage.removeItem("doctorLoginInfo")
             navigate("/docLogin");
         }
