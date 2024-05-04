@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom";
+import DocDetails from "./DocDetails";
 
 export default function DetailsLayout() {
     return (
-        <div>
-           
+        <div className="my-7">
+            <DocDetails />
         </div>
     )
 }

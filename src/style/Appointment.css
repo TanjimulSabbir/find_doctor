@@ -35,6 +35,15 @@
     cursor: pointer;
 }
 
+.detailsAppointmentBtn {
+    position: relative;
+    background-color: #185FA0;
+    padding: 15px 30px;
+    border-radius: 1px;
+    color: white;
+    cursor: pointer;
+}
+
 .lobster {
     font-family: "Lobster Two", sans-serif;
 }
