@@ -32,7 +32,7 @@ const LoginForm = () => {
         e.preventDefault();
         localStorage.setItem("userLoginInfo", JSON.stringify(formData))
         dispatch(setUserLogInfo({ ...formData }))
-        navigate("/")
+        navigate("/appointment")
         toast.success("Login successful")
 
     };

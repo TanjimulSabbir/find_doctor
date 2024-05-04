@@ -17,7 +17,7 @@ export default function DocDetails() {
     let doctorFee;
     let hospitals;
 
-    const [chooseData, setChooseData] = useState({ fee: doctorFee, slot: "9.00" });
+    const [chooseData, setChooseData] = useState({ fee: doctorFee, slot: "9.00 AM" });
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
