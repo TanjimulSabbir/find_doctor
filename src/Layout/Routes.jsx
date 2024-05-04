@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout";
 import App from "../App";
-import Login from "../components/auth/login";
+import Login from "../components/auth/Login";
 import Appointment from "../pages/AppointDoctors/Appointment";
 import DetailsLayout from "../pages/AppointDetails/DetailsLayout";
 import Doctors from "../pages/AppointDoctors/Doctors";
+import PrivateRoute from "../components/auth/PrivateRoute";
+import DoctorLogin from "../components/auth/DoctorLogin";
 
 const router = createBrowserRouter([
     {
@@ -20,8 +22,16 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
+                path: "/doclogin",
+                element: <DoctorLogin />
+            },
+            {
+                path: "/docBoard",
+                element: <DoctorLogin />
+            },
+            {
                 path: "/appointment",
-                element: <Appointment />,
+                element: <PrivateRoute> <Appointment /> </PrivateRoute>,
                 children: [
                     {
                         path: "/appointment",

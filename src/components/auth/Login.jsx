@@ -4,13 +4,14 @@ import { BiSolidShow } from "react-icons/bi";
 import { BsEyeSlash } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import IsEmailValid from "../utils/IsEmailValid";
-import { debounce } from "../utils/Debounce";
+import IsEmailValid from "../../utils/IsEmailValid";
+import { debounce } from "../../utils/Debounce";
 import { useNavigate } from "react-router-dom";
 import Error from "../../UI/Error";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserLogInfo } from "../../Redux/Features/authSlice";
+import "../../style/login.css"
 
 function LoginForm() {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -41,28 +42,19 @@ function LoginForm() {
         if (formData?.email && formData?.password) {
             localStorage.setItem("userLoginInfo", JSON.stringify(formData))
             dispatch(setUserLogInfo({ ...formData }))
+            navigate("/")
+            toast.success("Login successful")
         }
     }
 
-    // useEffect(() => {
-    //     if (isError) {
-    //         setLoginError(error.data.error)
-    //         toast.error(error.data.error)
-    //     }
-
-    //     if (userData?.user?.email && userData?.accessToken) {
-    //         navigate("/dashboard")
-    //         toast.success("Login successful")
-    //     }
-    // }, [loginUser, navigate, error, isError, userData])
-
+    const isLoading = false;
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mt-10">
             <div className="flex flex-col items-center space-y-12">
                 <div className="relative">
                     {
                         formData?.email !== "" ||
-                        <div className="absolute top-3 left-4 flex items-center space-x-1">
+                        <div className="absolute top-5 left-4 flex items-center space-x-1 text-sm lobster-two-bold">
                             <MdOutlineAlternateEmail className="placeHolderIcon" />
                             <span className="label">Your Email</span>
                         </div>
@@ -74,13 +66,13 @@ function LoginForm() {
                         onChange={(event) => handleFormData(event)}
                         required
                     />
-                    {valid || <small className="invalidEmailError block text-start">Please enter a valid email address.</small>}
+                    {valid || <small className="invalidEmailError block text-xs lobster-two-bold">Please enter a valid email address.</small>}
                 </div>
 
                 {/* Password */}
                 <div className="relative">
                     {formData?.password !== "" ||
-                        <div className="absolute top-3 left-4 flex items-center space-x-1">
+                        <div className="absolute top-5 left-4 flex items-center space-x-1 lobster-two-bold">
                             <BiLockOpen className="placeHolderIcon" />
                             <span className="label">Password</span>
                         </div>
@@ -94,7 +86,7 @@ function LoginForm() {
                     />
 
                     {/* password be showed or not be showed */}
-                    <p className="absolute top-4 right-5 cursor-pointer">
+                    <p className="absolute top-5 right-5 cursor-pointer">
                         {open ? <BiSolidShow className="eye" onClick={() => setOpen(!open)} /> : <BsEyeSlash className="eye" onClick={() => setOpen(!open)} />}
                     </p>
 
@@ -102,7 +94,7 @@ function LoginForm() {
                     <div className="mt-4">
                         <p className="label flex items-center space-x-2 justify-start">
                             <input type="checkbox" className="check cursor-pointer" required />
-                            <span className="checkBoxText">Remember me</span>
+                            <span className="checkBoxText lobster-two-bold">Remember me</span>
                         </p>
                     </div>
 

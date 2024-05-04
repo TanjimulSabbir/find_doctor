@@ -9,7 +9,7 @@ const initialState = {
     filteredHospitals: [],
     showFilteredData: [],
     searchedText: { category: "", location: "", inputText: "", innerCategory: "", showType: "all" },
-    appointmentInfo: {}
+    appointmentInfo: []
 }
 
 const filterSlice = createSlice({
@@ -41,7 +41,7 @@ const filterSlice = createSlice({
             state.searchedText.showType = action.payload;
         },
         setAppointmentInfo: (state, action) => {
-            state.appointmentInfo = action.payload;
+            state.appointmentInfo.push(action.payload);
         }
     }
 })

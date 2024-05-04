@@ -1,14 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "../../../style/navbar.module.css"
 import { CgClose } from "react-icons/cg";
 import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserLogInfo } from "../../../Redux/Features/authSlice";
 
 function Navbar() {
-    const [menu, setMenu] = useState(true)
+    const [menu, setMenu] = useState(true);
+    const { userLogInfo } = useSelector(state => state.authInfo);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const handleChoice = () => {
 
     }
+
+    const handleLogin = () => {
+        if (!userLogInfo.email) {
+            navigate("/login");
+        } else {
+            dispatch(setUserLogInfo({}))
+            localStorage.removeItem("userLoginInfo")
+            navigate("/login");
+        }
+
+    }
+
     return (
         <>
             <div className={style.topNav}></div>
@@ -22,7 +40,8 @@ function Navbar() {
                     <Link>Contact</Link>
                     <Link>About us</Link>
                     <Link>Facilites</Link>
-                    <Link className={style.signup}>Signup</Link>
+                    <button className={style.signup} onClick={handleLogin}>
+                        {userLogInfo?.email ? "Logout" : "Login"}</button>
                 </div>
             </div>
             <div className={`relative lg:hidden w-full max-w-[60%] transform transition-all duration-700 z-50 ${menu ? "block opacity-100" : "opacity-0"}`}>
@@ -33,7 +52,7 @@ function Navbar() {
                         <Link>Contact</Link>
                         <Link>About us</Link>
                         <Link>Facilites</Link>
-                        <Link className={style.signup}>Signup</Link>
+                        <button className={style.signup} onClick={handleLogin}>{userLogInfo?.email ? "Logout" : "Login"}</button>
                     </div>
 
                 </div>

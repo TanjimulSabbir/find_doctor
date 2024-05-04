@@ -23,11 +23,32 @@ export default function DocDetails() {
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
-        const appointmentData = { docInfo: { id: docId }, userInfo: { ...userLogInfo }, hosInfo: { id: chooseData.hosId }, appointmentInfo: { ...chooseData } };
+        const appointmentData = {
+            docInfo: { id: docId },
+            userInfo: { ...userLogInfo },
+            hosInfo: { id: chooseData.hosId },
+            appointmentInfo: { ...chooseData }
+        };
+
+        // Dispatch appointment info to Redux store
         dispatch(setAppointmentInfo(appointmentData));
+
+        // Show success message
         toast.success("Appointment successfully Booked!");
-        navigate("/")
+
+        // Retrieve previous appointment data from local storage
+        const localPreviousData = JSON.parse(localStorage.getItem("appointmentInfo")) || [];
+
+        // Append new appointment data
+        const updatedData = [...localPreviousData, appointmentData];
+
+        // Update local storage with updated data
+        localStorage.setItem("appointmentInfo", JSON.stringify(updatedData));
+
+        // Navigate back to homepage
+        navigate("/");
     }
+
 
 
     let content = doctors.filter(doctor => doctor.id == docId).map(doctor => {
