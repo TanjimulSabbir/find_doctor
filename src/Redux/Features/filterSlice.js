@@ -7,7 +7,8 @@ const initialState = {
     slots: appointmentInfo.slots,
     filteredDoctors: [],
     filteredHospitals: [],
-    showFilteredData: []
+    showFilteredData: [],
+    searchedText: { category: "", location: "", inputText: "", innerCategory: "", showType: "all" }
 }
 
 const filterSlice = createSlice({
@@ -22,9 +23,24 @@ const filterSlice = createSlice({
         },
         setShowFilteredData: (state, action) => {
             state.showFilteredData = action.payload;
+        },
+        setCategory: (state, action) => {
+            state.searchedText.category = action.payload
+        },
+        setLocation: (state, action) => {
+            state.searchedText.location = action.payload;
+        },
+        setInputText: (state, action) => {
+            state.searchedText.inputText = action.payload;
+        },
+        setInnerCategory: (state, action) => {
+            state.searchedText.innerCategory = action.payload;
+        },
+        setShowType: (state, action) => {
+            state.searchedText.showType = action.payload;
         }
     }
 })
 
-export const { setFilteredDoctors, setFilteredHospitals, setShowFilteredData } = filterSlice.actions;
+export const { setFilteredDoctors, setFilteredHospitals, setShowFilteredData, setCategory, setLocation, setInputText, setInnerCategory, setShowType } = filterSlice.actions;
 export default filterSlice.reducer;

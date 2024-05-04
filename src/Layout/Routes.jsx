@@ -4,6 +4,7 @@ import App from "../App";
 import Login from "../components/auth/login";
 import Appointment from "../pages/AppointDoctors/Appointment";
 import DetailsLayout from "../pages/AppointDetails/DetailsLayout";
+import Doctors from "../pages/AppointDoctors/Doctors";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
                 path: "/appointment",
                 element: <Appointment />,
                 children: [
+                    {
+                        path: "/appointment",
+                        element: <Doctors />
+                    },
                     {
                         path: "/appointment/:docId",
                         element: <DetailsLayout />

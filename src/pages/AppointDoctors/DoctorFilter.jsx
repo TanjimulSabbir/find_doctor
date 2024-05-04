@@ -5,30 +5,26 @@ import ModalMenu from "./ModalMenu";
 import { IoCloseOutline } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilteredDoctors, setFilteredHospitals } from "../../Redux/Features/filterSlice";
+import { setCategory, setFilteredDoctors, setFilteredHospitals, setInputText, setLocation } from "../../Redux/Features/filterSlice";
 
-export default function DoctorFilter({ searchedText, setSearchedText, handleDoctorSearch }) {
+export default function DoctorFilter({ handleDoctorSearch }) {
     const [floatMenu, setFloatMenu] = useState(false);
-    // const [filteredHospitals, setfilteredHospitals] = useState(AppointmentInfo.hospitals);
-    // const [filteredDoctors, setFilteredDoctors] = useState(AppointmentInfo.doctors);
-    const { doctors, hospitals, filteredDoctors, filteredHospitals } = useSelector(state => state.filteredDoctor);
+    const { doctors, hospitals, filteredDoctors, searchedText } = useSelector(state => state.filteredDoctor);
 
     const [tempo, setTempo] = useState(hospitals);
     const dispatch = useDispatch();
 
     const handleInput = (event) => {
-        setSearchedText((prev) => ({ ...prev, inputText: event.target.value }));
+        const data = event.target.value
+        dispatch(setInputText(data))
     }
 
     const handleChangeSearch = (event) => {
-        setSearchedText(prev => ({ ...prev, [event.target.name]: event.target.value }));
+        const name = event.target.name
+        name == "location" ? dispatch(setLocation(event.target.value)) : dispatch(setCategory(event.target.value));
         setFloatMenu(true);
     };
 
-
-    console.log(searchedText)
-    // dispatch(setFilteredDoctors(doctors));
-    // dispatch(setFilteredHospitals(hospitals));
 
     useEffect(() => {
 
@@ -123,14 +119,12 @@ export default function DoctorFilter({ searchedText, setSearchedText, handleDoct
                 {floatMenu && <div className={`${floatMenu ? "grow" : "fade-out"} absolute top-12 bg-black text-white p-5 rounded space-y-5 z-40 w-full`}>
                     <p className="py-1 bg-sky-500 text-center rounded">Doctors</p>
                     <ModalMenu searchedText={searchedText}
-                        setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
                         dataType="doctor"
                     />
 
                     <p className="py-1 bg-sky-500 text-center rounded">Hospitals</p>
                     <ModalMenu searchedText={searchedText}
-                        setSearchedText={setSearchedText}
                         setFloatMenu={setFloatMenu}
                         dataType="hospital"
                     />

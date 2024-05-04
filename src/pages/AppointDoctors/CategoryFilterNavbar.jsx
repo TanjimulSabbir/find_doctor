@@ -1,20 +1,21 @@
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setInnerCategory } from '../../Redux/Features/filterSlice';
 
-const CategoryFilterNavbar = ({ data }) => {
-    const { doctors, showFilteredData } = useSelector(state => state.filteredDoctor);
-
-    const { showType, category, handleShowAllClick, handleShowFilteredClick, setCategory } = data;
+const CategoryFilterNavbar = ({ handleShowAllClick, handleShowFilteredClick }) => {
+    const { doctors, showFilteredData, searchedText } = useSelector(state => state.filteredDoctor);
+    const { innerCategory, showType } = searchedText;
+    const dispatch = useDispatch();
 
     return (
         <p className="rightSlider text-black flex items-center space-x-2 mb-3">
-            <span className={`cursor-pointer ${showType === "show-all" && "text-green-600 font-bold"}`}
+            <span className={`cursor-pointer ${showType === "all" && "text-green-600 font-bold"}`}
                 onClick={handleShowAllClick}>
                 Show all ({doctors.length})
             </span>
 
             <span
-                className={`flex items-center space-x-2 cursor-pointer ${showType === "show-filtered" && "text-green-600 font-bold"}`}
+                className={`flex items-center space-x-2 cursor-pointer ${showType === "filtered" && "text-green-600 font-bold"}`}
                 onClick={handleShowFilteredClick}
             >
                 <RiArrowRightSLine />
@@ -22,11 +23,11 @@ const CategoryFilterNavbar = ({ data }) => {
             </span>
 
             <span
-                className={`flex items-center space-x-2 cursor-pointer ${category && "text-green-600 font-bold"}`}
-                onClick={() => category ? setCategory("") : setCategory("Medicine")}
+                className={`flex items-center space-x-2 cursor-pointer ${innerCategory && "text-green-600 font-bold"}`}
+                onClick={() => innerCategory ? dispatch(setInnerCategory("")) : dispatch(setInnerCategory("Medicine"))}
             >
                 <RiArrowRightSLine />
-                <span>{category ? `Remove Category (${category})` : "Show Category (not selected)"}</span>
+                <span>{innerCategory ? `Remove Category (${innerCategory})` : "Show Category (not selected)"}</span>
             </span>
         </p>
     );

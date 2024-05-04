@@ -9,46 +9,46 @@ import { LuStethoscope } from "react-icons/lu";
 import HospitalMap from "./HospitalMap";
 import { useEffect, useState } from "react";
 import CategoryFilterNavbar from "./CategoryFilterNavbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setInnerCategory, setShowType } from "../../Redux/Features/filterSlice";
 
 
-export default function Doctors({ searchedText, category, setCategory }) {
-    const { doctors, filteredDoctors, showFilteredData } = useSelector(state => state.filteredDoctor)
-    const [showType, setShowType] = useState("show-all");
+export default function Doctors() {
+    const { doctors, showFilteredData, searchedText } = useSelector(state => state.filteredDoctor)
     const [showDoctors, setShowDoctors] = useState(doctors);
+    const dispatch = useDispatch();
 
-    console.log(doctors, "from doctor page")
     const handleShowAllClick = () => {
-        setShowType("show-all");
+        dispatch(setShowType("all"))
         setShowDoctors(doctors);
     };
 
     const handleShowFilteredClick = () => {
-        setShowType("show-filtered");
+        dispatch(setShowType("filtered"))
+        dispatch(setInnerCategory(""))
         setShowDoctors(showFilteredData);
     };
 
     useEffect(() => {
-        if (showFilteredData.length > 0) {
-            setShowType("show-filtered");
+        if (searchedText.showType === "filtered") {
+            dispatch(setShowType("filtered"))
             setShowDoctors(showFilteredData);
         } else {
-            setShowType("show-all");
+            setShowDoctors(doctors);
+            dispatch(setShowType("all"))
         }
-    }, [searchedText.inputText, showType])
-
-    console.log({ filteredDoctors, showFilteredData }, "from doctors component");
+    }, [searchedText.showType])
 
     const number = [];
     return (
         <div className="container mx-auto mt-10">
-            <CategoryFilterNavbar data={{ showType, category, handleShowAllClick, handleShowFilteredClick, setCategory }} />
+            <CategoryFilterNavbar handleShowFilteredClick={handleShowFilteredClick} handleShowAllClick={handleShowAllClick} />
 
             <div className="downSlider before:flex">
                 <div className="space-y-10 w-[60%]">
                     {showDoctors.map(doctor => {
                         const { id, name, specialize, description, degree, fee, image, hospitalId } = doctor;
-                        if (!specialize?.toLowerCase().includes(category?.toLowerCase())) {
+                        if (!specialize?.toLowerCase().includes(searchedText.innerCategory?.toLowerCase())) {
                             number.push(id)
                             return;
                         }
@@ -110,7 +110,7 @@ export default function Doctors({ searchedText, category, setCategory }) {
                     {/* Error */}
                     {number.length === doctors.length && (
                         <p className="grow mt-7 text-center text-xs text-red-500 flex flex-col leading-tight"> <span>Seems like there are no doctors in this category. Keep searching!</span>
-                            <span className="text-[10px] text-green-600 cursor-pointer" onClick={() => setCategory("")}>Show Doctor</span>
+                            <span className="text-[10px] text-green-600 cursor-pointer" onClick={() => dispatch(setShowType(""))}>Show Doctor</span>
                         </p>
                     )}
                 </div>
