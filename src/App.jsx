@@ -18,9 +18,9 @@ function App() {
   console.log(localDoctorInfo, "from App/Home page")
 
   useEffect(() => {
-    if (localDoctorInfo.id) {
-      dispatch(setDoctorLogInfo(localDoctorInfo))
-    }
+    // if (localDoctorInfo.id) {
+    //   dispatch(setDoctorLogInfo(localDoctorInfo))
+    // }
     if (!localLoginInfo) {
       return navigate("/login")
     }

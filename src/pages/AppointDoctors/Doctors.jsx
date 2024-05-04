@@ -114,7 +114,7 @@ export default function Doctors() {
                         </p>
                     )}
                 </div>
-                {/* <HospitalMap location="Dhaka" /> */}
+                <HospitalMap location="Dhaka" />
                 {/* <div className="absolute top-20 bouncer w-10 h-10 rounded-full bg-green-600"></div> */}
             </div >
         </div >
