@@ -8,12 +8,12 @@ export default function DocBoard() {
     const appointmentInfo = JSON.parse(localStorage.getItem("appointmentInfo")) || [];
     const localDoctorInfo = JSON.parse(localStorage.getItem("docLoginInfo"));
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (localDoctorInfo.id) {
-            dispatch(setDoctorLogInfo(localDoctorInfo))
-        }
-    }, [])
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     if (localDoctorInfo.id) {
+    //         dispatch(setDoctorLogInfo(localDoctorInfo))
+    //     }
+    // }, [])
 
     const matchedData = appointmentInfo?.filter(appointment => appointment.docInfo.id === doctorLogInfo.id);
 
