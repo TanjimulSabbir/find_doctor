@@ -16,7 +16,7 @@ export default function DocDetails() {
         doctorFee = fee
         hospitals = hospitalId;
         return (
-            <div key={doctor.id} className="leftSlider bg-white rounded-lg shadow-xl py-10 px-5">
+            <div key={doctor.id} className="leftSlider py-10 px-5">
                 <div className="w-full md:flex items-center md:items-start space-y-10 md:space-y-0 md:gap-x-10">
                     {/* Image information */}
                     <div className="md:w-[30%]">
@@ -46,13 +46,7 @@ export default function DocDetails() {
                             <p className="text-sm">{Math.floor(Math.random() * (15 - 5 + 1) + 5)} years of experience.
                             </p>
                         </div>
-
                         <p>{description}</p>
-
-                        {/* Book Appointment */}
-                        <div className="pt-10">
-                            <Link to={`/confirmed/${id}`} className="detailsAppointmentBtn">Book Appointment</Link>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,8 @@ const initialState = {
     filteredDoctors: [],
     filteredHospitals: [],
     showFilteredData: [],
-    searchedText: { category: "", location: "", inputText: "", innerCategory: "", showType: "all" }
+    searchedText: { category: "", location: "", inputText: "", innerCategory: "", showType: "all" },
+    patientInfo: {}
 }
 
 const filterSlice = createSlice({
@@ -38,9 +39,12 @@ const filterSlice = createSlice({
         },
         setShowType: (state, action) => {
             state.searchedText.showType = action.payload;
+        },
+        setPatientInfo: (state, action) => {
+            state.patientInfo = action.payload;
         }
     }
 })
 
-export const { setFilteredDoctors, setFilteredHospitals, setShowFilteredData, setCategory, setLocation, setInputText, setInnerCategory, setShowType } = filterSlice.actions;
+export const { setFilteredDoctors, setFilteredHospitals, setShowFilteredData, setCategory, setLocation, setInputText, setInnerCategory, setShowType, setPatientInfo } = filterSlice.actions;
 export default filterSlice.reducer;
