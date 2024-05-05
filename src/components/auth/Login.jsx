@@ -22,10 +22,10 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!doctorLogInfo.id) return;
-        dispatch(setDoctorLogInfo({}));
-        localStorage.removeItem("doctorLoginInfo");
-        toast.success("Doctor Logout!")
+        if (doctorLogInfo.id) {
+            dispatch(setDoctorLogInfo({}));
+            localStorage.removeItem("doctorLoginInfo");
+        }
     }, [])
 
     const handleData = (e) => {
@@ -34,7 +34,6 @@ const LoginForm = () => {
         dispatch(setUserLogInfo({ ...formData }))
         navigate("/appointment")
         toast.success("Login successful")
-
     };
 
 

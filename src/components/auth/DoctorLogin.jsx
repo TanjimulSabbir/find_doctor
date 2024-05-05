@@ -14,16 +14,18 @@ const DoctorLogin = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!userLogInfo.email) return;
-        dispatch(setUserLogInfo({}))
-        localStorage.removeItem("userLoginInfo")
-        toast.success("User Logout!")
+        if (userLogInfo.email) {
+            dispatch(setUserLogInfo({}))
+            localStorage.removeItem("userLoginInfo")
+            toast.success("User Logout!")
+        }
     }, [])
 
     const handleLogin = (event) => {
         event.preventDefault();
         dispatch(setDoctorLogInfo(JSON.parse(doctor)));
-        localStorage.setItem("docLoginInfo", doctor)
+        localStorage.setItem("docLoginInfo", doctor);
+        toast.success("Doctor Login Successful!")
         navigate("/docBoard")
     }
 
