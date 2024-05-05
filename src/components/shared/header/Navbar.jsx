@@ -48,11 +48,11 @@ function Navbar() {
             </button>
             <div className={`${style.navbarContainter} hidden lg:block`}>
                 <div className="container flex items-center justify-end space-x-10">
-                    <Link>Find Doctors</Link>
-                    <Link>Medicines</Link>
-                    <Link>Contact</Link>
-                    <Link>About us</Link>
-                    <Link>Facilities</Link>
+                    <Link to="/">Find Doctors</Link>
+                    <Link to="/">Medicines</Link>
+                    <Link to="/">Contact</Link>
+                    <Link to="/">About us</Link>
+                    <Link to="/">Facilities</Link>
 
                     {
                         !userLogInfo.email && !doctorLogInfo.id && <button className={style.signup} onClick={handleLogin}>

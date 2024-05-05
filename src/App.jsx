@@ -7,33 +7,12 @@ import { useEffect } from 'react';
 import { setAppointmentInfo } from './Redux/Features/filterSlice';
 
 function App() {
-  const { userLogInfo, appointmentInfo } = useSelector(state => state.authInfo);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  useEffect(() => {
+    localStorage.removeItem("docLoginInfo");
+    dispatch(setDoctorLogInfo({}))
+  }, [])
 
-  const localUserLoginInfo = JSON.parse(localStorage.getItem("userLoginInfo"));
-  const localPreviousData = JSON.parse(localStorage.getItem("appointmentInfo"));
-  const localDoctorInfo = JSON.parse(localStorage.getItem("docLoginInfo"));
-
-  // console.log(localDoctorInfo, "from App/Home page")
-
-  // useEffect(() => {
-  //   if (localDoctorInfo.id) {
-  //     dispatch(setDoctorLogInfo(localDoctorInfo))
-  //   }
-
-  //   if (localUserLoginInfo) {
-  //     dispatch(setUserLogInfo(localUserLoginInfo))
-  //   } else {
-  //     dispatch(setUserLogInfo({}))
-  //     navigate("/login")
-  //   }
-
-  //   if (localPreviousData) {
-  //     dispatch(setAppointmentInfo(localPreviousData))
-  //   }
-
-  // }, []);
 
   return <Home />
 }
