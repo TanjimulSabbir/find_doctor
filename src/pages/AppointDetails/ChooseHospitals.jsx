@@ -32,7 +32,7 @@ export default function ChooseHospitals({ fee, selectedHospitals, chooseData, se
                     ))}
                 </div>
             </div>
-            {/* <div className="rightSlider mt-5">
+            <div className="rightSlider mt-5">
                 <h1 className="text-xl font-bold">Choose Time Slot</h1>
                 <div className="space-y-3 mt-3">
                     <p className="text-lg font-bold">Morning</p>
@@ -48,7 +48,7 @@ export default function ChooseHospitals({ fee, selectedHospitals, chooseData, se
                         <Slots slots={slots[2].evening} setChooseData={setChooseData} chooseData={chooseData} />
                     </div>
                 </div>
-            </div> */}
+            </div>
             {/* Book Appointment */}
             <div className="pt-10">
                 <button type="submit" className="detailsAppointmentBtn">Book Appointment</button>
