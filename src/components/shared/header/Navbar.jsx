@@ -6,6 +6,7 @@ import { BiMenu } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { setDoctorLogInfo, setUserLogInfo } from "../../../Redux/Features/authSlice";
 import DoctorLogin from "../../auth/DoctorLogin";
+import toast from "react-hot-toast";
 
 function Navbar() {
     const [menu, setMenu] = useState(true);
@@ -29,13 +30,14 @@ function Navbar() {
     }
 
     const handleDocLogin = () => {
-        if (!doctorLogInfo.id) {
+        if (!doctorLogInfo?.id) {
             dispatch(setDoctorLogInfo({}))
-            localStorage.removeItem("doctorLoginInfo")
+            localStorage.removeItem("docLoginInfo")
             navigate("/docLogin");
         } else {
             dispatch(setDoctorLogInfo({}))
-            localStorage.removeItem("doctorLoginInfo")
+            localStorage.removeItem("docLoginInfo")
+            toast.error("logout")
             navigate("/docLogin");
         }
     }
@@ -60,10 +62,10 @@ function Navbar() {
                         </button>
                     }
 
-                    {userLogInfo.email ? <button className={style.signup} onClick={handleLogin}>
-                        {userLogInfo.email ? "Logout" : "Login"}
+                    {userLogInfo?.email ? <button className={style.signup} onClick={handleLogin}>
+                        {userLogInfo?.email ? "Logout" : "Login"}
                     </button> : <button className={style.signup} onClick={handleDocLogin}>
-                        {doctorLogInfo.id ? "Doc Logout" : "Doc Login"}
+                        {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
                     </button>}
 
                 </div>

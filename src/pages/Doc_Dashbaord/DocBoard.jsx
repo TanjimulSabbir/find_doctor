@@ -1,19 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Error from "../../UI/Error";
-import { setDoctorLogInfo } from "../../Redux/Features/authSlice";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function DocBoard() {
     const { doctorLogInfo } = useSelector(state => state.authInfo);
     const appointmentInfo = JSON.parse(localStorage.getItem("appointmentInfo")) || [];
     const localDoctorInfo = JSON.parse(localStorage.getItem("docLoginInfo"));
 
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     if (localDoctorInfo.id) {
-    //         dispatch(setDoctorLogInfo(localDoctorInfo))
-    //     }
-    // }, [])
+    const navigate=useNavigate();
+
+    useEffect(() => {
+        if (!localDoctorInfo?.id) {
+            navigate("/doclogin")
+        }
+    }, [])
 
     const matchedData = appointmentInfo?.filter(appointment => appointment.docInfo.id === doctorLogInfo.id);
 
