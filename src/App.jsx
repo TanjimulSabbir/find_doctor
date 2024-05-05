@@ -4,7 +4,6 @@ import Home from './components/Home/Home';
 import { setDoctorLogInfo } from './Redux/Features/authSlice';
 import { useEffect } from 'react';
 
-
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

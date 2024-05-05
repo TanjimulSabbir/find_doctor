@@ -25,6 +25,7 @@ function Navbar() {
         } else {
             dispatch(setUserLogInfo({}))
             localStorage.removeItem("userLoginInfo")
+            toast.error("logout")
             navigate("/login");
         }
     }

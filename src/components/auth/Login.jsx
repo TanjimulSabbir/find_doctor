@@ -24,7 +24,7 @@ const LoginForm = () => {
     useEffect(() => {
         if (doctorLogInfo.id) {
             dispatch(setDoctorLogInfo({}));
-            localStorage.removeItem("doctorLoginInfo");
+            localStorage.removeItem("docLoginInfo");
         }
     }, [])
 
