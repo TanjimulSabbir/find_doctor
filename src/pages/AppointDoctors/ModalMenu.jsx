@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { BsHospital } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { setInputText, setShowFilteredData } from "../../Redux/Features/filterSlice";
+import { setInputText, setShowFilteredData, setShowType } from "../../Redux/Features/filterSlice";
 
 
 const styleData = "transition-all duration-300 hover:bg-gray-800 px-2 py-1 rounded flex space-x-2 items-center opacity-100 cursor-pointer";
@@ -19,6 +19,7 @@ export default function ModalMenu({ setFloatMenu, dataType }) {
         const UIData = dataType === "doctor" ? [item] : filteredDoctors;
         dispatch(setShowFilteredData(UIData))
         dispatch(setInputText(item.name))
+        dispatch(setShowType("filtered"))
         setFloatMenu(false);
     }
 

@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import "../../style/Appointment.css"
 import ChooseHospitals from "./ChooseHospitals";
 import { useState } from "react";
-import { setAppointmentInfo } from "../../Redux/Features/filterSlice";
+import { setAppointmentInfo, setShowFilteredData, setShowType } from "../../Redux/Features/filterSlice";
 import toast from "react-hot-toast";
 
 export default function DocDetails() {
@@ -44,7 +44,6 @@ export default function DocDetails() {
 
         // Update local storage with updated data
         localStorage.setItem("appointmentInfo", JSON.stringify(updatedData));
-
         // Navigate back to homepage
         navigate("/appointment");
     }

@@ -30,15 +30,14 @@ export default function Doctors() {
     };
 
     useEffect(() => {
-        if (showDoctors.length > 0) {
-            dispatch(setShowType("filtered"))
-            setShowDoctors(showFilteredData);
-        }
-        else {
+        if (searchedText.showType == "all") {
             setShowDoctors(doctors);
-            dispatch(setShowType("all"))
         }
-    }, [showFilteredData])
+        if (searchedText.showType === "filtered") {
+            setShowDoctors(showFilteredData)
+        }
+
+    }, [searchedText.showType, showFilteredData])
 
     const number = [];
     return (

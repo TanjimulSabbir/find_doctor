@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { setDoctorLogInfo, setUserLogInfo } from "../../../Redux/Features/authSlice";
+import DoctorLogin from "../../auth/DoctorLogin";
 
 function Navbar() {
     const [menu, setMenu] = useState(true);
@@ -45,13 +46,16 @@ function Navbar() {
                     <Link>Contact</Link>
                     <Link>About us</Link>
                     <Link>Facilities</Link>
-                    {doctorLogInfo && <button className={style.signup} onClick={handleLogin}>
-                        {userLogInfo?.email ? "Logout" : "Login"}
-                    </button>}
+                    {userLogInfo.email ? (
+                        <button className={style.signup} onClick={handleLogin}>
+                            {doctorLogInfo?.id ? "Doc Logout" : "Logout"}
+                        </button>
+                    ) : (
+                        <button className={style.signup} onClick={handleLogin}>
+                            Login
+                        </button>
+                    )}
 
-                    {doctorLogInfo && <button className={style.signup} onClick={handleDocLogin}>
-                        {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
-                    </button>}
 
                 </div>
             </div>
@@ -63,13 +67,16 @@ function Navbar() {
                         <Link>Contact</Link>
                         <Link>About us</Link>
                         <Link>Facilities</Link>
-                        {doctorLogInfo && <button className={style.signup} onClick={handleLogin}>
-                            {userLogInfo?.email ? "Logout" : "Login"}
-                        </button>}
+                        {userLogInfo.email ? (
+                            <button className={style.signup} onClick={handleLogin}>
+                                {doctorLogInfo?.id ? "Doc Logout" : "Logout"}
+                            </button>
+                        ) : (
+                            <button className={style.signup} onClick={handleLogin}>
+                                Login
+                            </button>
+                        )}
 
-                        {doctorLogInfo && <button className={style.signup} onClick={handleDocLogin}>
-                            {doctorLogInfo?.id ? "Doc Logout" : "Doc Login"}
-                        </button>}
                     </div>
                 </div>
                 {menu && <button onClick={() => setMenu(!menu)} className="absolute top-3 right-3 text-xl text-white"><CgClose /></button>}

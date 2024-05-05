@@ -17,22 +17,20 @@ function App() {
 
   console.log(localDoctorInfo, "from App/Home page")
 
-  // useEffect(() => {
-  //   if (localDoctorInfo.id) {
-  //     dispatch(setDoctorLogInfo(localDoctorInfo))
-  //   }
-  //   if (!localLoginInfo) {
-  //    return navigate("/login")
-  //   }
-  //   if (localLoginInfo.email && !userLogInfo.email) {
-  //     dispatch(setUserLogInfo(localLoginInfo))
-  //   }
+  useEffect(() => {
+    if (localDoctorInfo.id) {
+      dispatch(setDoctorLogInfo(localDoctorInfo))
+    }
 
-  //   if (localPreviousData) {
-  //     dispatch(setAppointmentInfo(localPreviousData))
-  //   }
-   
-  // }, []);
+    if (localLoginInfo.email && !userLogInfo.email) {
+      dispatch(setUserLogInfo(localLoginInfo))
+    }
+
+    if (localPreviousData) {
+      dispatch(setAppointmentInfo(localPreviousData))
+    }
+
+  }, []);
 
   return <Home />
 }
