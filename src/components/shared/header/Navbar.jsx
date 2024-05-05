@@ -30,6 +30,8 @@ function Navbar() {
 
     const handleDocLogin = () => {
         if (!doctorLogInfo.id) {
+            dispatch(setDoctorLogInfo({}))
+            localStorage.removeItem("doctorLoginInfo")
             navigate("/docLogin");
         } else {
             dispatch(setDoctorLogInfo({}))
