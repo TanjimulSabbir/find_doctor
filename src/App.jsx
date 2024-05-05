@@ -11,26 +11,29 @@ function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const localLoginInfo = JSON.parse(localStorage.getItem("userLoginInfo"));
+  const localUserLoginInfo = JSON.parse(localStorage.getItem("userLoginInfo"));
   const localPreviousData = JSON.parse(localStorage.getItem("appointmentInfo"));
   const localDoctorInfo = JSON.parse(localStorage.getItem("docLoginInfo"));
 
-  console.log(localDoctorInfo, "from App/Home page")
+  // console.log(localDoctorInfo, "from App/Home page")
 
-  useEffect(() => {
-    if (localDoctorInfo.id) {
-      dispatch(setDoctorLogInfo(localDoctorInfo))
-    }
+  // useEffect(() => {
+  //   if (localDoctorInfo.id) {
+  //     dispatch(setDoctorLogInfo(localDoctorInfo))
+  //   }
 
-    if (localLoginInfo.email && !userLogInfo.email) {
-      dispatch(setUserLogInfo(localLoginInfo))
-    }
+  //   if (localUserLoginInfo) {
+  //     dispatch(setUserLogInfo(localUserLoginInfo))
+  //   } else {
+  //     dispatch(setUserLogInfo({}))
+  //     navigate("/login")
+  //   }
 
-    if (localPreviousData) {
-      dispatch(setAppointmentInfo(localPreviousData))
-    }
+  //   if (localPreviousData) {
+  //     dispatch(setAppointmentInfo(localPreviousData))
+  //   }
 
-  }, []);
+  // }, []);
 
   return <Home />
 }

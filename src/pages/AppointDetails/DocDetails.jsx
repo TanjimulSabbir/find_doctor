@@ -57,7 +57,7 @@ export default function DocDetails() {
             <div key={doctor.id} className="rightSlider py-10 px-5">
                 <div className="w-full md:flex items-center md:items-start space-y-10 md:space-y-0 md:gap-x-10">
                     {/* Image information */}
-                    <div className="md:w-[30%]">
+                    <div className="md:w-[30%] h-full">
                         <img src={image} className="w-full h-full" alt={name} srcSet="" />
                     </div>
 

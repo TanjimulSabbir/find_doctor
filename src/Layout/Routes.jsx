@@ -8,6 +8,7 @@ import Doctors from "../pages/AppointDoctors/Doctors";
 import PrivateRoute from "../components/auth/PrivateRoute";
 import DoctorLogin from "../components/auth/DoctorLogin";
 import DocBoard from "../pages/Doc_Dashbaord/DocBoard";
+import SetLoginData from "../utils/SetLoginData";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <App />
+                element: <SetLoginData><App /></SetLoginData>
             },
             {
                 path: "/login",
@@ -28,15 +29,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/docBoard",
-                element: <DocBoard />
+                element: <SetLoginData><DocBoard /></SetLoginData>
             },
             {
                 path: "/appointment",
-                element: <Appointment />,
+                element: <SetLoginData><PrivateRoute> <Appointment /> </PrivateRoute></SetLoginData>,
                 children: [
                     {
                         path: "/appointment",
-                        element: <Doctors />
+                        element: <SetLoginData><Doctors /></SetLoginData>
                     },
                     {
                         path: "/appointment/:docId",

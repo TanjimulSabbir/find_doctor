@@ -13,8 +13,13 @@ function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+
+    console.log(userLogInfo, "from navbar")
+
     const handleLogin = () => {
         if (!userLogInfo.email) {
+            dispatch(setUserLogInfo({}))
+            localStorage.removeItem("userLoginInfo")
             navigate("/login");
         } else {
             dispatch(setUserLogInfo({}))
@@ -46,16 +51,18 @@ function Navbar() {
                     <Link>Contact</Link>
                     <Link>About us</Link>
                     <Link>Facilities</Link>
-                    {userLogInfo.email ? (
-                        <button className={style.signup} onClick={handleLogin}>
-                            {doctorLogInfo?.id ? "Doc Logout" : "Logout"}
-                        </button>
-                    ) : (
-                        <button className={style.signup} onClick={handleLogin}>
+
+                    {
+                        !userLogInfo.email && !doctorLogInfo.id && <button className={style.signup} onClick={handleLogin}>
                             Login
                         </button>
-                    )}
+                    }
 
+                    {userLogInfo.email ? <button className={style.signup} onClick={handleLogin}>
+                        {userLogInfo.email ? "Logout" : "Login"}
+                    </button> : <button className={style.signup} onClick={handleDocLogin}>
+                        {doctorLogInfo.id ? "Doc Logout" : "Doc Login"}
+                    </button>}
 
                 </div>
             </div>
@@ -67,7 +74,7 @@ function Navbar() {
                         <Link>Contact</Link>
                         <Link>About us</Link>
                         <Link>Facilities</Link>
-                        {userLogInfo.email ? (
+                        {/* {userLogInfo.email ? (
                             <button className={style.signup} onClick={handleLogin}>
                                 {doctorLogInfo?.id ? "Doc Logout" : "Logout"}
                             </button>
@@ -75,7 +82,7 @@ function Navbar() {
                             <button className={style.signup} onClick={handleLogin}>
                                 Login
                             </button>
-                        )}
+                        )} */}
 
                     </div>
                 </div>
